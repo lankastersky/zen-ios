@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// Challenge model
 struct Challenge: Decodable {
     let content: String

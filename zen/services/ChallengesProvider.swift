@@ -18,7 +18,6 @@ enum ServiceError: Error {
     case runtimeError(String)
 }
 
-
 /// Loads challenges from Firebase
 class ChallengesProvider {
     

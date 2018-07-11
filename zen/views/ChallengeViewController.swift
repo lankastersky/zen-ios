@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// Shows current challenge
 class ChallengeViewController: UIViewController {
 

@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// Shows the Journal of finished challenges
 class JournalViewController: UICollectionViewController {
     
