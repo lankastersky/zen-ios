@@ -47,6 +47,7 @@ class JournalViewController: UICollectionViewController {
     }
 
     // custom function to generate a random UIColor
+    // TODO: remove after implementing real cells
     func randomColor() -> UIColor{
         let red = CGFloat(drand48())
         let green = CGFloat(drand48())
@@ -55,7 +56,7 @@ class JournalViewController: UICollectionViewController {
     }
     
     // MARK: UICollectionViewDelegate
-
+    // TODO: implement
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
