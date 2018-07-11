@@ -18,11 +18,18 @@ final class ChallengeViewController: UIViewController {
         // TODO: localize
         navigationItem.title = "Current Challenge"
 
-        ChallengesProvider.shared.signIn(callback: { _, error in
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Failed to get app delegate")
+            return
+        }
+
+        let challengesProvider = appDelegate.challengesProvider
+
+        challengesProvider.signIn(callback: { _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
-                ChallengesProvider.shared.loadChallenges(callback: { challenges, error in
+                challengesProvider.loadChallenges(callback: { challenges, error in
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else if let challenges = challenges {
@@ -36,7 +43,6 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func showCurrentChallenge() {
-        let challenges = ChallengesProvider.shared.challenges
         // TODO: choose proper index
         let challengeIndex = 0
         let challenge = Array(challenges.values)[challengeIndex]

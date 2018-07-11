@@ -13,6 +13,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var challengesProvider = ChallengesProvider()
 
     func application(
         _ application: UIApplication, didFinishLaunchingWithOptions

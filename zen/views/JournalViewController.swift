@@ -13,7 +13,13 @@ final class JournalViewController: UICollectionViewController {
         // TODO: localize
         navigationItem.title = "Finished Challenges"
 
-        challenges = ChallengesProvider.shared.challenges
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            print("Failed to get app delegate")
+            return
+        }
+
+        let challengesProvider = appDelegate.challengesProvider
+        challenges = challengesProvider.challenges
     }
 
     // MARK: UICollectionViewDataSource

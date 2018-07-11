@@ -15,9 +15,6 @@ final class ChallengesProvider {
 
     private static let challengeFileName = "challenges"
 
-    /// Singleton
-    static let shared = ChallengesProvider()
-
     private lazy var storage = Storage.storage()
     private var _challenges: [String: Challenge]
 
@@ -25,8 +22,8 @@ final class ChallengesProvider {
         get { return _challenges }
         set {}
     }
-    /// Private to protect singleton
-    private init() {
+
+    init() {
         _challenges = [:]
     }
 
