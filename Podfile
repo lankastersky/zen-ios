@@ -12,8 +12,4 @@ target 'zen' do
     inherit! :search_paths
   end
 
-  target 'zenUITests' do
-    inherit! :search_paths
-  end
-
 end

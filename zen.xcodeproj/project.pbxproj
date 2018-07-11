@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A9CD679547B34589F674234 /* Pods_zenUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 358065CE271683AAD657CCD0 /* Pods_zenUITests.framework */; };
 		736B83CC20F4400700517246 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 736B83CB20F4400700517246 /* Config.plist */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
@@ -15,7 +14,6 @@
 		73CD830220E463ED00FEF64D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830120E463ED00FEF64D /* Assets.xcassets */; };
 		73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
 		73CD831020E463EE00FEF64D /* zenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD830F20E463EE00FEF64D /* zenTests.swift */; };
-		73CD831B20E463EE00FEF64D /* zenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD831A20E463EE00FEF64D /* zenUITests.swift */; };
 		73CD832B20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
 		73CD832C20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
 		73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
@@ -25,6 +23,7 @@
 		73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */; };
 		73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3020F573EE004D14ED /* JournalViewController.swift */; };
 		73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */; };
+		73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3720F67590004D14ED /* .swiftlint.yml */; };
 		B335FB90DFC092967F241698 /* Pods_zenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA741A1BF9C270700F38A /* Pods_zenTests.framework */; };
 		EE860DB7C6485B57D76392FC /* Pods_zen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31029E8AD9B23DD9DF9598C9 /* Pods_zen.framework */; };
 /* End PBXBuildFile section */
@@ -64,17 +63,14 @@
 		73CD830F20E463EE00FEF64D /* zenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zenTests.swift; sourceTree = "<group>"; };
 		73CD831120E463EE00FEF64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73CD831620E463EE00FEF64D /* zenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		73CD831A20E463EE00FEF64D /* zenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zenUITests.swift; sourceTree = "<group>"; };
-		73CD831C20E463EE00FEF64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73CD832A20E475E100FEF64D /* ChallengesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesProvider.swift; sourceTree = "<group>"; };
 		73CD832F20E4760A00FEF64D /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		73EEFE3020F573EE004D14ED /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
+		73EEFE3720F67590004D14ED /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		94BAA741A1BF9C270700F38A /* Pods_zenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F3340E7058EE6E2A1374B8 /* Pods-zenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-zenTests/Pods-zenTests.release.xcconfig"; sourceTree = "<group>"; };
-		DC478EEF8995ED5FC7C6D7AF /* Pods-zenUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zenUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zenUITests/Pods-zenUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		F677AABE08DE800858718C56 /* Pods-zenUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zenUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-zenUITests/Pods-zenUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +94,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A9CD679547B34589F674234 /* Pods_zenUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,9 +103,9 @@
 		73CD82EC20E463EA00FEF64D = {
 			isa = PBXGroup;
 			children = (
+				73EEFE3720F67590004D14ED /* .swiftlint.yml */,
 				73CD82F720E463EA00FEF64D /* zen */,
 				73CD830E20E463EE00FEF64D /* zenTests */,
-				73CD831920E463EE00FEF64D /* zenUITests */,
 				73CD82F620E463EA00FEF64D /* Products */,
 				D332F9437814F9025547016E /* Pods */,
 				B67BDB1734E536C8CE1A6A3A /* Frameworks */,
@@ -151,15 +146,6 @@
 				73CD831120E463EE00FEF64D /* Info.plist */,
 			);
 			path = zenTests;
-			sourceTree = "<group>";
-		};
-		73CD831920E463EE00FEF64D /* zenUITests */ = {
-			isa = PBXGroup;
-			children = (
-				73CD831A20E463EE00FEF64D /* zenUITests.swift */,
-				73CD831C20E463EE00FEF64D /* Info.plist */,
-			);
-			path = zenUITests;
 			sourceTree = "<group>";
 		};
 		73CD832820E4752A00FEF64D /* views */ = {
@@ -205,8 +191,6 @@
 				4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */,
 				4E636FF712D195B658514B88 /* Pods-zenTests.debug.xcconfig */,
 				A1F3340E7058EE6E2A1374B8 /* Pods-zenTests.release.xcconfig */,
-				DC478EEF8995ED5FC7C6D7AF /* Pods-zenUITests.debug.xcconfig */,
-				F677AABE08DE800858718C56 /* Pods-zenUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -223,6 +207,7 @@
 				73CD82F220E463EA00FEF64D /* Frameworks */,
 				73CD82F320E463EA00FEF64D /* Resources */,
 				4A357AE9B1AE884B93A0FF53 /* [CP] Embed Pods Frameworks */,
+				73EEFE3620F6731D004D14ED /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -256,7 +241,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73CD832520E463EE00FEF64D /* Build configuration list for PBXNativeTarget "zenUITests" */;
 			buildPhases = (
-				AA292A2441992211EFB025D2 /* [CP] Check Pods Manifest.lock */,
 				73CD831220E463EE00FEF64D /* Sources */,
 				73CD831320E463EE00FEF64D /* Frameworks */,
 				73CD831420E463EE00FEF64D /* Resources */,
@@ -319,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */,
 				736B83CC20F4400700517246 /* Config.plist in Resources */,
 				73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */,
 				73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */,
@@ -404,23 +389,18 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA292A2441992211EFB025D2 /* [CP] Check Pods Manifest.lock */ = {
+		73EEFE3620F6731D004D14ED /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-zenUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -454,7 +434,6 @@
 			files = (
 				73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
 				73CD833220E4760A00FEF64D /* Challenge.swift in Sources */,
-				73CD831B20E463EE00FEF64D /* zenUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,7 +670,6 @@
 		};
 		73CD832620E463EE00FEF64D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DC478EEF8995ED5FC7C6D7AF /* Pods-zenUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -712,7 +690,6 @@
 		};
 		73CD832720E463EE00FEF64D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F677AABE08DE800858718C56 /* Pods-zenUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

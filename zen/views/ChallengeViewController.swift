@@ -17,26 +17,32 @@ class ChallengeViewController: UIViewController {
     @IBOutlet weak var source: UILabel!
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var url: UILabel!
-    
-    private var _challenges: [String: Challenge] = [:]
-    
-    var challenges: [String: Challenge] {
-        get {
-            return _challenges
-        }
-        set {
-            self._challenges = newValue
-            showCurrentChallenge()
-        }
-    }
-    
+
+    private var challenges: [String: Challenge] = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // TODO: localize
         self.navigationItem.title = "Current Challenge"
+
+        ChallengesProvider.shared.signIn(callback: { _, error in
+            if let error = error {
+                print("Failed to authenticate in Firebase: \(error)")
+            } else {
+                ChallengesProvider.shared.loadChallenges(callback: { challenges, error in
+                    if let error = error {
+                        print("Failed to download challenges:\(error)")
+                    } else if let challenges = challenges {
+
+                        self.challenges = challenges
+                        self.showCurrentChallenge()
+                    }
+                })
+            }
+        })
     }
-    
+
     private func showCurrentChallenge() {
         let challenges = ChallengesProvider.shared.challenges
         let challengeIndex = 0
@@ -44,4 +50,3 @@ class ChallengeViewController: UIViewController {
         content.text = challenge.content
     }
 }
-
