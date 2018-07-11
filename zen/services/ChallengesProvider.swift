@@ -1,11 +1,3 @@
-//
-//  ChallengesProvider.swift
-//  zen
-//
-//  Created by Anton Popov on 6/27/18.
-//  Copyright © 2018 Anton Popov. All rights reserved.
-//
-
 import Firebase
 import Foundation
 import Zip
@@ -19,9 +11,9 @@ enum ServiceError: Error {
 }
 
 /// Loads challenges from Firebase
-class ChallengesProvider {
+final class ChallengesProvider {
 
-    private static let challengeFileName: String = "challenges"
+    private static let challengeFileName = "challenges"
 
     /// Singleton
     static let shared = ChallengesProvider()
@@ -43,19 +35,19 @@ class ChallengesProvider {
     /// - Parameter callback: callback with the signed user or error.
     func signIn(callback: @escaping FirebaseSignInCallback) {
         guard let path = Bundle.main.path(forResource: "Config", ofType: "plist") else {
-            print("Failed to load config file")
+            callback(nil, ServiceError.runtimeError("Failed to load config file"))
             return
         }
         guard let constants = NSDictionary(contentsOfFile: path) else {
-            print("Failed to parse config file")
+            callback(nil, ServiceError.runtimeError("Failed to parse config file"))
             return
         }
         guard let email = constants["email"] as? String else {
-            print("Failed to get email")
+            callback(nil, ServiceError.runtimeError("Failed to get email"))
             return
         }
         guard let password = constants["password"] as? String else {
-            print("Failed to get password")
+            callback(nil, ServiceError.runtimeError("Failed to get password"))
             return
         }
 
@@ -78,18 +70,21 @@ class ChallengesProvider {
         let zipFileName = "\(ChallengesProvider.challengeFileName).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
-        let localURL = ChallengesProvider.zippedChallengesFilePath(zipFileName)
+        guard let localURL = ChallengesProvider.zippedChallengesFilePath(zipFileName) else {
+            callback(nil, ServiceError.runtimeError("Failed to unzip challenges"))
+            return
+        }
         let fileRef = self.storage.reference().child(zipFileName)
 
-        fileRef.write(toFile: localURL) { url, error in
+        fileRef.write(toFile: localURL) { [weak self] url, error in
             if let error = error {
                 callback(nil, error)
             } else {
                 do {
                     let unzippedData = try ChallengesProvider
                         .unzip(url!, "\(ChallengesProvider.challengeFileName).json")
-                    self._challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
-                    callback(self._challenges, nil)
+                    self?._challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
+                    callback(self?._challenges, nil)
                 } catch {
                     callback(nil, error)
                 }
@@ -107,10 +102,10 @@ class ChallengesProvider {
         return try JSONDecoder().decode([String: Challenge].self, from: data!)
     }
 
-    private class func zippedChallengesFilePath(_ filename: String) -> URL {
+    private class func zippedChallengesFilePath(_ filename: String) -> URL? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0]
+        let documentsDirectory = paths.first
         let filePath = "file:\(documentsDirectory)/\(filename)"
-        return URL(string: filePath)!
+        return URL(string: filePath)
     }
 }

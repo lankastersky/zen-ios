@@ -1,22 +1,14 @@
-//
-//  FirstViewController.swift
-//  zen
-//
-//  Created by Anton Popov on 6/27/18.
-//  Copyright © 2018 Anton Popov. All rights reserved.
-//
-
 import UIKit
 
 /// Shows current challenge
-class ChallengeViewController: UIViewController {
+final class ChallengeViewController: UIViewController {
 
-    @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var details: UILabel!
-    @IBOutlet weak var quote: UILabel!
-    @IBOutlet weak var source: UILabel!
-    @IBOutlet weak var type: UILabel!
-    @IBOutlet weak var url: UILabel!
+    @IBOutlet weak private var contentLabel: UILabel!
+    @IBOutlet weak private var detailsLabel: UILabel!
+    @IBOutlet weak private var quoteLabel: UILabel!
+    @IBOutlet weak private var sourceLabel: UILabel!
+    @IBOutlet weak private var typeLabel: UILabel!
+    @IBOutlet weak private var urlLabel: UILabel!
 
     private var challenges: [String: Challenge] = [:]
 
@@ -24,7 +16,7 @@ class ChallengeViewController: UIViewController {
         super.viewDidLoad()
 
         // TODO: localize
-        self.navigationItem.title = "Current Challenge"
+        navigationItem.title = "Current Challenge"
 
         ChallengesProvider.shared.signIn(callback: { _, error in
             if let error = error {
@@ -45,8 +37,9 @@ class ChallengeViewController: UIViewController {
 
     private func showCurrentChallenge() {
         let challenges = ChallengesProvider.shared.challenges
+        // TODO: choose proper index
         let challengeIndex = 0
         let challenge = Array(challenges.values)[challengeIndex]
-        content.text = challenge.content
+        contentLabel.text = challenge.content
     }
 }

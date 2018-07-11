@@ -1,15 +1,7 @@
-//
-//  JournalViewController.swift
-//  zen
-//
-//  Created by Anton Popov on 7/10/18.
-//  Copyright © 2018 Anton Popov. All rights reserved.
-//
-
 import UIKit
 
 /// Shows the Journal of finished challenges
-class JournalViewController: UICollectionViewController {
+final class JournalViewController: UICollectionViewController {
 
     private static let journalViewCellReuseIdentifier = "JournalViewCell"
 
@@ -19,16 +11,12 @@ class JournalViewController: UICollectionViewController {
         super.viewDidLoad()
 
         // TODO: localize
-        self.navigationItem.title = "Finished Challenges"
+        navigationItem.title = "Finished Challenges"
 
         challenges = ChallengesProvider.shared.challenges
     }
 
     // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
 
     override func collectionView(
         _ collectionView: UICollectionView,
@@ -48,10 +36,9 @@ class JournalViewController: UICollectionViewController {
                 return UICollectionViewCell()
         }
 
-        // Configure the cell
         let challenge: Challenge = Array(challenges.values)[indexPath.item]
-        cell.content.text = challenge.content
-        cell.backgroundColor = self.randomColor()
+        cell.contentLabel.text = challenge.content
+        cell.backgroundColor = randomColor()
         return cell
     }
 

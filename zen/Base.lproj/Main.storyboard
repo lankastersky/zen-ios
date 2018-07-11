@@ -35,7 +35,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="wcV-Vh-Vay"/>
                     <connections>
-                        <outlet property="content" destination="KQZ-1w-vlD" id="WTs-nL-C7B"/>
+                        <outlet property="contentLabel" destination="KQZ-1w-vlD" id="WTs-nL-C7B"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
