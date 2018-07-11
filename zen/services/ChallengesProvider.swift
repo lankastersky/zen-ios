@@ -104,7 +104,9 @@ final class ChallengesProvider {
 
     private class func zippedChallengesFilePath(_ filename: String) -> URL? {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths.first
+        guard let documentsDirectory = paths.first else {
+            return nil
+        }
         let filePath = "file:\(documentsDirectory)/\(filename)"
         return URL(string: filePath)
     }

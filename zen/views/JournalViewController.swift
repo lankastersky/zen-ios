@@ -29,7 +29,7 @@ final class JournalViewController: UICollectionViewController {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        guard let cell: JournalCollectionViewCell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: JournalViewController.journalViewCellReuseIdentifier,
             for: indexPath) as? JournalCollectionViewCell else {
                 print("Failed to instantiate journal cell")
