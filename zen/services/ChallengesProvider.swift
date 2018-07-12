@@ -13,7 +13,7 @@ enum ServiceError: Error {
 /// Loads challenges from Firebase
 final class ChallengesProvider {
 
-    private static let challengeFileName = "challenges"
+    private static let challengesFileName = "challenges_en"
 
     private lazy var storage = Storage.storage()
     private var _challenges: [String: Challenge]
@@ -64,7 +64,7 @@ final class ChallengesProvider {
     /// - Throws: ServiceError if failed to download or parse challenges.
     func loadChallenges(callback: @escaping LoadChallengesCallback) {
         _challenges = [:]
-        let zipFileName = "\(ChallengesProvider.challengeFileName).zip"
+        let zipFileName = "\(ChallengesProvider.challengesFileName).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
         guard let localURL = ChallengesProvider.zippedChallengesFilePath(zipFileName) else {
@@ -79,7 +79,7 @@ final class ChallengesProvider {
             } else {
                 do {
                     let unzippedData = try ChallengesProvider
-                        .unzip(url!, "\(ChallengesProvider.challengeFileName).json")
+                        .unzip(url!, "\(ChallengesProvider.challengesFileName).json")
                     self?._challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
                     callback(self?._challenges, nil)
                 } catch {

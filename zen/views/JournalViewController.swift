@@ -20,6 +20,12 @@ final class JournalViewController: UICollectionViewController {
 
         let challengesProvider = appDelegate.challengesProvider
         challenges = challengesProvider.challenges
+
+        collectionView?.register(UINib.init(nibName: "JournalCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: JournalViewController.journalViewCellReuseIdentifier)
+        if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
+        }
     }
 
     // MARK: UICollectionViewDataSource
@@ -44,6 +50,7 @@ final class JournalViewController: UICollectionViewController {
 
         let challenge: Challenge = Array(challenges.values)[indexPath.item]
         cell.contentLabel.text = challenge.content
+        cell.detailsLabel.text = challenge.details
         cell.backgroundColor = randomColor()
         return cell
     }

@@ -23,6 +23,7 @@
 		73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3020F573EE004D14ED /* JournalViewController.swift */; };
 		73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */; };
 		73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3720F67590004D14ED /* .swiftlint.yml */; };
+		73EEFE3A20F6D8C0004D14ED /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
 		EE860DB7C6485B57D76392FC /* Pods_zen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31029E8AD9B23DD9DF9598C9 /* Pods_zen.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		73EEFE3020F573EE004D14ED /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
 		73EEFE3720F67590004D14ED /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JournalCollectionViewCell.xib; sourceTree = "<group>"; };
 		94BAA741A1BF9C270700F38A /* Pods_zenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 				73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */,
 				73EEFE3020F573EE004D14ED /* JournalViewController.swift */,
 				73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */,
+				73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */,
 				73CD830220E463ED00FEF64D /* Assets.xcassets in Resources */,
 				73CD830020E463EA00FEF64D /* Main.storyboard in Resources */,
+				73EEFE3A20F6D8C0004D14ED /* JournalCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
