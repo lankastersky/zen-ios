@@ -1,9 +1,9 @@
 import UIKit
 
 /// Shows the Journal of finished challenges
-final class JournalViewController: UICollectionViewController {
+final class JournalViewController: UIViewController {
 
-    private static let journalViewCellReuseIdentifier = "JournalViewCell"
+    @IBOutlet weak private var collectionView: UICollectionView!
 
     private var challenges: [String: Challenge] = [:]
 
@@ -13,36 +13,32 @@ final class JournalViewController: UICollectionViewController {
         // TODO: localize
         navigationItem.title = "Finished Challenges"
 
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            print("Failed to get app delegate")
-            return
-        }
+        challenges = challengesProvider?.challenges ?? [:]
 
-        let challengesProvider = appDelegate.challengesProvider
-        challenges = challengesProvider.challenges
-
-        collectionView?.register(UINib.init(nibName: "JournalCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: JournalViewController.journalViewCellReuseIdentifier)
+        collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
+        // See https://goo.gl/yAUR1R
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
     }
+}
 
-    // MARK: UICollectionViewDataSource
+extension JournalViewController: UICollectionViewDataSource {
 
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
 
         return challenges.count
     }
 
-    override func collectionView(
+    func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: JournalViewController.journalViewCellReuseIdentifier,
+            withReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier,
             for: indexPath) as? JournalCollectionViewCell else {
                 print("Failed to instantiate journal cell")
                 return UICollectionViewCell()

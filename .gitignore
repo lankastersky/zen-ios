@@ -14,7 +14,6 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-zen.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 
 ## Other
 *.moved-aside

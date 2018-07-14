@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  zen
-//
-//  Created by Anton Popov on 6/27/18.
-//  Copyright © 2018 Anton Popov. All rights reserved.
-//
-
 import UIKit
 import Firebase
 
@@ -13,7 +5,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var challengesProvider = ChallengesProvider()
+    lazy var challengesProvider = ChallengesProvider()
 
     func application(
         _ application: UIApplication, didFinishLaunchingWithOptions
