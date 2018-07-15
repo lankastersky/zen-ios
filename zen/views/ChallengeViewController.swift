@@ -17,7 +17,10 @@ final class ChallengeViewController: UIViewController {
 
         // TODO: localize
         navigationItem.title = "Current Challenge"
+        loadChallenges()
+    }
 
+    private func loadChallenges() {
         challengesProvider?.signIn(callback: {[weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")

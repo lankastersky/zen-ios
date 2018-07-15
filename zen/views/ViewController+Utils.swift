@@ -8,7 +8,7 @@ extension UIViewController {
                 print("Failed to get app delegate")
                 return nil
             }
-            
+
             let challengesProvider = appDelegate.challengesProvider
             return challengesProvider
         }

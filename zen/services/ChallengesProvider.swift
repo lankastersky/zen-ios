@@ -61,7 +61,7 @@ final class ChallengesProvider {
             callback(nil, ServiceError.runtimeError("Failed to unzip challenges"))
             return
         }
-        let fileRef = self.storage.reference().child(zipFileName)
+        let fileRef = storage.reference().child(zipFileName)
 
         fileRef.write(toFile: localURL) { [weak self] url, error in
             if let error = error {
@@ -85,10 +85,12 @@ final class ChallengesProvider {
 /// ChallengesProvider + zip operations.
 extension ChallengesProvider {
 
-    private static func unzip(_ sourcePath: URL, _ fileName: String) throws -> Data {
+    private static func unzip(_ sourcePath: URL, _ fileName: String) throws -> Data? {
         let unzipDirectory = try Zip.quickUnzipFile(sourcePath)
-        let unzipURL = URL(string: "\(unzipDirectory)/\(fileName)")
-        return try Data(contentsOf: unzipURL!)
+        if let unzipURL = URL(string: "\(unzipDirectory)/\(fileName)") {
+            return try Data(contentsOf: unzipURL)
+        }
+        return nil
     }
 
     private static func parseChallenges(data: Data?) throws -> [String: Challenge] {
