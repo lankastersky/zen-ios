@@ -1,6 +1,6 @@
 import Foundation
 
-final class ChallengeModel {
+final class ChallengesModel {
 
     private static let probabilityGetDeclinedChallenge = 1 / 6
     private static let proportionAcceptMediumLavelChallenge = 1 / 3
@@ -101,12 +101,9 @@ final class ChallengeModel {
     }
 
     /// Persistently stores challenges and refreshes challenges map
-    func storeChallenges(_ challenges: [Challenge]) {
-        challengesMap.removeAll()
-        for challenge in challenges {
-            challengesMap[challenge.challengeId] = challenge
-        }
-        challengesArchiver.storeChallenges(challenges)
+    func storeChallenges(_ challengesMap: [String: Challenge]) {
+        self.challengesMap = challengesMap
+        challengesArchiver.storeChallenges(Array(challengesMap.values))
     }
 
     /// Sets challenge status as 'shown' if current status is 'unknown'

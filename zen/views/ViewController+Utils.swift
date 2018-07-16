@@ -2,15 +2,15 @@ import UIKit
 
 /// UIViewController Utils.
 extension UIViewController {
-    var challengesProvider: ChallengesProvider? {
+    var challengesModel: ChallengesModel? {
         get {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 print("Failed to get app delegate")
                 return nil
             }
 
-            let challengesProvider = appDelegate.challengesProvider
-            return challengesProvider
+            let challengesModel = appDelegate.challengesModel
+            return challengesModel
         }
         set {}
     }

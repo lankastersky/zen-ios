@@ -10,7 +10,7 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var typeLabel: UILabel!
     @IBOutlet weak private var urlLabel: UILabel!
 
-    private var challenges: [String: Challenge] = [:]
+    private var challenges: [Challenge] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +21,16 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func loadChallenges() {
-        challengesProvider?.signIn(callback: {[weak self] _, error in
+        let challengesProvider = ChallengesProvider()
+        challengesProvider.signIn(callback: {[weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
-                self?.challengesProvider?.loadChallenges(callback: { challenges, error in
+                challengesProvider.loadChallenges(callback: { challenges, error in
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else if let challenges = challenges {
-                        self?.challenges = challenges
+                        self?.challengesModel?.storeChallenges(challenges)
                         self?.showCurrentChallenge()
                     }
                 })
@@ -40,7 +41,8 @@ final class ChallengeViewController: UIViewController {
     private func showCurrentChallenge() {
         // TODO: choose proper index
         let challengeIndex = 0
-        let challenge = Array(challenges.values)[challengeIndex]
-        contentLabel.text = challenge.content
+        if let challenge = challengesModel?.challenges[challengeIndex] {
+            contentLabel.text = challenge.content
+        }
     }
 }

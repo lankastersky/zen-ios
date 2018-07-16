@@ -5,7 +5,7 @@ final class JournalViewController: UIViewController {
 
     @IBOutlet weak private var collectionView: UICollectionView!
 
-    private var challenges: [String: Challenge] = [:]
+    private var challenges: [Challenge] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,7 +13,7 @@ final class JournalViewController: UIViewController {
         // TODO: localize
         navigationItem.title = "Finished Challenges"
 
-        challenges = challengesProvider?.challenges ?? [:]
+        challenges = challengesModel?.challenges ?? []
 
         collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
@@ -44,7 +44,7 @@ extension JournalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
         }
 
-        let challenge: Challenge = Array(challenges.values)[indexPath.item]
+        let challenge: Challenge = challenges[indexPath.item]
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details
         cell.backgroundColor = randomColor()
