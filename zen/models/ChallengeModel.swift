@@ -117,7 +117,7 @@ final class ChallengeModel {
             "Can't mark current challenge as shown. ChallengeId is not current challenge:"
                 + " \(challengeId)")
         assert(
-            currentChallenge?.status != ChallengeStatus.unknown,
+            currentChallenge?.status != nil,
             "Can't mark current challenge as shown. Challenge status is not unknown:"
                 + " \(String(describing: currentChallenge?.status))")
 
