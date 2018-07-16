@@ -41,7 +41,7 @@ final class ChallengeViewController: UIViewController {
     private func showCurrentChallenge() {
         // TODO: choose proper index
         let challengeIndex = 0
-        if let challenge = challengesModel?.challenges[challengeIndex] {
+        if let challenge = challengesModel?.sortedChallenges[challengeIndex] {
             contentLabel.text = challenge.content
         }
     }

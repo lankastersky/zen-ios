@@ -1,11 +1,13 @@
+import Foundation
+
+/// Stores-restores challenges data persistently
 final class ChallengesArchiver {
 
-    func restoreCurrentChallenge() -> Challenge? {
+    func storeCurrentChallenge(_ challenge: Challenge?) {
         // TODO: implement
-        return nil
     }
 
-    func restoreChallenges() -> [Challenge]? {
+    func restoreCurrentChallenge() -> Challenge? {
         // TODO: implement
         return nil
     }
@@ -14,7 +16,33 @@ final class ChallengesArchiver {
         // TODO: implement
     }
 
+    func restoreChallenges() -> [Challenge]? {
+        // TODO: implement
+        return nil
+    }
+
     func storeLevel(_ level: ChallengeLevel) {
+        // TODO: implement
+    }
+
+    func restoreLevel() -> ChallengeLevel {
+        return .low
+    }
+
+    func storeCurrentChallengeShownTime(_ timeSinceEpoch: TimeInterval) {
+        // TODO: implement
+    }
+
+    func restoreCurrentChallengeShownTime() -> TimeInterval {
+        // TODO: implement
+        return 0
+    }
+
+    func storeChallengeData(_ challengesMap: [String: Challenge]) {
+        // TODO: implement
+    }
+
+    func restoreChallengeData(_ challengesMap: [String: Challenge]) {
         // TODO: implement
     }
 }

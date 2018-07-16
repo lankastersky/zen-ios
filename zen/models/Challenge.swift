@@ -13,18 +13,48 @@ struct Challenge {
 
     let challengeId: String
     let level: ChallengeLevel
-    var status: ChallengeStatus?
-    var finishedTime: TimeInterval = 0
-    var rating: Double?
-    var comments: String?
+    private(set) var status: ChallengeStatus?
+    private(set) var finishedTime: TimeInterval = 0
+    private(set) var rating: Double?
+    private(set) var comments: String?
 
     let prevStatuses: [Int]? = nil
     let prevFinishedTimes: [TimeInterval]? = nil
     let prevRatings: [Float]? = nil
+
+    mutating func updateStatus() {
+        switch status {
+        case nil:
+            status = .shown
+        case .shown?:
+            status = .accepted
+        case .accepted?:
+            status = .finished
+            finishedTime = Date().timeIntervalSince1970
+        default:
+            assertionFailure("Wrong challenge status")
+        }
+    }
+
+    mutating func decline() {
+        switch status {
+        case .shown?, .accepted?:
+            status = .declined
+            finishedTime = Date().timeIntervalSince1970
+        default:
+            assertionFailure("Wrong challenge status")
+        }
+    }
+
+    mutating func reset() {
+        status = nil
+        finishedTime = 0
+        rating = nil
+    }
 }
 
 extension Challenge: Decodable {
-    
+
     enum CodingKeys: String, CodingKey {
         //case challengeId = "id"
         case content
