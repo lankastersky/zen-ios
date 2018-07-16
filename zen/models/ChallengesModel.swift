@@ -11,7 +11,7 @@ final class ChallengesModel {
     private var challengesMap: [String: Challenge] = [:]
     private var currentChallengeId = ""
     private var currentChallengeShownTime: TimeInterval = 0
-    private(set) var currentLevel: ChallengeLevel = ChallengeLevel.low
+    private(set) var currentLevel: ChallengeLevel = .low
     private let challengesArchiver = ChallengesArchiver()
 
     var currentChallenge: Challenge? {
@@ -21,7 +21,7 @@ final class ChallengesModel {
 
     var shownChallengesNumber: Int {
         get {
-            let shownNumber: Int = challengesByStatus(ChallengeStatus.shown).count
+            let shownNumber = challengesByStatus(ChallengeStatus.shown).count
             return shownNumber + finishedChallenges.count
         }
         set {}
@@ -34,12 +34,7 @@ final class ChallengesModel {
 
     /// Returns challenges sorted by Id.
     var sortedChallenges: [Challenge] {
-        get {
-            let challenges = challengesMap.values
-            return challenges.sorted(by: { (left, right) -> Bool in
-                left.challengeId < right.challengeId
-            })
-        }
+        get { return challengesMap.values.sorted(by: { $0.challengeId < $1.challengeId }) }
         set {}
     }
 
@@ -76,15 +71,11 @@ final class ChallengesModel {
     }
 
     func finishedChallengesSortedByTime() -> [Challenge] {
-        return finishedChallenges.sorted(by: { (left, right) -> Bool in
-            left.finishedTime < right.finishedTime
-        })
+        return finishedChallenges.sorted(by: { $0.finishedTime < $1.finishedTime })
     }
 
     func finishedChallengesSortedByTimeDesc() -> [Challenge] {
-        return finishedChallenges.sorted(by: { (left, right) -> Bool in
-            left.finishedTime > right.finishedTime
-        })
+        return finishedChallenges.sorted(by: { $0.finishedTime > $1.finishedTime })
     }
 
     /// Persistently stores challenges and refreshes challenges map
@@ -97,9 +88,9 @@ final class ChallengesModel {
     func restoreChallenges() {
         if challengesMap.isEmpty {
             if let challenges = challengesArchiver.restoreChallenges() {
-                for challenge in challenges {
+                challenges.forEach({ challenge in
                     challengesMap[challenge.challengeId] = challenge
-                }
+                })
             }
         }
         selectChallengeIfNeeded()
@@ -229,7 +220,7 @@ final class ChallengesModel {
             }
         }
         if newChallengeRequired {
-            currentChallengeId = newChallengeId()
+            currentChallengeId = newChallengeId
         }
         assert(currentChallenge != nil, "Failed to select current challenge")
         print(
@@ -239,39 +230,42 @@ final class ChallengesModel {
         storeState()
     }
 
-    /// If there are nonfinished challenges, get random challenge from them taking into account
+    /// If there are nonfinished challenges, get a random challenge from them taking into account
     /// levels.
-    /// Else if there are declined challenges, get random challenge from them with some probability.
-    /// Else get random challenge from all not equal to previous one.
+    /// Else if there are declined challenges, get a challenge from them with some probability.
+    /// Else get a challenge from all not equal to previous one.
     ///
     /// - Returns: new challenge Id
-    private func newChallengeId() -> String {
-        var challenge: Challenge
-        let nonFinishedChallenges = challengesByStatus(nil) + challengesByStatus(.accepted)
-            + challengesByStatus(.shown)
-        let filteredNonFinishedChallenges = challengesOfCurrentLevel(nonFinishedChallenges)
+    private var newChallengeId: String {
+        get {
+            var challenge: Challenge
+            let nonFinishedChallenges = challengesByStatus(nil) + challengesByStatus(.accepted)
+                + challengesByStatus(.shown)
+            let filteredNonFinishedChallenges = challengesOfCurrentLevel(nonFinishedChallenges)
 
-        if !(filteredNonFinishedChallenges.isEmpty) {
-            challenge = ChallengesModel.randomChallenge(filteredNonFinishedChallenges)
-        } else {
+            if !(filteredNonFinishedChallenges.isEmpty) {
+                challenge = ChallengesModel.randomChallenge(filteredNonFinishedChallenges)
+                return challenge.challengeId
+            }
             let declinedChallenges = challengesByStatus(.declined)
             if !declinedChallenges.isEmpty
                 && drand48() < ChallengesModel.probabilityGetDeclinedChallenge {
-                // Don't force user to take a declined challenge again. Show declined challenges
+                // Don't force the user to take a declined challenge again. Show declined challenges
                 // with some probability
                 print("Assign random declined challenge")
                 challenge = ChallengesModel.randomChallenge(declinedChallenges)
-            } else {
-                // All challenges are finished. Return random old one
-                let challengesArray = Array(challengesMap.values)
-
-                challenge = ChallengesModel.randomChallenge(challengesArray)
-                while challenge.challengeId == currentChallenge?.challengeId {
-                    challenge = ChallengesModel.randomChallenge(challengesArray)
-                }
+                return challenge.challengeId
             }
+            // All challenges are finished. Return a random old one not equal to previous one
+            let challengesArray = Array(challengesMap.values)
+
+            challenge = ChallengesModel.randomChallenge(challengesArray)
+            while challenge.challengeId == currentChallenge?.challengeId {
+                challenge = ChallengesModel.randomChallenge(challengesArray)
+            }
+            return challenge.challengeId
         }
-        return challenge.challengeId
+        set {}
     }
 
     /// Low-level challenges are available from the beginning.
@@ -311,14 +305,10 @@ final class ChallengesModel {
     }
 
     private func challengesByStatus(_ challengeStatus: ChallengeStatus?) -> [Challenge] {
-        var challenges: [Challenge] = []
-        for challenge in challengesMap.values where challenge.status == challengeStatus {
-            challenges.append(challenge)
-        }
-        return challenges
+        return challengesMap.values.filter { $0.status == challengeStatus }
     }
 
-    private class func randomChallenge(_ challenges: [Challenge]) -> Challenge {
+    private static func randomChallenge(_ challenges: [Challenge]) -> Challenge {
         assert(!challenges.isEmpty, "Failed to get random challenge from empty array")
         let randomIndex = Int(arc4random_uniform(UInt32(challenges.count)))
         return challenges[randomIndex]

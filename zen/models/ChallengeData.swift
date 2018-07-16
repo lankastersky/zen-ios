@@ -1,13 +1,26 @@
 import Foundation
 
 /// Modifiable challenge data for serialization etc.
-struct ChallengeData {
+final class ChallengeData {
+
     let challengeId: String
-    let status: Int
+    // TODO: somehow I get compilatin error Use of undeclared type 'ChallengeStatus'
+    //let status: ChallengeStatus?
     let finishedTime: TimeInterval
-    let rating: Float
-    let comments: String
-    let prevStatuses: [Int]
-    let prevFinishedTimes: [TimeInterval]
-    let prevRatings: [Float]
+    let rating: Float?
+    let comments: String?
+
+    init(
+        _ challengeId: String,
+        //_ status: ChallengeStatus?,
+        _ finishedTime: TimeInterval,
+        _ rating: Float,
+        _ comments: String) {
+
+        self.challengeId = challengeId
+        //self.status = status
+        self.finishedTime = finishedTime
+        self.rating = rating
+        self.comments = comments
+    }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Challenge model
-struct Challenge {
+final class Challenge: Decodable {
 
     // Locale-dependent properties.
     let content: String
@@ -22,7 +22,7 @@ struct Challenge {
     let prevFinishedTimes: [TimeInterval]? = nil
     let prevRatings: [Float]? = nil
 
-    mutating func updateStatus() {
+    func updateStatus() {
         switch status {
         case nil:
             status = .shown
@@ -36,7 +36,7 @@ struct Challenge {
         }
     }
 
-    mutating func decline() {
+    func decline() {
         switch status {
         case .shown?, .accepted?:
             status = .declined
@@ -46,14 +46,11 @@ struct Challenge {
         }
     }
 
-    mutating func reset() {
+    func reset() {
         status = nil
         finishedTime = 0
         rating = nil
     }
-}
-
-extension Challenge: Decodable {
 
     enum CodingKeys: String, CodingKey {
         //case challengeId = "id"
@@ -83,8 +80,7 @@ extension Challenge: Decodable {
         if let decodedId = decoder.codingPath.first?.stringValue {
             challengeId = decodedId
         } else {
-            print("Challenge id is not defined")
-            challengeId = ""
+            throw ServiceError.runtimeError("Challenge id is not defined")
         }
     }
 }

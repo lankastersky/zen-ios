@@ -14,6 +14,8 @@
 		733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */; };
 		733C7FAA20FAF57C00415A72 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		734C9FDD20FC502F0036CA79 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C9FDC20FC502F0036CA79 /* Date+Utils.swift */; };
+		734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
+		734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		736B83CC20F4400700517246 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 736B83CB20F4400700517246 /* Config.plist */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
@@ -417,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832C20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
+				734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
 				73CD833120E4760A00FEF64D /* Challenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
+				734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
 				73CD833220E4760A00FEF64D /* Challenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
