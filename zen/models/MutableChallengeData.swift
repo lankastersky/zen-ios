@@ -1,7 +1,7 @@
 import Foundation
 
 /// Modifiable challenge data for serialization etc.
-final class ChallengeData {
+final class MutableChallengeData {
 
     let challengeId: String
     // TODO: somehow I get compilation error Use of undeclared type 'ChallengeStatus'
