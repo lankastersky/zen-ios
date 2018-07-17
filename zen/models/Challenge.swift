@@ -18,10 +18,6 @@ final class Challenge: Decodable {
     private(set) var rating: Double?
     private(set) var comments: String?
 
-    let prevStatuses: [Int]? = nil
-    let prevFinishedTimes: [TimeInterval]? = nil
-    let prevRatings: [Float]? = nil
-
     func updateStatus() {
         switch status {
         case nil:
@@ -31,7 +27,7 @@ final class Challenge: Decodable {
         case .accepted?:
             status = .finished
             finishedTime = Date().timeIntervalSince1970
-        default:
+        case .finished?, .declined?:
             assertionFailure("Wrong challenge status")
         }
     }
@@ -41,7 +37,7 @@ final class Challenge: Decodable {
         case .shown?, .accepted?:
             status = .declined
             finishedTime = Date().timeIntervalSince1970
-        default:
+        case nil, .finished?, .declined?:
             assertionFailure("Wrong challenge status")
         }
     }

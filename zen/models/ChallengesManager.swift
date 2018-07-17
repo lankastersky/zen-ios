@@ -1,6 +1,6 @@
 import Foundation
 
-final class ChallengesModel {
+final class ChallengesManager {
 
     private static let calendar = Calendar.current
 
@@ -9,13 +9,18 @@ final class ChallengesModel {
     private static let proportionAcceptHighLevelChallenge = 2.0 / 3
 
     private var challengesMap: [String: Challenge] = [:]
-    private var currentChallengeId = ""
+    private var currentChallengeId: String?
     private var currentChallengeShownTime: TimeInterval = 0
     private(set) var currentLevel: ChallengeLevel = .low
     private let challengesArchiver = ChallengesArchiver()
 
     var currentChallenge: Challenge? {
-        get { return challengesMap[currentChallengeId] }
+        get {
+            if let currentChallengeId = currentChallengeId {
+                return challengesMap[currentChallengeId]
+            }
+            return nil
+        }
         set {}
     }
 
@@ -196,9 +201,10 @@ final class ChallengesModel {
         if currentChallengeId == "" {
             newChallengeRequired = true
         } else {
+
             assert(
-                challengesMap[currentChallengeId] != nil,
-                "Failed to select current challenge with id \(currentChallengeId)"
+                currentChallenge != nil,
+                "Failed to select current challenge \(String(describing: currentChallengeId))"
             )
             switch currentChallenge?.status {
             case nil:
@@ -224,7 +230,7 @@ final class ChallengesModel {
         }
         assert(currentChallenge != nil, "Failed to select current challenge")
         print(
-            "New challenge id: \(currentChallengeId);"
+            "New challenge id: \(String(describing: currentChallengeId));"
                 + " content: \(String(describing: currentChallenge?.content))"
         )
         storeState()
@@ -244,24 +250,24 @@ final class ChallengesModel {
             let filteredNonFinishedChallenges = challengesOfCurrentLevel(nonFinishedChallenges)
 
             if !(filteredNonFinishedChallenges.isEmpty) {
-                challenge = ChallengesModel.randomChallenge(filteredNonFinishedChallenges)
+                challenge = ChallengesManager.randomChallenge(filteredNonFinishedChallenges)
                 return challenge.challengeId
             }
             let declinedChallenges = challengesByStatus(.declined)
             if !declinedChallenges.isEmpty
-                && drand48() < ChallengesModel.probabilityGetDeclinedChallenge {
+                && drand48() < ChallengesManager.probabilityGetDeclinedChallenge {
                 // Don't force the user to take a declined challenge again. Show declined challenges
                 // with some probability
                 print("Assign random declined challenge")
-                challenge = ChallengesModel.randomChallenge(declinedChallenges)
+                challenge = ChallengesManager.randomChallenge(declinedChallenges)
                 return challenge.challengeId
             }
             // All challenges are finished. Return a random old one not equal to previous one
             let challengesArray = Array(challengesMap.values)
 
-            challenge = ChallengesModel.randomChallenge(challengesArray)
+            challenge = ChallengesManager.randomChallenge(challengesArray)
             while challenge.challengeId == currentChallenge?.challengeId {
-                challenge = ChallengesModel.randomChallenge(challengesArray)
+                challenge = ChallengesManager.randomChallenge(challengesArray)
             }
             return challenge.challengeId
         }
@@ -276,15 +282,15 @@ final class ChallengesModel {
     /// - Returns: challenges of current and lower levels
     private func challengesOfCurrentLevel(_ nonFinishedChallenges: [Challenge]) -> [Challenge] {
         let challenges = Array(challengesMap.values)
-        if challenges.isEmpty {
+        guard !challenges.isEmpty else {
             return []
         }
         let percentOfFinishedChallenges =
             Double(challenges.count - nonFinishedChallenges.count) / Double(challenges.count)
         let acceptMediumChallenges =
-            percentOfFinishedChallenges >= ChallengesModel.proportionAcceptMediumLavelChallenge
+            percentOfFinishedChallenges >= ChallengesManager.proportionAcceptMediumLavelChallenge
         let acceptHighChallenges =
-            percentOfFinishedChallenges >= ChallengesModel.proportionAcceptHighLevelChallenge
+            percentOfFinishedChallenges >= ChallengesManager.proportionAcceptHighLevelChallenge
 
         var challengesOfCurrentLevel: [Challenge] = []
         for challenge in nonFinishedChallenges {

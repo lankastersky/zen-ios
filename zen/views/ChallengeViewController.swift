@@ -30,7 +30,7 @@ final class ChallengeViewController: UIViewController {
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else if let challenges = challenges {
-                        self?.challengesModel?.storeChallenges(challenges)
+                        self?.challengesManager?.storeChallenges(challenges)
                         self?.showCurrentChallenge()
                     }
                 })
@@ -41,7 +41,7 @@ final class ChallengeViewController: UIViewController {
     private func showCurrentChallenge() {
         // TODO: choose proper index
         let challengeIndex = 0
-        if let challenge = challengesModel?.sortedChallenges[challengeIndex] {
+        if let challenge = challengesManager?.sortedChallenges[challengeIndex] {
             contentLabel.text = challenge.content
         }
     }

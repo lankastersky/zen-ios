@@ -4,7 +4,7 @@ import Foundation
 final class ChallengeData {
 
     let challengeId: String
-    // TODO: somehow I get compilatin error Use of undeclared type 'ChallengeStatus'
+    // TODO: somehow I get compilation error Use of undeclared type 'ChallengeStatus'
     //let status: ChallengeStatus?
     let finishedTime: TimeInterval
     let rating: Float?
