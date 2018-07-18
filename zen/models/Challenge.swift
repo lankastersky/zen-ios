@@ -1,7 +1,7 @@
 import Foundation
 
 /// Challenge model
-final class Challenge: Decodable {
+final class Challenge: Codable {
 
     // Locale-dependent properties.
     let content: String
@@ -13,10 +13,10 @@ final class Challenge: Decodable {
 
     let challengeId: String
     let level: ChallengeLevel
-    private(set) var status: ChallengeStatus?
-    private(set) var finishedTime: TimeInterval = 0
-    private(set) var rating: Double?
-    private(set) var comments: String?
+    var status: ChallengeStatus?
+    var finishedTime: TimeInterval = 0
+    var rating: Double?
+    var comments: String?
 
     func updateStatus() {
         switch status {
@@ -68,15 +68,13 @@ final class Challenge: Decodable {
         type = try container.decode(String.self, forKey: .type)
         url = try container.decode(String.self, forKey: .url)
         let levelInt = try container.decode(Int.self, forKey: .level)
-        if let challengeLevel = ChallengeLevel(rawValue: levelInt) {
-            level = challengeLevel
-        } else {
+        guard let challengeLevel = ChallengeLevel(rawValue: levelInt) else {
             throw ServiceError.runtimeError("level is not defined")
         }
-        if let decodedId = decoder.codingPath.first?.stringValue {
-            challengeId = decodedId
-        } else {
+        level = challengeLevel
+        guard let decodedId = decoder.codingPath.first?.stringValue else {
             throw ServiceError.runtimeError("Challenge id is not defined")
         }
+        challengeId = decodedId
     }
 }
