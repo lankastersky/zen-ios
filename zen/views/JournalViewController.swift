@@ -44,6 +44,9 @@ extension JournalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
         }
 
+        assert(indexPath.item < challenges.count,
+               "Bad challenge index when creating collection view")
+        
         let challenge: Challenge = challenges[indexPath.item]
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details

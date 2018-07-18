@@ -1,7 +1,7 @@
 import Foundation
 
 /// Stores-restores challenges data persistently
-final class ChallengesArchiver {
+final class ChallengesArchiveService {
 
     func storeCurrentChallenge(_ challenge: Challenge?) {
         // TODO: implement
@@ -38,11 +38,11 @@ final class ChallengesArchiver {
         return 0
     }
 
-    func storeChallengeData(_ challengesMap: [String: Challenge]) {
+    func storeChallengeData(_ challengesDictionary: [String: Challenge]) {
         // TODO: implement
     }
 
-    func restoreChallengeData(_ challengesMap: [String: Challenge]) {
+    func restoreChallengeData(_ challengesDictionary: [String: Challenge]) {
         // TODO: implement
     }
 }

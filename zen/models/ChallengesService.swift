@@ -1,6 +1,6 @@
 import Foundation
 
-final class ChallengesManager {
+final class ChallengesService {
 
     private static let calendar = Calendar.current
 
@@ -8,16 +8,16 @@ final class ChallengesManager {
     private static let proportionAcceptMediumLavelChallenge = 1.0 / 3
     private static let proportionAcceptHighLevelChallenge = 2.0 / 3
 
-    private var challengesMap: [String: Challenge] = [:]
+    private var challengesDictionary: [String: Challenge] = [:]
     private var currentChallengeId: String?
     private var currentChallengeShownTime: TimeInterval = 0
     private(set) var currentLevel: ChallengeLevel = .low
-    private let challengesArchiver = ChallengesArchiver()
+    private let challengesArchiveService = ChallengesArchiveService()
 
     var currentChallenge: Challenge? {
         get {
             if let currentChallengeId = currentChallengeId {
-                return challengesMap[currentChallengeId]
+                return challengesDictionary[currentChallengeId]
             }
             return nil
         }
@@ -39,12 +39,12 @@ final class ChallengesManager {
 
     /// Returns challenges sorted by Id.
     var sortedChallenges: [Challenge] {
-        get { return challengesMap.values.sorted(by: { $0.challengeId < $1.challengeId }) }
+        get { return challengesDictionary.values.sorted(by: { $0.challengeId < $1.challengeId }) }
         set {}
     }
 
     var restoredCurrentChallenge: Challenge? {
-        get { return challengesArchiver.restoreCurrentChallenge() }
+        get { return challengesArchiveService.restoreCurrentChallenge() }
         set {}
     }
 
@@ -72,7 +72,7 @@ final class ChallengesManager {
     }
 
     func challenge(_ challengeId: String) -> Challenge? {
-        return challengesMap[challengeId]
+        return challengesDictionary[challengeId]
     }
 
     func finishedChallengesSortedByTime() -> [Challenge] {
@@ -83,18 +83,18 @@ final class ChallengesManager {
         return finishedChallenges.sorted(by: { $0.finishedTime > $1.finishedTime })
     }
 
-    /// Persistently stores challenges and refreshes challenges map
-    func storeChallenges(_ challengesMap: [String: Challenge]) {
-        self.challengesMap = challengesMap
-        challengesArchiver.storeChallenges(Array(challengesMap.values))
+    /// Persistently stores challenges and refreshes challenges dictionary
+    func storeChallenges(_ challengesDictionary: [String: Challenge]) {
+        self.challengesDictionary = challengesDictionary
+        challengesArchiveService.storeChallenges(Array(challengesDictionary.values))
     }
 
     /// Restores challenges from persistent storage and selects current challenge if needed
     func restoreChallenges() {
-        if challengesMap.isEmpty {
-            if let challenges = challengesArchiver.restoreChallenges() {
+        if challengesDictionary.isEmpty {
+            if let challenges = challengesArchiveService.restoreChallenges() {
                 challenges.forEach({ challenge in
-                    challengesMap[challenge.challengeId] = challenge
+                    challengesDictionary[challenge.challengeId] = challenge
                 })
             }
         }
@@ -102,19 +102,19 @@ final class ChallengesManager {
     }
 
     private func storeState() {
-        challengesArchiver.storeChallengeData(challengesMap)
-        challengesArchiver.storeCurrentChallenge(currentChallenge)
-        challengesArchiver.storeCurrentChallengeShownTime(currentChallengeShownTime)
-        challengesArchiver.storeLevel(currentLevel)
+        challengesArchiveService.storeChallengeData(challengesDictionary)
+        challengesArchiveService.storeCurrentChallenge(currentChallenge)
+        challengesArchiveService.storeCurrentChallengeShownTime(currentChallengeShownTime)
+        challengesArchiveService.storeLevel(currentLevel)
     }
 
     private func restoreState() {
-        challengesArchiver.restoreChallengeData(challengesMap)
-        if let challenge = challengesArchiver.restoreCurrentChallenge() {
+        challengesArchiveService.restoreChallengeData(challengesDictionary)
+        if let challenge = challengesArchiveService.restoreCurrentChallenge() {
             currentChallengeId = challenge.challengeId
         }
-        currentChallengeShownTime = challengesArchiver.restoreCurrentChallengeShownTime()
-        currentLevel = challengesArchiver.restoreLevel()
+        currentChallengeShownTime = challengesArchiveService.restoreCurrentChallengeShownTime()
+        currentLevel = challengesArchiveService.restoreLevel()
     }
 
     /// Sets challenge status as 'shown' if current status is 'unknown'
@@ -181,7 +181,7 @@ final class ChallengesManager {
 
         if currentChallengeLevel.rawValue > currentLevel.rawValue {
             currentLevel = currentChallengeLevel
-            challengesArchiver.storeLevel(currentLevel)
+            challengesArchiveService.storeLevel(currentLevel)
             return true
         }
         return false
@@ -198,7 +198,7 @@ final class ChallengesManager {
 
         var newChallengeRequired = false
 
-        if currentChallengeId == "" {
+        if currentChallengeId == nil {
             newChallengeRequired = true
         } else {
 
@@ -250,24 +250,24 @@ final class ChallengesManager {
             let filteredNonFinishedChallenges = challengesOfCurrentLevel(nonFinishedChallenges)
 
             if !(filteredNonFinishedChallenges.isEmpty) {
-                challenge = ChallengesManager.randomChallenge(filteredNonFinishedChallenges)
+                challenge = ChallengesService.randomChallenge(filteredNonFinishedChallenges)
                 return challenge.challengeId
             }
             let declinedChallenges = challengesByStatus(.declined)
             if !declinedChallenges.isEmpty
-                && drand48() < ChallengesManager.probabilityGetDeclinedChallenge {
+                && drand48() < ChallengesService.probabilityGetDeclinedChallenge {
                 // Don't force the user to take a declined challenge again. Show declined challenges
                 // with some probability
                 print("Assign random declined challenge")
-                challenge = ChallengesManager.randomChallenge(declinedChallenges)
+                challenge = ChallengesService.randomChallenge(declinedChallenges)
                 return challenge.challengeId
             }
             // All challenges are finished. Return a random old one not equal to previous one
-            let challengesArray = Array(challengesMap.values)
+            let challengesArray = Array(challengesDictionary.values)
 
-            challenge = ChallengesManager.randomChallenge(challengesArray)
+            challenge = ChallengesService.randomChallenge(challengesArray)
             while challenge.challengeId == currentChallenge?.challengeId {
-                challenge = ChallengesManager.randomChallenge(challengesArray)
+                challenge = ChallengesService.randomChallenge(challengesArray)
             }
             return challenge.challengeId
         }
@@ -281,16 +281,16 @@ final class ChallengesManager {
     /// - Parameter challenges: chellenges to select from
     /// - Returns: challenges of current and lower levels
     private func challengesOfCurrentLevel(_ nonFinishedChallenges: [Challenge]) -> [Challenge] {
-        let challenges = Array(challengesMap.values)
+        let challenges = Array(challengesDictionary.values)
         guard !challenges.isEmpty else {
             return []
         }
         let percentOfFinishedChallenges =
             Double(challenges.count - nonFinishedChallenges.count) / Double(challenges.count)
         let acceptMediumChallenges =
-            percentOfFinishedChallenges >= ChallengesManager.proportionAcceptMediumLavelChallenge
+            percentOfFinishedChallenges >= ChallengesService.proportionAcceptMediumLavelChallenge
         let acceptHighChallenges =
-            percentOfFinishedChallenges >= ChallengesManager.proportionAcceptHighLevelChallenge
+            percentOfFinishedChallenges >= ChallengesService.proportionAcceptHighLevelChallenge
 
         var challengesOfCurrentLevel: [Challenge] = []
         for challenge in nonFinishedChallenges {
@@ -311,7 +311,7 @@ final class ChallengesManager {
     }
 
     private func challengesByStatus(_ challengeStatus: ChallengeStatus?) -> [Challenge] {
-        return challengesMap.values.filter { $0.status == challengeStatus }
+        return challengesDictionary.values.filter { $0.status == challengeStatus }
     }
 
     private static func randomChallenge(_ challenges: [Challenge]) -> Challenge {

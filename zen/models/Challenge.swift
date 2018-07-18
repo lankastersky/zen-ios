@@ -71,7 +71,7 @@ final class Challenge: Decodable {
         if let challengeLevel = ChallengeLevel(rawValue: levelInt) {
             level = challengeLevel
         } else {
-            level = .low
+            throw ServiceError.runtimeError("level is not defined")
         }
         if let decodedId = decoder.codingPath.first?.stringValue {
             challengeId = decodedId
