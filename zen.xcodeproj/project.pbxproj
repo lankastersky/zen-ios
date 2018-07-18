@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* ViewController+Utils.swift */; };
+		733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
+		733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
+		733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */; };
+		733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */; };
+		733C7FAA20FAF57C00415A72 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
+		734C9FDD20FC502F0036CA79 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C9FDC20FC502F0036CA79 /* Date+Utils.swift */; };
+		734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
+		734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		736B83CC20F4400700517246 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 736B83CB20F4400700517246 /* Config.plist */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
@@ -51,6 +59,12 @@
 		4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.release.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.release.xcconfig"; sourceTree = "<group>"; };
 		7094D1AB304B6F90BF580499 /* Pods-zen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.debug.xcconfig"; sourceTree = "<group>"; };
 		733C7F9F20F9776600415A72 /* ViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Utils.swift"; sourceTree = "<group>"; };
+		733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableChallengeData.swift; sourceTree = "<group>"; };
+		733C7FA320FAF12600415A72 /* ChallengesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesService.swift; sourceTree = "<group>"; };
+		733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesArchiveService.swift; sourceTree = "<group>"; };
+		733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLevel.swift; sourceTree = "<group>"; };
+		733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatus.swift; sourceTree = "<group>"; };
+		734C9FDC20FC502F0036CA79 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		736B83CB20F4400700517246 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +173,12 @@
 			isa = PBXGroup;
 			children = (
 				73CD832F20E4760A00FEF64D /* Challenge.swift */,
+				733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */,
+				733C7FA320FAF12600415A72 /* ChallengesService.swift */,
+				733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */,
+				733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */,
+				733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */,
+				734C9FDC20FC502F0036CA79 /* Date+Utils.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -291,6 +311,7 @@
 			files = (
 				73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */,
 				736B83CC20F4400700517246 /* Config.plist in Resources */,
+				733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */,
 				73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */,
 				73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */,
 				73CD830220E463ED00FEF64D /* Assets.xcassets in Resources */,
@@ -379,9 +400,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832B20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
+				734C9FDD20FC502F0036CA79 /* Date+Utils.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
+				733C7FAA20FAF57C00415A72 /* ChallengeStatus.swift in Sources */,
 				73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */,
+				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
+				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
+				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,
 				733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */,
 				73CD833020E4760A00FEF64D /* Challenge.swift in Sources */,
 				73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */,
@@ -393,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832C20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
+				734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
 				73CD833120E4760A00FEF64D /* Challenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
+				734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
 				73CD833220E4760A00FEF64D /* Challenge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

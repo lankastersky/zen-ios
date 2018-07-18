@@ -5,7 +5,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var challengesProvider = ChallengesProvider()
+    lazy var challengesService = ChallengesService()
 
     func application(
         _ application: UIApplication, didFinishLaunchingWithOptions

@@ -16,7 +16,6 @@ final class ChallengesProvider {
     private static let challengesFileName = "challenges_en"
 
     private lazy var storage = Storage.storage()
-    private(set) var challenges: [String: Challenge] = [:]
 
     /// Signs in to Firebase using email and password from the config file.
     ///
@@ -53,7 +52,7 @@ final class ChallengesProvider {
     ///
     /// - Parameter callback: callback with the list of challenges
     func loadChallenges(callback: @escaping LoadChallengesCallback) {
-        challenges = [:]
+        var challenges: [String: Challenge] = [:]
         let zipFileName = "\(ChallengesProvider.challengesFileName).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
@@ -63,15 +62,15 @@ final class ChallengesProvider {
         }
         let fileRef = storage.reference().child(zipFileName)
 
-        fileRef.write(toFile: localURL) { [weak self] url, error in
+        fileRef.write(toFile: localURL) { url, error in
             if let error = error {
                 callback(nil, error)
             } else if let url = url {
                 do {
                     let unzippedData = try ChallengesProvider
                         .unzip(url, "\(ChallengesProvider.challengesFileName).json")
-                    self?.challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
-                    callback(self?.challenges, nil)
+                    challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
+                    callback(challenges, nil)
                 } catch {
                     callback(nil, error)
                 }
