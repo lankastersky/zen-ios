@@ -56,15 +56,15 @@ final class Challenge: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        if decoder.codingPath.first != nil {
+        // Decoding [Challenge] array
+        if let decodedId = try container.decodeIfPresent(String.self, forKey: .challengeId) {
+            challengeId = decodedId
+        } else {
             // Decoding [String: Challenge] dictionary
             guard let decodedId = decoder.codingPath.first?.stringValue else {
                 throw ServiceError.runtimeError("Challenge id is not defined")
             }
             challengeId = decodedId
-        } else {
-            // Decoding [Challenge] array
-            challengeId = try container.decode(String.self, forKey: .challengeId)
         }
 
         content = try container.decode(String.self, forKey: .content)
