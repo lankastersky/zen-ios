@@ -55,7 +55,29 @@ final class ChallengesArchiveServiceTest: XCTestCase {
     }
 
     func test_store_restore_challengeData() {
-        // TODO
+        let challenge = ChallengesArchiveServiceTest.buildChallenge()
+        let finishedTime = challenge.finishedTime
+        let rating = challenge.rating
+        let status = challenge.status
+        let comments = challenge.comments
+
+        archiveService?.storeChallengeData([challenge.challengeId: challenge])
+
+        challenge.finishedTime = 0
+        challenge.rating = nil
+        challenge.status = nil
+        challenge.comments = nil
+
+        archiveService?.restoreChallengeData([challenge.challengeId: challenge])
+
+//        XCTAssertEqual(status, challenge.status,
+//                       "Challenge status didn't restore")
+        XCTAssertEqual(finishedTime, challenge.finishedTime,
+                       "Challenge finishedTime didn't restore")
+        XCTAssertEqual(rating, challenge.rating,
+                       "Challenge rating didn't restore")
+        XCTAssertEqual(comments, challenge.comments,
+                       "Challenge comments didn't restore")
     }
 
     private static func assertChallenges(_ challenge: Challenge, _ restoredChallenge: Challenge?) {

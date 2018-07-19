@@ -20,6 +20,7 @@
 		7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
 		7337716721004597004A58F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
 		733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
+		73377169210129B9004A58F8 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* ViewController+Utils.swift */; };
 		733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
@@ -37,7 +38,6 @@
 		73CD833120E4760A00FEF64D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832F20E4760A00FEF64D /* Challenge.swift */; };
 		73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */; };
 		73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */; };
-		73E4CE9220FFD8270016D41E /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
 		73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4CEA7210040C80016D41E /* Date+Utils.swift */; };
@@ -416,12 +416,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */,
-				73E4CE9220FFD8270016D41E /* ChallengeStatus.swift in Sources */,
 				73CD832B20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
 				73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */,
 				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
 				73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */,
+				73377169210129B9004A58F8 /* ChallengeStatus.swift in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
 				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,

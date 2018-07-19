@@ -26,14 +26,14 @@ final class ChallengesService {
 
     var shownChallengesNumber: Int {
         get {
-            let shownNumber = challengesByStatus(ChallengeStatus.shown).count
+            let shownNumber = challengesByStatus(.shown).count
             return shownNumber + finishedChallenges.count
         }
         set {}
     }
 
     var finishedChallenges: [Challenge] {
-        get { return challengesByStatus(ChallengeStatus.finished) }
+        get { return challengesByStatus(.finished) }
         set {}
     }
 
@@ -57,7 +57,7 @@ final class ChallengesService {
     /// Challenge is ready to be finished today after 6pm
     var isTimeToFinishChallenge: Bool {
         get {
-            if currentChallenge?.status == ChallengeStatus.accepted {
+            if currentChallenge?.status == .accepted {
                 return !Date.dateBefore6pm(currentChallengeShownTime)
             }
             return true
@@ -139,7 +139,7 @@ final class ChallengesService {
                 + " \(challengeId)"
         )
         assert(
-            currentChallenge?.status != ChallengeStatus.shown,
+            currentChallenge?.status != .shown,
             "Can't mark current challenge as shown. Challenge status is not shown:"
                 + " \(String(describing: currentChallenge?.status))"
         )
@@ -152,7 +152,7 @@ final class ChallengesService {
             "Can't mark current challenge as finished. ChallengeId is not current challenge:"
                 + " \(challengeId)"
         )
-        assert(currentChallenge?.status != ChallengeStatus.accepted,
+        assert(currentChallenge?.status != .accepted,
             "Can't mark current challenge as finished. Challenge status is not accepted:"
                 + " \(String(describing: currentChallenge?.status))"
         )
