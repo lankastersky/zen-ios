@@ -78,11 +78,15 @@ final class Challenge: Codable {
             throw ServiceError.runtimeError("level is not defined")
         }
         level = challengeLevel
-        let statusInt = try container.decode(Int.self, forKey: .status)
-        status = ChallengeStatus(rawValue: statusInt)
-        finishedTime = try container.decode(Double.self, forKey: .finishedTime)
-        rating = try container.decode(Double.self, forKey: .rating)
-        comments = try container.decode(String.self, forKey: .comments)
+        if let statusInt = try container.decodeIfPresent(Int.self, forKey: .status) {
+            status = ChallengeStatus(rawValue: statusInt)
+        }
+        if let decodedFinishedTime =
+            try container.decodeIfPresent(Double.self, forKey: .finishedTime) {
+            finishedTime = decodedFinishedTime
+        }
+        rating = try container.decodeIfPresent(Double.self, forKey: .rating)
+        comments = try container.decodeIfPresent(String.self, forKey: .comments)
     }
 
     func updateStatus() {
