@@ -3,6 +3,21 @@ import Foundation
 /// Challenge model
 final class Challenge: Codable {
 
+    enum CodingKeys: String, CodingKey {
+        case challengeId
+        case content
+        case details
+        case quote
+        case source
+        case type
+        case url
+        case level
+        case status
+        case finishedTime
+        case rating
+        case comments
+    }
+
     // Locale-dependent properties.
     let content: String
     let details: String
@@ -17,6 +32,58 @@ final class Challenge: Codable {
     var finishedTime: TimeInterval = 0
     var rating: Double?
     var comments: String?
+
+    public init(
+        _ challengeId: String,
+        _ content: String,
+        _ details: String,
+        _ quote: String,
+        _ source: String,
+        _ type: String,
+        _ url: String,
+        _ level: ChallengeLevel) {
+
+        self.challengeId = challengeId
+        self.content = content
+        self.details = details
+        self.quote = quote
+        self.source = source
+        self.type = type
+        self.url = url
+        self.level = level
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if decoder.codingPath.first != nil {
+            // Decoding [String: Challenge] dictionary
+            guard let decodedId = decoder.codingPath.first?.stringValue else {
+                throw ServiceError.runtimeError("Challenge id is not defined")
+            }
+            challengeId = decodedId
+        } else {
+            // Decoding [Challenge] array
+            challengeId = try container.decode(String.self, forKey: .challengeId)
+        }
+
+        content = try container.decode(String.self, forKey: .content)
+        details = try container.decode(String.self, forKey: .details)
+        quote = try container.decode(String.self, forKey: .quote)
+        source = try container.decode(String.self, forKey: .source)
+        type = try container.decode(String.self, forKey: .type)
+        url = try container.decode(String.self, forKey: .url)
+        let levelInt = try container.decode(Int.self, forKey: .level)
+        guard let challengeLevel = ChallengeLevel(rawValue: levelInt) else {
+            throw ServiceError.runtimeError("level is not defined")
+        }
+        level = challengeLevel
+        let statusInt = try container.decode(Int.self, forKey: .status)
+        status = ChallengeStatus(rawValue: statusInt)
+        finishedTime = try container.decode(Double.self, forKey: .finishedTime)
+        rating = try container.decode(Double.self, forKey: .rating)
+        comments = try container.decode(String.self, forKey: .comments)
+    }
 
     func updateStatus() {
         switch status {
@@ -46,35 +113,5 @@ final class Challenge: Codable {
         status = nil
         finishedTime = 0
         rating = nil
-    }
-
-    enum CodingKeys: String, CodingKey {
-        //case challengeId = "id"
-        case content
-        case details
-        case quote
-        case source
-        case type
-        case url
-        case level
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        content = try container.decode(String.self, forKey: .content)
-        details = try container.decode(String.self, forKey: .details)
-        quote = try container.decode(String.self, forKey: .quote)
-        source = try container.decode(String.self, forKey: .source)
-        type = try container.decode(String.self, forKey: .type)
-        url = try container.decode(String.self, forKey: .url)
-        let levelInt = try container.decode(Int.self, forKey: .level)
-        guard let challengeLevel = ChallengeLevel(rawValue: levelInt) else {
-            throw ServiceError.runtimeError("level is not defined")
-        }
-        level = challengeLevel
-        guard let decodedId = decoder.codingPath.first?.stringValue else {
-            throw ServiceError.runtimeError("Challenge id is not defined")
-        }
-        challengeId = decodedId
     }
 }

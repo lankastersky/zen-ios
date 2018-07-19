@@ -8,4 +8,8 @@ target 'zen' do
   pod 'Firebase/Storage'
   pod 'Zip', '~> 1.1'
 
+target 'zenTests' do
+    inherit! :search_paths
+end
+
 end
