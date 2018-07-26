@@ -7,15 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7337715C21004155004A58F8 /* ChallengesArchiveServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */; };
+		7337715D21004577004A58F8 /* MutableChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
+		7337715E21004577004A58F8 /* ChallengeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */; };
+		7337715F21004577004A58F8 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
+		733771602100457D004A58F8 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4CEA7210040C80016D41E /* Date+Utils.swift */; };
+		7337716121004586004A58F8 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
+		7337716221004586004A58F8 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3020F573EE004D14ED /* JournalViewController.swift */; };
+		7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */; };
+		7337716421004589004A58F8 /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* ViewController+Utils.swift */; };
+		733771652100458C004A58F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
+		7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
+		7337716721004597004A58F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
+		733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
+		73377169210129B9004A58F8 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* ViewController+Utils.swift */; };
 		733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
 		733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */; };
 		733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */; };
-		733C7FAA20FAF57C00415A72 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
-		734C9FDD20FC502F0036CA79 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734C9FDC20FC502F0036CA79 /* Date+Utils.swift */; };
-		734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
-		734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
 		736B83CC20F4400700517246 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 736B83CB20F4400700517246 /* Config.plist */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
@@ -24,15 +34,17 @@
 		73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
 		73CD832B20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
 		73CD832C20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
-		73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* ChallengesProvider.swift */; };
 		73CD833020E4760A00FEF64D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832F20E4760A00FEF64D /* Challenge.swift */; };
 		73CD833120E4760A00FEF64D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832F20E4760A00FEF64D /* Challenge.swift */; };
-		73CD833220E4760A00FEF64D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832F20E4760A00FEF64D /* Challenge.swift */; };
 		73CD833420E6AE4800FEF64D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */; };
+		73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */; };
+		73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
+		73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
+		73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E4CEA7210040C80016D41E /* Date+Utils.swift */; };
 		73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3020F573EE004D14ED /* JournalViewController.swift */; };
 		73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */; };
-		73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3720F67590004D14ED /* .swiftlint.yml */; };
 		73EEFE3A20F6D8C0004D14ED /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
+		D423D6335ABC0ED2CB7B5B40 /* Pods_zenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94BAA741A1BF9C270700F38A /* Pods_zenTests.framework */; };
 		EE860DB7C6485B57D76392FC /* Pods_zen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31029E8AD9B23DD9DF9598C9 /* Pods_zen.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,27 +56,21 @@
 			remoteGlobalIDString = 73CD82F420E463EA00FEF64D;
 			remoteInfo = zen;
 		};
-		73CD831720E463EE00FEF64D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 73CD82ED20E463EA00FEF64D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 73CD82F420E463EA00FEF64D;
-			remoteInfo = zen;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		31029E8AD9B23DD9DF9598C9 /* Pods_zen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		358065CE271683AAD657CCD0 /* Pods_zenUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zenUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AE474D674D68A9F12A9E513 /* Pods-zenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-zenTests/Pods-zenTests.release.xcconfig"; sourceTree = "<group>"; };
 		4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.release.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.release.xcconfig"; sourceTree = "<group>"; };
 		7094D1AB304B6F90BF580499 /* Pods-zen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.debug.xcconfig"; sourceTree = "<group>"; };
+		7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesArchiveServiceTest.swift; sourceTree = "<group>"; };
 		733C7F9F20F9776600415A72 /* ViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Utils.swift"; sourceTree = "<group>"; };
 		733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableChallengeData.swift; sourceTree = "<group>"; };
 		733C7FA320FAF12600415A72 /* ChallengesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesService.swift; sourceTree = "<group>"; };
 		733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesArchiveService.swift; sourceTree = "<group>"; };
 		733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLevel.swift; sourceTree = "<group>"; };
 		733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatus.swift; sourceTree = "<group>"; };
-		734C9FDC20FC502F0036CA79 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		736B83CB20F4400700517246 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,15 +80,15 @@
 		73CD830420E463ED00FEF64D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73CD830620E463EE00FEF64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73CD830B20E463EE00FEF64D /* zenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		73CD831620E463EE00FEF64D /* zenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD832A20E475E100FEF64D /* ChallengesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesProvider.swift; sourceTree = "<group>"; };
 		73CD832F20E4760A00FEF64D /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		73E4CEA7210040C80016D41E /* Date+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		73EEFE3020F573EE004D14ED /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
-		73EEFE3720F67590004D14ED /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JournalCollectionViewCell.xib; sourceTree = "<group>"; };
 		94BAA741A1BF9C270700F38A /* Pods_zenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_zenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D253E39B83C92A8873AC5D26 /* Pods-zenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zenTests/Pods-zenTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,13 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		73CD831320E463EE00FEF64D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D423D6335ABC0ED2CB7B5B40 /* Pods_zenTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,8 +114,8 @@
 		73CD82EC20E463EA00FEF64D = {
 			isa = PBXGroup;
 			children = (
-				73EEFE3720F67590004D14ED /* .swiftlint.yml */,
 				73CD82F720E463EA00FEF64D /* zen */,
+				73E4CEA9210041190016D41E /* zenTests */,
 				73CD82F620E463EA00FEF64D /* Products */,
 				D332F9437814F9025547016E /* Pods */,
 				B67BDB1734E536C8CE1A6A3A /* Frameworks */,
@@ -127,7 +127,6 @@
 			children = (
 				73CD82F520E463EA00FEF64D /* zen.app */,
 				73CD830B20E463EE00FEF64D /* zenTests.xctest */,
-				73CD831620E463EE00FEF64D /* zenUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -139,11 +138,10 @@
 				73CD833320E6AE4800FEF64D /* GoogleService-Info.plist */,
 				73CD832E20E475FD00FEF64D /* models */,
 				73CD832920E4759800FEF64D /* services */,
+				73E4CEA6210040C80016D41E /* utils */,
 				73CD832820E4752A00FEF64D /* views */,
 				73CD82F820E463EA00FEF64D /* AppDelegate.swift */,
-				73CD82FE20E463EA00FEF64D /* Main.storyboard */,
 				73CD830120E463ED00FEF64D /* Assets.xcassets */,
-				73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */,
 				73CD830620E463EE00FEF64D /* Info.plist */,
 			);
 			path = zen;
@@ -152,6 +150,8 @@
 		73CD832820E4752A00FEF64D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */,
+				73CD82FE20E463EA00FEF64D /* Main.storyboard */,
 				73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */,
 				73EEFE3020F573EE004D14ED /* JournalViewController.swift */,
 				73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */,
@@ -164,6 +164,8 @@
 		73CD832920E4759800FEF64D /* services */ = {
 			isa = PBXGroup;
 			children = (
+				733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */,
+				733C7FA320FAF12600415A72 /* ChallengesService.swift */,
 				73CD832A20E475E100FEF64D /* ChallengesProvider.swift */,
 			);
 			path = services;
@@ -174,13 +176,34 @@
 			children = (
 				73CD832F20E4760A00FEF64D /* Challenge.swift */,
 				733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */,
-				733C7FA320FAF12600415A72 /* ChallengesService.swift */,
-				733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */,
 				733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */,
 				733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */,
-				734C9FDC20FC502F0036CA79 /* Date+Utils.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		73E4CEA6210040C80016D41E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				73E4CEA7210040C80016D41E /* Date+Utils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		73E4CEA9210041190016D41E /* zenTests */ = {
+			isa = PBXGroup;
+			children = (
+				73E4CEAA210041190016D41E /* services */,
+			);
+			path = zenTests;
+			sourceTree = "<group>";
+		};
+		73E4CEAA210041190016D41E /* services */ = {
+			isa = PBXGroup;
+			children = (
+				7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */,
+			);
+			path = services;
 			sourceTree = "<group>";
 		};
 		B67BDB1734E536C8CE1A6A3A /* Frameworks */ = {
@@ -198,6 +221,8 @@
 			children = (
 				7094D1AB304B6F90BF580499 /* Pods-zen.debug.xcconfig */,
 				4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */,
+				D253E39B83C92A8873AC5D26 /* Pods-zenTests.debug.xcconfig */,
+				3AE474D674D68A9F12A9E513 /* Pods-zenTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -229,6 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73CD832220E463EE00FEF64D /* Build configuration list for PBXNativeTarget "zenTests" */;
 			buildPhases = (
+				F4E0797CCBD54A9F304EA757 /* [CP] Check Pods Manifest.lock */,
 				73CD830720E463EE00FEF64D /* Sources */,
 				73CD830820E463EE00FEF64D /* Frameworks */,
 				73CD830920E463EE00FEF64D /* Resources */,
@@ -242,24 +268,6 @@
 			productName = zenTests;
 			productReference = 73CD830B20E463EE00FEF64D /* zenTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		73CD831520E463EE00FEF64D /* zenUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 73CD832520E463EE00FEF64D /* Build configuration list for PBXNativeTarget "zenUITests" */;
-			buildPhases = (
-				73CD831220E463EE00FEF64D /* Sources */,
-				73CD831320E463EE00FEF64D /* Frameworks */,
-				73CD831420E463EE00FEF64D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				73CD831820E463EE00FEF64D /* PBXTargetDependency */,
-			);
-			name = zenUITests;
-			productName = zenUITests;
-			productReference = 73CD831620E463EE00FEF64D /* zenUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -275,10 +283,6 @@
 						CreatedOnToolsVersion = 9.4;
 					};
 					73CD830A20E463EE00FEF64D = {
-						CreatedOnToolsVersion = 9.4;
-						TestTargetID = 73CD82F420E463EA00FEF64D;
-					};
-					73CD831520E463EE00FEF64D = {
 						CreatedOnToolsVersion = 9.4;
 						TestTargetID = 73CD82F420E463EA00FEF64D;
 					};
@@ -299,7 +303,6 @@
 			targets = (
 				73CD82F420E463EA00FEF64D /* zen */,
 				73CD830A20E463EE00FEF64D /* zenTests */,
-				73CD831520E463EE00FEF64D /* zenUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -309,7 +312,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73EEFE3820F67590004D14ED /* .swiftlint.yml in Resources */,
 				736B83CC20F4400700517246 /* Config.plist in Resources */,
 				733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */,
 				73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */,
@@ -324,13 +326,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		73CD831420E463EE00FEF64D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */,
+				7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */,
+				7337716721004597004A58F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +390,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		F4E0797CCBD54A9F304EA757 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-zenTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -399,12 +415,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */,
 				73CD832B20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
-				734C9FDD20FC502F0036CA79 /* Date+Utils.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
-				733C7FAA20FAF57C00415A72 /* ChallengeStatus.swift in Sources */,
 				73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */,
 				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
+				73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */,
+				73377169210129B9004A58F8 /* ChallengeStatus.swift in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
 				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,
@@ -419,18 +436,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				73CD832C20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
-				734C9FDE20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
+				7337716221004586004A58F8 /* JournalViewController.swift in Sources */,
+				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,
+				73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */,
+				733771652100458C004A58F8 /* AppDelegate.swift in Sources */,
+				73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */,
+				7337715C21004155004A58F8 /* ChallengesArchiveServiceTest.swift in Sources */,
+				7337716421004589004A58F8 /* ViewController+Utils.swift in Sources */,
+				7337715D21004577004A58F8 /* MutableChallengeData.swift in Sources */,
+				7337716121004586004A58F8 /* ChallengeViewController.swift in Sources */,
+				7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */,
+				7337715E21004577004A58F8 /* ChallengeLevel.swift in Sources */,
 				73CD833120E4760A00FEF64D /* Challenge.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		73CD831220E463EE00FEF64D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				73CD832D20E475E100FEF64D /* ChallengesProvider.swift in Sources */,
-				734C9FDF20FD2FB90036CA79 /* ChallengeStatus.swift in Sources */,
-				73CD833220E4760A00FEF64D /* Challenge.swift in Sources */,
+				7337715F21004577004A58F8 /* ChallengeStatus.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -441,11 +459,6 @@
 			isa = PBXTargetDependency;
 			target = 73CD82F420E463EA00FEF64D /* zen */;
 			targetProxy = 73CD830C20E463EE00FEF64D /* PBXContainerItemProxy */;
-		};
-		73CD831820E463EE00FEF64D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 73CD82F420E463EA00FEF64D /* zen */;
-			targetProxy = 73CD831720E463EE00FEF64D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -623,6 +636,7 @@
 		};
 		73CD832320E463EE00FEF64D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D253E39B83C92A8873AC5D26 /* Pods-zenTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -644,6 +658,7 @@
 		};
 		73CD832420E463EE00FEF64D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3AE474D674D68A9F12A9E513 /* Pods-zenTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -660,46 +675,6 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/zen.app/zen";
-			};
-			name = Release;
-		};
-		73CD832620E463EE00FEF64D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R6ALYPJWH2;
-				INFOPLIST_FILE = zenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hcyclone.zenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = zen;
-			};
-			name = Debug;
-		};
-		73CD832720E463EE00FEF64D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R6ALYPJWH2;
-				INFOPLIST_FILE = zenUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.hcyclone.zenUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = zen;
 			};
 			name = Release;
 		};
@@ -729,15 +704,6 @@
 			buildConfigurations = (
 				73CD832320E463EE00FEF64D /* Debug */,
 				73CD832420E463EE00FEF64D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		73CD832520E463EE00FEF64D /* Build configuration list for PBXNativeTarget "zenUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				73CD832620E463EE00FEF64D /* Debug */,
-				73CD832720E463EE00FEF64D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
