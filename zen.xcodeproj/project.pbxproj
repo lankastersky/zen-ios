@@ -21,6 +21,8 @@
 		7337716721004597004A58F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
 		733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
 		73377169210129B9004A58F8 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA920FAF57C00415A72 /* ChallengeStatus.swift */; };
+		7337716E21111314004A58F8 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337716D21111314004A58F8 /* ServiceError.swift */; };
+		7337716F21111314004A58F8 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337716D21111314004A58F8 /* ServiceError.swift */; };
 		733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* ViewController+Utils.swift */; };
 		733C7FA220FAEF3400415A72 /* MutableChallengeData.swift in Resources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
@@ -65,6 +67,7 @@
 		4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.release.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.release.xcconfig"; sourceTree = "<group>"; };
 		7094D1AB304B6F90BF580499 /* Pods-zen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.debug.xcconfig"; sourceTree = "<group>"; };
 		7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesArchiveServiceTest.swift; sourceTree = "<group>"; };
+		7337716D21111314004A58F8 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		733C7F9F20F9776600415A72 /* ViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Utils.swift"; sourceTree = "<group>"; };
 		733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableChallengeData.swift; sourceTree = "<group>"; };
 		733C7FA320FAF12600415A72 /* ChallengesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesService.swift; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 				733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */,
 				733C7FA320FAF12600415A72 /* ChallengesService.swift */,
 				73CD832A20E475E100FEF64D /* FirebaseService.swift */,
+				7337716D21111314004A58F8 /* ServiceError.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -427,6 +431,7 @@
 				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,
 				733C7FA020F9776600415A72 /* ViewController+Utils.swift in Sources */,
 				73CD833020E4760A00FEF64D /* Challenge.swift in Sources */,
+				7337716E21111314004A58F8 /* ServiceError.swift in Sources */,
 				73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -435,6 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7337716F21111314004A58F8 /* ServiceError.swift in Sources */,
 				73CD832C20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				7337716221004586004A58F8 /* JournalViewController.swift in Sources */,
 				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,

@@ -5,11 +5,6 @@ import Zip
 typealias LoadChallengesCallback = (_ challenges: [String: Challenge]?, _ error: Error?) -> Void
 typealias FirebaseSignInCallback = (_ user: User?, _ error: Error?) -> Void
 
-/// Base error protocol for Service Layer
-enum ServiceError: Error {
-    case runtimeError(String)
-}
-
 /// Loads challenges from Firebase
 final class FirebaseService {
 
