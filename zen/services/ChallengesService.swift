@@ -87,6 +87,7 @@ final class ChallengesService {
     func storeChallenges(_ challengesDictionary: [String: Challenge]) {
         self.challengesDictionary = challengesDictionary
         challengesArchiveService.storeChallenges(Array(challengesDictionary.values))
+        selectChallengeIfNeeded()
     }
 
     /// Restores challenges from persistent storage and selects current challenge if needed
@@ -109,7 +110,10 @@ final class ChallengesService {
     }
 
     private func restoreState() {
-        challengesArchiveService.restoreChallengeData(challengesDictionary)
+        if !challengesArchiveService.restoreChallengeData(challengesDictionary) {
+            // Nothing to restore yet
+            return
+        }
         if let challenge = challengesArchiveService.restoreCurrentChallenge() {
             currentChallengeId = challenge.challengeId
         }

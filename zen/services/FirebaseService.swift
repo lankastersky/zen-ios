@@ -11,7 +11,7 @@ enum ServiceError: Error {
 }
 
 /// Loads challenges from Firebase
-final class ChallengesProvider {
+final class FirebaseService {
 
     private static let challengesFileName = "challenges_en"
 
@@ -53,10 +53,10 @@ final class ChallengesProvider {
     /// - Parameter callback: callback with the list of challenges
     func loadChallenges(callback: @escaping LoadChallengesCallback) {
         var challenges: [String: Challenge] = [:]
-        let zipFileName = "\(ChallengesProvider.challengesFileName).zip"
+        let zipFileName = "\(FirebaseService.challengesFileName).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
-        guard let localURL = ChallengesProvider.zippedChallengesFilePath(zipFileName) else {
+        guard let localURL = FirebaseService.zippedChallengesFilePath(zipFileName) else {
             callback(nil, ServiceError.runtimeError("Failed to unzip challenges"))
             return
         }
@@ -67,9 +67,9 @@ final class ChallengesProvider {
                 callback(nil, error)
             } else if let url = url {
                 do {
-                    let unzippedData = try ChallengesProvider
-                        .unzip(url, "\(ChallengesProvider.challengesFileName).json")
-                    challenges = try ChallengesProvider.parseChallenges(data: unzippedData)
+                    let unzippedData = try FirebaseService
+                        .unzip(url, "\(FirebaseService.challengesFileName).json")
+                    challenges = try FirebaseService.parseChallenges(data: unzippedData)
                     callback(challenges, nil)
                 } catch {
                     callback(nil, error)
@@ -82,7 +82,7 @@ final class ChallengesProvider {
 }
 
 /// ChallengesProvider + zip operations.
-extension ChallengesProvider {
+extension FirebaseService {
 
     private static func unzip(_ sourcePath: URL, _ fileName: String) throws -> Data? {
         let unzipDirectory = try Zip.quickUnzipFile(sourcePath)

@@ -7,8 +7,9 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
     @IBOutlet weak private var sourceLabel: UILabel!
-    @IBOutlet weak private var typeLabel: UILabel!
     @IBOutlet weak private var urlLabel: UILabel!
+    @IBOutlet weak private var typeLabel: UILabel!
+    @IBOutlet weak private var levelLabel: UILabel!
 
     private var challenges: [Challenge] = []
 
@@ -21,16 +22,16 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func loadChallenges() {
-        let challengesProvider = ChallengesProvider()
-        challengesProvider.signIn(callback: {[weak self] _, error in
+        let firebaseService = FirebaseService()
+        firebaseService.signIn(callback: {[weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
-                challengesProvider.loadChallenges(callback: { challenges, error in
+                firebaseService.loadChallenges(callback: { challenges, error in
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else if let challenges = challenges {
-                        self?.challengesManager?.storeChallenges(challenges)
+                        self?.challengesService?.storeChallenges(challenges)
                         self?.showCurrentChallenge()
                     }
                 })
@@ -39,10 +40,13 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func showCurrentChallenge() {
-        // TODO: choose proper index
-        let challengeIndex = 0
-        if let challenge = challengesManager?.sortedChallenges[challengeIndex] {
+        if let challenge = challengesService?.currentChallenge {
             contentLabel.text = challenge.content
+            detailsLabel.text = challenge.details
+            quoteLabel.text = challenge.quote
+            // TODO: localize
+            typeLabel.text = "Type: \(challenge.type)"
+            levelLabel.text = "Level: \(challenge.level.description)"
         }
     }
 }

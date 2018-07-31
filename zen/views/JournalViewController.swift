@@ -13,7 +13,7 @@ final class JournalViewController: UIViewController {
         // TODO: localize
         navigationItem.title = "Finished Challenges"
 
-        challenges = challengesManager?.sortedChallenges ?? []
+        challenges = challengesService?.sortedChallenges ?? []
 
         collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
