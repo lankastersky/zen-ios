@@ -10,8 +10,7 @@ final class JournalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: localize
-        navigationItem.title = "Finished Challenges"
+        navigationItem.title = NSLocalizedString("Finished Challenges", comment: "")
 
         challenges = challengesService.sortedChallenges
 
@@ -46,7 +45,7 @@ extension JournalViewController: UICollectionViewDataSource {
 
         assert(indexPath.item < challenges.count,
                "Bad challenge index when creating collection view")
-        
+
         let challenge: Challenge = challenges[indexPath.item]
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details
