@@ -46,22 +46,19 @@ extension JournalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
         }
 
-        assert(indexPath.item < challenges.count,
-               "Bad challenge index when creating collection view")
+        assert(
+            indexPath.item < challenges.count,
+            "Bad challenge index when creating collection view"
+        )
 
         let challenge: Challenge = challenges[indexPath.item]
+        cell.finishedTimeLabel.text =
+            Date(timeIntervalSince1970: challenge.finishedTime).toStringWithMediumFormat()
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details
-        cell.backgroundColor = randomColor()
-        return cell
-    }
+        cell.levelLabel.text =
+            "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
 
-    // custom function to generate a random UIColor
-    // TODO: remove after implementing real cells
-    func randomColor() -> UIColor {
-        let red = CGFloat(drand48())
-        let green = CGFloat(drand48())
-        let blue = CGFloat(drand48())
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+        return cell
     }
 }

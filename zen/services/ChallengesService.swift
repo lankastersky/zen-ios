@@ -50,7 +50,13 @@ final class ChallengesService {
 
     /// Challenge is ready to be accepted before 6pm
     var isTimeToAcceptChallenge: Bool {
-        get { return Date.dateBefore6pm(currentChallengeShownTime) }
+        get {
+            #if !DEBUG
+                return Date.dateBefore6pm(currentChallengeShownTime)
+            #else
+                return true
+            #endif
+        }
         set {}
     }
 
@@ -58,7 +64,11 @@ final class ChallengesService {
     var isTimeToFinishChallenge: Bool {
         get {
             if currentChallenge?.status == .accepted {
-                return !Date.dateBefore6pm(currentChallengeShownTime)
+                #if !DEBUG
+                    return !Date.dateBefore6pm(currentChallengeShownTime)
+                #else
+                    return true
+                #endif
             }
             return true
         }
@@ -67,7 +77,13 @@ final class ChallengesService {
 
     /// Challenge expires at midnight of the next day.
     private var isChallengeTimeExpired: Bool {
-        get { return !Date.dateBeforeNextMidnight(currentChallengeShownTime) }
+        get {
+            #if !DEBUG
+                return !Date.dateBeforeNextMidnight(currentChallengeShownTime)
+            #else
+                return true
+            #endif
+        }
         set {}
     }
 
@@ -206,7 +222,6 @@ final class ChallengesService {
         if currentChallengeId == nil {
             newChallengeRequired = true
         } else {
-
             assert(
                 currentChallenge != nil,
                 "Failed to select current challenge \(String(describing: currentChallengeId))"

@@ -51,7 +51,7 @@ final class ChallengeViewController: UIViewController {
         quoteLabel.text = challenge.quote
         typeLabel.text = "\("Type".localized): \(challenge.type)"
         levelLabel.text =
-        "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
+            "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
 
         challengesService.markChallengeShown(challenge.challengeId)
     }

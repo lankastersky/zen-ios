@@ -19,6 +19,6 @@ final class JournalCollectionViewCell: UICollectionViewCell {
         // TODO: consider using table cells instead.
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let screenWidth = UIScreen.main.bounds.size.width
-        widthConstraint.constant = screenWidth - 2 * 12
+        widthConstraint.constant = screenWidth - 2 * 0
     }
 }
