@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		731210C321112C9D005B8F51 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731210C221112C9D005B8F51 /* ChallengeStatus.swift */; };
 		731210C421112CA4005B8F51 /* ChallengeStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731210C221112C9D005B8F51 /* ChallengeStatus.swift */; };
-		731210C6211246DF005B8F51 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 731210C5211246DF005B8F51 /* GoogleService-Info.plist */; };
-		731210C7211246DF005B8F51 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 731210C5211246DF005B8F51 /* GoogleService-Info.plist */; };
+		731210CC2112718A005B8F51 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731210CB2112718A005B8F51 /* String+Utils.swift */; };
+		731210CD2112718A005B8F51 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731210CB2112718A005B8F51 /* String+Utils.swift */; };
+		731210CF21127215005B8F51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731210CE21127215005B8F51 /* GoogleService-Info.plist */; };
+		731210D021127215005B8F51 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731210CE21127215005B8F51 /* GoogleService-Info.plist */; };
 		7337715C21004155004A58F8 /* ChallengesArchiveServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */; };
 		7337715D21004577004A58F8 /* MutableChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		7337715E21004577004A58F8 /* ChallengeLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */; };
@@ -69,7 +71,8 @@
 		4F1C76E66593367394673975 /* Pods-zen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.release.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.release.xcconfig"; sourceTree = "<group>"; };
 		7094D1AB304B6F90BF580499 /* Pods-zen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-zen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-zen/Pods-zen.debug.xcconfig"; sourceTree = "<group>"; };
 		731210C221112C9D005B8F51 /* ChallengeStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatus.swift; sourceTree = "<group>"; };
-		731210C5211246DF005B8F51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		731210CB2112718A005B8F51 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		731210CE21127215005B8F51 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7337715B21004155004A58F8 /* ChallengesArchiveServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesArchiveServiceTest.swift; sourceTree = "<group>"; };
 		7337716D21111314004A58F8 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		7337717B21111C7E004A58F8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -141,7 +144,7 @@
 		73CD82F720E463EA00FEF64D /* zen */ = {
 			isa = PBXGroup;
 			children = (
-				731210C5211246DF005B8F51 /* GoogleService-Info.plist */,
+				731210CE21127215005B8F51 /* GoogleService-Info.plist */,
 				736B83CB20F4400700517246 /* Config.plist */,
 				7337717C21111C7E004A58F8 /* Localizable.strings */,
 				73CD832E20E475FD00FEF64D /* models */,
@@ -195,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				73E4CEA7210040C80016D41E /* Date+Utils.swift */,
+				731210CB2112718A005B8F51 /* String+Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -328,6 +332,7 @@
 				7337717921111C7E004A58F8 /* Localizable.strings in Resources */,
 				73CD830020E463EA00FEF64D /* Main.storyboard in Resources */,
 				73EEFE3A20F6D8C0004D14ED /* JournalCollectionViewCell.xib in Resources */,
+				731210CF21127215005B8F51 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +342,7 @@
 			files = (
 				733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */,
 				7337717A21111C7E004A58F8 /* Localizable.strings in Resources */,
+				731210D021127215005B8F51 /* GoogleService-Info.plist in Resources */,
 				7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */,
 				7337716721004597004A58F8 /* Main.storyboard in Resources */,
 			);
@@ -425,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				731210CC2112718A005B8F51 /* String+Utils.swift in Sources */,
 				73CD832B20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
 				73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */,
@@ -432,7 +439,6 @@
 				73EEFE3520F5772E004D14ED /* JournalCollectionViewCell.swift in Sources */,
 				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
 				73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */,
-				731210C6211246DF005B8F51 /* GoogleService-Info.plist in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
 				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,
@@ -448,9 +454,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7337716F21111314004A58F8 /* ServiceError.swift in Sources */,
+				731210CD2112718A005B8F51 /* String+Utils.swift in Sources */,
 				73CD832C20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				7337716221004586004A58F8 /* JournalViewController.swift in Sources */,
-				731210C7211246DF005B8F51 /* GoogleService-Info.plist in Sources */,
 				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,
 				73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */,
 				731210C421112CA4005B8F51 /* ChallengeStatus.swift in Sources */,

@@ -7,9 +7,9 @@ enum ChallengeLevel: Int, Codable {
 
     var description: String {
         switch self {
-        case .low: return NSLocalizedString("challenge_difficulty_low", comment: "")
-        case .medium: return NSLocalizedString("challenge_difficulty_medium", comment: "")
-        case .high: return NSLocalizedString("challenge_difficulty_high", comment: "")
+        case .low: return "challenge_difficulty_low".localized
+        case .medium: return "challenge_difficulty_medium".localized
+        case .high: return "challenge_difficulty_high".localized
         }
     }
 }

@@ -10,7 +10,7 @@ final class JournalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("journal_screen_title", comment: "")
+        navigationItem.title = "journal_screen_title".localized
 
         collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)

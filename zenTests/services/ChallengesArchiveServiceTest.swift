@@ -101,14 +101,6 @@ final class ChallengesArchiveServiceTest: XCTestCase {
                        "Challenge url didn't restore")
         XCTAssertEqual(challenge.level, restoredChallenge?.level,
                        "Challenge level didn't restore")
-//        XCTAssertEqual(challenge.status, restoredChallenge?.status,
-//                       "Challenge status didn't restore")
-//        XCTAssertEqual(challenge.finishedTime, restoredChallenge?.finishedTime,
-//                       "Challenge finishedTime didn't restore")
-//        XCTAssertEqual(challenge.rating, restoredChallenge?.rating,
-//                       "Challenge rating didn't restore")
-//        XCTAssertEqual(challenge.comments, restoredChallenge?.comments,
-//                       "Challenge comments didn't restore")
     }
 
     private static func buildChallenge() -> Challenge {

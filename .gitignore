@@ -20,7 +20,7 @@ xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 zen/Config.plist
-GoogleService-Info.plist
+zen/GoogleService-Info.plist
 
 ## Obj-C/Swift specific
 *.hmap

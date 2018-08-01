@@ -18,7 +18,7 @@ final class ChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("current_challenge_screen_title", comment: "")
+        navigationItem.title = "current_challenge_screen_title".localized
         loadChallenges()
     }
 
@@ -49,9 +49,9 @@ final class ChallengeViewController: UIViewController {
         contentLabel.text = challenge.content
         detailsLabel.text = challenge.details
         quoteLabel.text = challenge.quote
-        typeLabel.text = "\(NSLocalizedString("Type", comment: "")): \(challenge.type)"
+        typeLabel.text = "\("Type".localized): \(challenge.type)"
         levelLabel.text =
-        "\(NSLocalizedString("current_challenge_screen_difficulty", comment: "")): \(challenge.level.description)"
+        "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
 
         challengesService.markChallengeShown(challenge.challengeId)
     }
@@ -83,31 +83,29 @@ final class ChallengeViewController: UIViewController {
             if challengesService.isTimeToAcceptChallenge {
                 challengeButton.isEnabled = true
                 challengeButton.setTitle(
-                    NSLocalizedString("current_challenge_screen_button_accept", comment: ""),
+                    "current_challenge_screen_button_accept".localized,
                     for: .normal)
             } else {
                 challengeButton.isEnabled = false
                 challengeButton.setTitle(
-                    NSLocalizedString("You can accept the task before 6pm", comment: ""),
+                    "You can accept the task before 6pm".localized,
                     for: .normal)
             }
         case .accepted?:
             if challengesService.isTimeToAcceptChallenge {
                 challengeButton.isEnabled = true
                 challengeButton.setTitle(
-                    NSLocalizedString("current_challenge_screen_button_finish", comment: ""),
+                    "current_challenge_screen_button_finish".localized,
                     for: .normal)
             } else {
                 challengeButton.isEnabled = false
                 challengeButton.setTitle(
-                    NSLocalizedString(
-                        "current_challenge_screen_button_return_after_6pm",
-                        comment: ""),
+                    "current_challenge_screen_button_return_after_6pm".localized,
                     for: .normal)
             }
         case .finished?, .declined?:
             challengeButton.setTitle(
-                NSLocalizedString("current_challenge_screen_button_finished", comment: ""),
+                "current_challenge_screen_button_finished".localized,
                 for: .normal)
             challengeButton.isEnabled = false
         default:
