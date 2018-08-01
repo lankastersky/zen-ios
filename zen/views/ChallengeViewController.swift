@@ -18,7 +18,7 @@ final class ChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Current Challenge", comment: "")
+        navigationItem.title = NSLocalizedString("current_challenge_screen_title", comment: "")
         loadChallenges()
     }
 
@@ -51,12 +51,12 @@ final class ChallengeViewController: UIViewController {
         quoteLabel.text = challenge.quote
         typeLabel.text = "\(NSLocalizedString("Type", comment: "")): \(challenge.type)"
         levelLabel.text =
-        "\(NSLocalizedString("Difficulty", comment: "")): \(challenge.level.description)"
+        "\(NSLocalizedString("current_challenge_screen_difficulty", comment: "")): \(challenge.level.description)"
 
         challengesService.markChallengeShown(challenge.challengeId)
     }
 
-    @IBAction func onChallengeButton(sender: UIButton!) {
+    @IBAction private func onChallengeButton(sender: UIButton!) {
         guard let challenge = challengesService.currentChallenge else {
             assertionFailure("Failed to get current challenge")
             return
@@ -82,7 +82,9 @@ final class ChallengeViewController: UIViewController {
         case .shown?:
             if challengesService.isTimeToAcceptChallenge {
                 challengeButton.isEnabled = true
-                challengeButton.setTitle(NSLocalizedString("Accept", comment: ""), for: .normal)
+                challengeButton.setTitle(
+                    NSLocalizedString("current_challenge_screen_button_accept", comment: ""),
+                    for: .normal)
             } else {
                 challengeButton.isEnabled = false
                 challengeButton.setTitle(
@@ -92,14 +94,21 @@ final class ChallengeViewController: UIViewController {
         case .accepted?:
             if challengesService.isTimeToAcceptChallenge {
                 challengeButton.isEnabled = true
-                challengeButton.setTitle(NSLocalizedString("Finish", comment: ""), for: .normal)
+                challengeButton.setTitle(
+                    NSLocalizedString("current_challenge_screen_button_finish", comment: ""),
+                    for: .normal)
             } else {
                 challengeButton.isEnabled = false
                 challengeButton.setTitle(
-                    NSLocalizedString("Return after 6pm", comment: ""), for: .normal)
+                    NSLocalizedString(
+                        "current_challenge_screen_button_return_after_6pm",
+                        comment: ""),
+                    for: .normal)
             }
         case .finished?, .declined?:
-            challengeButton.setTitle(NSLocalizedString("Finished", comment: ""), for: .normal)
+            challengeButton.setTitle(
+                NSLocalizedString("current_challenge_screen_button_finished", comment: ""),
+                for: .normal)
             challengeButton.isEnabled = false
         default:
             assertionFailure("Bad challenge status when refreshing challenge button")

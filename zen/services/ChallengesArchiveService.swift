@@ -99,7 +99,7 @@ final class ChallengesArchiveService {
             challengeDataArray.append(
                 MutableChallengeData(
                     challenge.challengeId,
-                    //challenge.status,
+                    challenge.status,
                     challenge.finishedTime,
                     challenge.rating,
                     challenge.comments))
@@ -128,7 +128,7 @@ final class ChallengesArchiveService {
                 assertionFailure("Failed to restore challenge data")
                 return
             }
-            //challenge.status = challengeData.status
+            challenge.status = challengeData.status
             challenge.finishedTime = challengeData.finishedTime
             challenge.rating = challengeData.rating
             challenge.comments = challengeData.comments

@@ -10,9 +10,7 @@ final class JournalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = NSLocalizedString("Finished Challenges", comment: "")
-
-        challenges = challengesService.sortedChallenges
+        navigationItem.title = NSLocalizedString("journal_screen_title", comment: "")
 
         collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
@@ -20,6 +18,11 @@ final class JournalViewController: UIViewController {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        challenges = challengesService.finishedChallengesSortedByTimeDesc()
+        collectionView.reloadData()
     }
 }
 
