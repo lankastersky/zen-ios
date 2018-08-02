@@ -1,4 +1,5 @@
 import UIKit
+import Cosmos
 
 final class JournalCollectionViewCell: UICollectionViewCell {
 
@@ -8,7 +9,7 @@ final class JournalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var detailsLabel: UILabel!
     @IBOutlet weak var finishedTimeLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView!
 
     @IBOutlet weak private var widthConstraint: NSLayoutConstraint!
 

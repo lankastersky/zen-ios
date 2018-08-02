@@ -45,6 +45,33 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="giP-7c-bLj" customClass="CosmosView" customModule="Cosmos">
+                                    <rect key="frame" x="245" y="176" width="110" height="34"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                            <real key="value" value="2"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                            <color key="value" red="1" green="0.74209542210000001" blue="0.2363831351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                            <color key="value" red="1" green="0.74209542210000001" blue="0.2363831351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                            <color key="value" red="1" green="0.74209542210000001" blue="0.2363831351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
@@ -57,6 +84,8 @@
                                 <constraint firstItem="WLs-PE-bsx" firstAttribute="top" secondItem="40B-vB-E5z" secondAttribute="top" constant="20" id="Ra8-EZ-xcp"/>
                                 <constraint firstAttribute="trailing" secondItem="WLs-PE-bsx" secondAttribute="trailing" constant="20" id="UMh-iw-msv"/>
                                 <constraint firstItem="fhq-R8-GU5" firstAttribute="leading" secondItem="40B-vB-E5z" secondAttribute="leading" constant="20" id="aBu-Qg-AIb"/>
+                                <constraint firstAttribute="trailing" secondItem="giP-7c-bLj" secondAttribute="trailing" constant="10" id="eCw-16-b4Q"/>
+                                <constraint firstAttribute="bottom" secondItem="giP-7c-bLj" secondAttribute="bottom" constant="20" id="kKz-ds-X4q"/>
                                 <constraint firstItem="WLs-PE-bsx" firstAttribute="leading" secondItem="40B-vB-E5z" secondAttribute="leading" constant="20" id="kq4-vR-jS7"/>
                                 <constraint firstAttribute="trailing" secondItem="fhq-R8-GU5" secondAttribute="trailing" constant="20" id="lMq-MZ-HWk"/>
                                 <constraint firstAttribute="trailing" secondItem="olY-JQ-Ix7" secondAttribute="trailing" constant="20" id="lhG-0u-XFO"/>
@@ -83,6 +112,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="contentLabel" destination="dal-Gq-ZvV" id="HcE-hB-als"/>
+                <outlet property="cosmosView" destination="giP-7c-bLj" id="Dm4-MG-iuB"/>
                 <outlet property="detailsLabel" destination="fhq-R8-GU5" id="T3g-lZ-QSh"/>
                 <outlet property="finishedTimeLabel" destination="WLs-PE-bsx" id="z5h-os-iTh"/>
                 <outlet property="levelLabel" destination="olY-JQ-Ix7" id="DdI-wq-83e"/>
