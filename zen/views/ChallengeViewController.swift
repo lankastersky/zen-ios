@@ -3,6 +3,8 @@ import UIKit
 /// Shows current challenge
 final class ChallengeViewController: UIViewController {
 
+    static let challengeViewControllerStoryboardId = "ChallengeViewController"
+
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
@@ -13,13 +15,19 @@ final class ChallengeViewController: UIViewController {
 
     @IBOutlet weak private var challengeButton: UIButton!
 
-    private var challenges: [Challenge] = []
+    var challenge: Challenge?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "current_challenge_screen_title".localized
-        loadChallenges()
+
+        if let challenge = self.challenge {
+            challengeButton.isHidden = true
+            showChallenge(challenge)
+        } else {
+            loadChallenges()
+        }
     }
 
     private func loadChallenges() {
@@ -33,7 +41,12 @@ final class ChallengeViewController: UIViewController {
                         print("Failed to download challenges:\(error)")
                     } else if let challenges = challenges {
                         self?.challengesService.storeChallenges(challenges)
-                        self?.showCurrentChallenge()
+                        guard let challenge = self?.challengesService.currentChallenge else {
+                            assertionFailure("Failed to get current challenge")
+                            return
+                        }
+                        self?.showChallenge(challenge)
+                        self?.challengesService.markChallengeShown(challenge.challengeId)
                         self?.updateChallengeButton()
                     }
                 })
@@ -41,19 +54,13 @@ final class ChallengeViewController: UIViewController {
         })
     }
 
-    private func showCurrentChallenge() {
-        guard let challenge = challengesService.currentChallenge else {
-            assertionFailure("Failed to get current challenge")
-            return
-        }
+    private func showChallenge(_ challenge: Challenge) {
         contentLabel.text = challenge.content
         detailsLabel.text = challenge.details
         quoteLabel.text = challenge.quote
         typeLabel.text = "\("Type".localized): \(challenge.type)"
         levelLabel.text =
             "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
-
-        challengesService.markChallengeShown(challenge.challengeId)
     }
 
     @IBAction private func onChallengeButton(sender: UIButton!) {

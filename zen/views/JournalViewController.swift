@@ -62,3 +62,36 @@ extension JournalViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+extension JournalViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        assert(
+            indexPath.item < challenges.count,
+            "Bad challenge index when creating collection view"
+        )
+
+        let challenge: Challenge = challenges[indexPath.item]
+        openChallengeView(challenge)
+    }
+
+    private func openChallengeView(_ challenge: Challenge) {
+        guard let challengeViewController =
+            self.storyboard?.instantiateViewController(
+                withIdentifier: ChallengeViewController.challengeViewControllerStoryboardId)
+                as? ChallengeViewController else {
+                    assertionFailure("Failed to instantiate challenge view controller ")
+                    return
+        }
+        challengeViewController.challenge = challenge
+        navigationController?.pushViewController(challengeViewController, animated: true)
+
+        replaceBackButton()
+    }
+
+    private func replaceBackButton() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "challenge_screen_back".localized
+        navigationItem.backBarButtonItem = backItem
+    }
+}
