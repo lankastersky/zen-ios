@@ -21,6 +21,7 @@ final class JournalViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         challenges = challengesService.finishedChallengesSortedByTimeDesc()
         collectionView.reloadData()
     }
@@ -58,11 +59,7 @@ extension JournalViewController: UICollectionViewDataSource {
         cell.detailsLabel.text = challenge.details
         cell.levelLabel.text =
             "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
-        if let rating = challenge.rating {
-            cell.cosmosView.rating = rating
-        } else {
-            cell.cosmosView.rating = 0
-        }
+        cell.cosmosView.rating = challenge.rating ?? 0
         return cell
     }
 }
@@ -81,7 +78,7 @@ extension JournalViewController: UICollectionViewDelegate {
 
     private func openChallengeView(_ challenge: Challenge) {
         guard let challengeViewController =
-            self.storyboard?.instantiateViewController(
+            storyboard?.instantiateViewController(
                 withIdentifier: ChallengeViewController.challengeViewControllerStoryboardId)
                 as? ChallengeViewController else {
                     assertionFailure("Failed to instantiate challenge view controller ")
