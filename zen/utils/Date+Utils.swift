@@ -27,4 +27,11 @@ extension Date {
         let currentChallengeShownDate = Date(timeIntervalSince1970: timeSinceEpoch)
         return currentChallengeShownDate < nextMidnight
     }
+
+    func toStringWithMediumFormat() -> String {
+        // TODO: make formatter static.
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = DateFormatter.Style.medium
+        return dateFormatter.string(from: self)
+    }
 }

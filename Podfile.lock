@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (16.0.0)
   - Firebase/Auth (5.3.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.1)
@@ -37,6 +38,7 @@ PODS:
   - Zip (1.1.0)
 
 DEPENDENCIES:
+  - Cosmos (~> 16.0)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Storage
@@ -44,6 +46,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Cosmos
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -56,6 +59,7 @@ SPEC REPOS:
     - Zip
 
 SPEC CHECKSUMS:
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   Firebase: 68afeeb05461db02d7c9e3215cda28068670f4aa
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseAuth: 463b8ce33bd5d05f706dcd4615499e3212b4132b
@@ -67,6 +71,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: ee682746fbc62cc4d85d565ffe5af58e1e1c3708
+PODFILE CHECKSUM: 671eeb92c25e0471387b260df305207509be2bb8
 
 COCOAPODS: 1.5.3

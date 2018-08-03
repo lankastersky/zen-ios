@@ -7,6 +7,7 @@ target 'zen' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'Zip', '~> 1.1'
+  pod 'Cosmos', '~> 16.0'
 
 target 'zenTests' do
     inherit! :search_paths

@@ -4,21 +4,20 @@ import Foundation
 final class MutableChallengeData: Codable {
 
     let challengeId: String
-    // TODO: somehow I get compilation error Use of undeclared type 'ChallengeStatus'
-    //let status: ChallengeStatus?
+    let status: ChallengeStatus?
     let finishedTime: TimeInterval
     let rating: Double?
     let comments: String?
 
     init(
         _ challengeId: String,
-        //_ status: ChallengeStatus?,
+        _ status: ChallengeStatus?,
         _ finishedTime: TimeInterval,
         _ rating: Double?,
         _ comments: String?) {
 
         self.challengeId = challengeId
-        //self.status = status
+        self.status = status
         self.finishedTime = finishedTime
         self.rating = rating
         self.comments = comments

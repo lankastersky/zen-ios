@@ -10,10 +10,7 @@ final class JournalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: localize
-        navigationItem.title = "Finished Challenges"
-
-        challenges = challengesManager?.sortedChallenges ?? []
+        navigationItem.title = "journal_screen_title".localized
 
         collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
             forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
@@ -21,6 +18,12 @@ final class JournalViewController: UIViewController {
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        challenges = challengesService.finishedChallengesSortedByTimeDesc()
+        collectionView.reloadData()
     }
 }
 
@@ -44,22 +47,52 @@ extension JournalViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
         }
 
-        assert(indexPath.item < challenges.count,
-               "Bad challenge index when creating collection view")
-        
+        assert(
+            indexPath.item < challenges.count,
+            "Bad challenge index when creating collection view"
+        )
+
         let challenge: Challenge = challenges[indexPath.item]
+        cell.finishedTimeLabel.text =
+            Date(timeIntervalSince1970: challenge.finishedTime).toStringWithMediumFormat()
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details
-        cell.backgroundColor = randomColor()
+        cell.levelLabel.text =
+            "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
+        cell.cosmosView.rating = challenge.rating ?? 0
         return cell
     }
+}
 
-    // custom function to generate a random UIColor
-    // TODO: remove after implementing real cells
-    func randomColor() -> UIColor {
-        let red = CGFloat(drand48())
-        let green = CGFloat(drand48())
-        let blue = CGFloat(drand48())
-        return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+extension JournalViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        assert(
+            indexPath.item < challenges.count,
+            "Bad challenge index when creating collection view"
+        )
+
+        let challenge: Challenge = challenges[indexPath.item]
+        openChallengeView(challenge)
+    }
+
+    private func openChallengeView(_ challenge: Challenge) {
+        guard let challengeViewController =
+            storyboard?.instantiateViewController(
+                withIdentifier: ChallengeViewController.challengeViewControllerStoryboardId)
+                as? ChallengeViewController else {
+                    assertionFailure("Failed to instantiate challenge view controller ")
+                    return
+        }
+        challengeViewController.challenge = challenge
+        navigationController?.pushViewController(challengeViewController, animated: true)
+
+        replaceBackButton()
+    }
+
+    private func replaceBackButton() {
+        let backItem = UIBarButtonItem()
+        backItem.title = "challenge_screen_back".localized
+        navigationItem.backBarButtonItem = backItem
     }
 }

@@ -67,11 +67,15 @@ final class ChallengesArchiveServiceTest: XCTestCase {
         challenge.rating = nil
         challenge.status = nil
         challenge.comments = nil
+        if let restoreStatus =
+            archiveService?.restoreChallengeData([challenge.challengeId: challenge]) {
+            XCTAssertTrue(restoreStatus, "Failed to restore challenge data")
+        } else {
+            assertionFailure("Failed to restore challenge data")
+        }
 
-        archiveService?.restoreChallengeData([challenge.challengeId: challenge])
-
-//        XCTAssertEqual(status, challenge.status,
-//                       "Challenge status didn't restore")
+        XCTAssertEqual(status, challenge.status,
+                       "Challenge status didn't restore")
         XCTAssertEqual(finishedTime, challenge.finishedTime,
                        "Challenge finishedTime didn't restore")
         XCTAssertEqual(rating, challenge.rating,
@@ -97,14 +101,6 @@ final class ChallengesArchiveServiceTest: XCTestCase {
                        "Challenge url didn't restore")
         XCTAssertEqual(challenge.level, restoredChallenge?.level,
                        "Challenge level didn't restore")
-        XCTAssertEqual(challenge.status, restoredChallenge?.status,
-                       "Challenge status didn't restore")
-        XCTAssertEqual(challenge.finishedTime, restoredChallenge?.finishedTime,
-                       "Challenge finishedTime didn't restore")
-        XCTAssertEqual(challenge.rating, restoredChallenge?.rating,
-                       "Challenge rating didn't restore")
-        XCTAssertEqual(challenge.comments, restoredChallenge?.comments,
-                       "Challenge comments didn't restore")
     }
 
     private static func buildChallenge() -> Challenge {

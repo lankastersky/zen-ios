@@ -37,7 +37,7 @@ final class ChallengesArchiveService {
     func restoreCurrentChallenge() -> Challenge? {
         guard let challengeData =
             userDefaults.data(forKey: ChallengesArchiveService.currentChallengeKey) else {
-                assertionFailure("Failed to restore current challenge")
+                print("No current challenge to restore")
                 return nil
         }
         guard let challenge =
@@ -99,7 +99,7 @@ final class ChallengesArchiveService {
             challengeDataArray.append(
                 MutableChallengeData(
                     challenge.challengeId,
-                    //challenge.status,
+                    challenge.status,
                     challenge.finishedTime,
                     challenge.rating,
                     challenge.comments))
@@ -111,16 +111,16 @@ final class ChallengesArchiveService {
         userDefaults.set(encoded, forKey: ChallengesArchiveService.challengeDataKey)
     }
 
-    func restoreChallengeData(_ challengesDictionary: [String: Challenge]) {
+    func restoreChallengeData(_ challengesDictionary: [String: Challenge]) -> Bool {
         guard let challengeData =
             userDefaults.data(forKey: ChallengesArchiveService.challengeDataKey) else {
-                assertionFailure("Failed to restore challenge data")
-                return
+                print("No challenge data to restore")
+                return false
         }
         guard let challengeDataArray =
                 try? jsonDecoder.decode([MutableChallengeData].self, from: challengeData) else {
                     assertionFailure("Failed to restore challenge data")
-                    return
+                    return false
         }
 
         challengeDataArray.forEach({challengeData in
@@ -128,10 +128,11 @@ final class ChallengesArchiveService {
                 assertionFailure("Failed to restore challenge data")
                 return
             }
-            //challenge.status = challengeData.status
+            challenge.status = challengeData.status
             challenge.finishedTime = challengeData.finishedTime
             challenge.rating = challengeData.rating
             challenge.comments = challengeData.comments
         })
+        return true
     }
 }

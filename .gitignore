@@ -19,6 +19,8 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+zen/Config.plist
+zen/GoogleService-Info.plist
 
 ## Obj-C/Swift specific
 *.hmap
@@ -34,4 +36,4 @@ Pods/
 
 # Mac-specific files
 .DS_Store
-zen/Config.plist
+

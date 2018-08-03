@@ -50,7 +50,13 @@ final class ChallengesService {
 
     /// Challenge is ready to be accepted before 6pm
     var isTimeToAcceptChallenge: Bool {
-        get { return Date.dateBefore6pm(currentChallengeShownTime) }
+        get {
+            #if !DEBUG
+                return Date.dateBefore6pm(currentChallengeShownTime)
+            #else
+                return true
+            #endif
+        }
         set {}
     }
 
@@ -58,7 +64,11 @@ final class ChallengesService {
     var isTimeToFinishChallenge: Bool {
         get {
             if currentChallenge?.status == .accepted {
-                return !Date.dateBefore6pm(currentChallengeShownTime)
+                #if !DEBUG
+                    return !Date.dateBefore6pm(currentChallengeShownTime)
+                #else
+                    return true
+                #endif
             }
             return true
         }
@@ -67,7 +77,13 @@ final class ChallengesService {
 
     /// Challenge expires at midnight of the next day.
     private var isChallengeTimeExpired: Bool {
-        get { return !Date.dateBeforeNextMidnight(currentChallengeShownTime) }
+        get {
+            #if !DEBUG
+                return !Date.dateBeforeNextMidnight(currentChallengeShownTime)
+            #else
+                return true
+            #endif
+        }
         set {}
     }
 
@@ -87,6 +103,7 @@ final class ChallengesService {
     func storeChallenges(_ challengesDictionary: [String: Challenge]) {
         self.challengesDictionary = challengesDictionary
         challengesArchiveService.storeChallenges(Array(challengesDictionary.values))
+        selectChallengeIfNeeded()
     }
 
     /// Restores challenges from persistent storage and selects current challenge if needed
@@ -109,7 +126,10 @@ final class ChallengesService {
     }
 
     private func restoreState() {
-        challengesArchiveService.restoreChallengeData(challengesDictionary)
+        if !challengesArchiveService.restoreChallengeData(challengesDictionary) {
+            // Nothing to restore yet
+            return
+        }
         if let challenge = challengesArchiveService.restoreCurrentChallenge() {
             currentChallengeId = challenge.challengeId
         }
@@ -120,26 +140,27 @@ final class ChallengesService {
     /// Sets challenge status as 'shown' if current status is 'unknown'
     func markChallengeShown(_ challengeId: String) {
         // TODO: remove asserts after testing
-        assert(currentChallengeId != challengeId,
+        assert(currentChallengeId == challengeId,
             "Can't mark current challenge as shown. ChallengeId is not current challenge:"
                 + " \(challengeId)"
         )
-        assert(currentChallenge?.status != nil,
-            "Can't mark current challenge as shown. Challenge status is not unknown:"
-                + " \(String(describing: currentChallenge?.status))"
-        )
+        if currentChallenge?.status != nil {
+            print("Can't mark current challenge as shown. Challenge status:"
+                + " \(String(describing: currentChallenge?.status))")
+            return
+        }
         currentChallengeShownTime = NSDate().timeIntervalSince1970
         updateCurrentChallenge()
         storeState()
     }
 
     func markChallengeAccepted(_ challengeId: String) {
-        assert(currentChallengeId != challengeId,
+        assert(currentChallengeId == challengeId,
             "Can't mark current challenge as accepted. ChallengeId is not current challenge:"
                 + " \(challengeId)"
         )
         assert(
-            currentChallenge?.status != .shown,
+            currentChallenge?.status == .shown,
             "Can't mark current challenge as shown. Challenge status is not shown:"
                 + " \(String(describing: currentChallenge?.status))"
         )
@@ -148,11 +169,11 @@ final class ChallengesService {
     }
 
     func markChallengeFinished(_ challengeId: String) {
-        assert(currentChallengeId != challengeId,
+        assert(currentChallengeId == challengeId,
             "Can't mark current challenge as finished. ChallengeId is not current challenge:"
                 + " \(challengeId)"
         )
-        assert(currentChallenge?.status != .accepted,
+        assert(currentChallenge?.status == .accepted,
             "Can't mark current challenge as finished. Challenge status is not accepted:"
                 + " \(String(describing: currentChallenge?.status))"
         )
@@ -166,7 +187,7 @@ final class ChallengesService {
     /// - Parameter challengeId: challenge id to check the level of
     // TODO: check level-up when generating chellenges of a new level
     func checkLevelUp(_ challengeId: String) -> Bool {
-        assert(currentChallengeId != challengeId,
+        assert(currentChallengeId == challengeId,
             "Can't mark current challenge as finished. ChallengeId is not current challenge:"
                 + " \(challengeId)"
         )
@@ -201,7 +222,6 @@ final class ChallengesService {
         if currentChallengeId == nil {
             newChallengeRequired = true
         } else {
-
             assert(
                 currentChallenge != nil,
                 "Failed to select current challenge \(String(describing: currentChallengeId))"

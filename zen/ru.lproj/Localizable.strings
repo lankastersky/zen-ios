@@ -1,0 +1,12 @@
+"current_challenge_screen_title" = "Текущее задание";
+"current_challenge_screen_type" = "Тип";
+"current_challenge_screen_difficulty" = "Сложность";
+"challenge_difficulty_low" = "низкая";
+"challenge_difficulty_medium" = "средняя";
+"challenge_difficulty_high" = "высокая";
+"journal_screen_title" = "Журнал";
+"current_challenge_screen_button_accept" = "Начать";
+"current_challenge_screen_button_finish" = "Завершить";
+"current_challenge_screen_button_return_after_6pm" = "Завершите задание после 18:00";
+"current_challenge_screen_button_finished" = "Завершено";
+"challenge_screen_back" = "Назад";
