@@ -1,4 +1,5 @@
-"challenge_screen_title" = "Current Challenge";
+"current_challenge_screen_title" = "Current Challenge";
+"challenge_screen_title" = "Journal Entry";
 "challenge_screen_type" = "Type";
 "challenge_screen_difficulty" = "Difficulty";
 "challenge_difficulty_low" = "low";

@@ -1,4 +1,5 @@
-"challenge_screen_title" = "Текущее задание";
+"current_challenge_screen_title" = "Текущее задание";
+"challenge_screen_title" = "Задание из журнала";
 "challenge_screen_type" = "Тип";
 "challenge_screen_difficulty" = "Сложность";
 "challenge_difficulty_low" = "низкая";

@@ -21,7 +21,11 @@ final class ChallengeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "challenge_screen_title".localized
+        if challenge == nil {
+            navigationItem.title = "current_challenge_screen_title".localized
+        } else {
+            navigationItem.title = "challenge_screen_title".localized
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
