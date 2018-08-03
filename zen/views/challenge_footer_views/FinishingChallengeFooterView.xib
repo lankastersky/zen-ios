@@ -75,7 +75,7 @@
             <connections>
                 <outlet property="challengeButton" destination="NGd-Sj-FsM" id="LKa-7D-qLd"/>
                 <outlet property="commentsTextView" destination="dgl-Tx-KBJ" id="7TK-VW-nqf"/>
-                <outlet property="cosmosView" destination="mu2-yx-Sbb" id="klV-VW-SEK"/>
+                <outlet property="ratingView" destination="mu2-yx-Sbb" id="e8l-Ha-cCm"/>
             </connections>
             <point key="canvasLocation" x="32.5" y="-164.5"/>
         </view>

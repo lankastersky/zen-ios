@@ -3,15 +3,15 @@ import Cosmos
 
 final class FinishingChallengeFooterView: ChallengeFooterView {
 
-    @IBOutlet private weak var cosmosView: CosmosView!
+    @IBOutlet private weak var ratingView: CosmosView!
     @IBOutlet private weak var challengeButton: UIButton!
-
-    @IBOutlet weak var commentsTextView: UITextView!
+    @IBOutlet private weak var commentsTextView: UITextView!
 
     override func refreshUI() {
         super.refreshUI()
         updateChallengeButton()
         updateChallengeComments()
+        updateRatingView()
     }
 
     @IBAction private func onChallengeButton(sender: UIButton!) {
@@ -34,6 +34,10 @@ final class FinishingChallengeFooterView: ChallengeFooterView {
         commentsTextView.text = "challenge_screen_comments_placeholder".localized
         commentsTextView.delegate = self
     }
+
+    private func updateRatingView() {
+        ratingView.didFinishTouchingCosmos = { rating in self.challenge?.rating = rating }
+    }
 }
 
 extension FinishingChallengeFooterView: UITextViewDelegate {
@@ -50,5 +54,9 @@ extension FinishingChallengeFooterView: UITextViewDelegate {
             commentsTextView.text = "challenge_screen_comments_placeholder".localized
             textView.textColor = UIColor.lightGray
         }
+    }
+
+    internal func textViewDidChange(_ textView: UITextView) {
+        challenge?.comments = textView.text
     }
 }

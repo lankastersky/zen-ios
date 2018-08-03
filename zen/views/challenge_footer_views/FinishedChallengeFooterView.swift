@@ -3,12 +3,12 @@ import Cosmos
 
 final class FinishedChallengeFooterView: ChallengeFooterView {
 
-    @IBOutlet private weak var cosmosView: CosmosView!
+    @IBOutlet private weak var ratingView: CosmosView!
 
     @IBOutlet weak var commentsLabel: UILabel!
 
     override func refreshUI() {
         super.refreshUI()
-        cosmosView.settings.updateOnTouch = false
+        ratingView.settings.updateOnTouch = false
     }
 }

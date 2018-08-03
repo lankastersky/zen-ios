@@ -109,8 +109,7 @@ final class ChallengeViewController: UIViewController {
 
     private func showFinishedChallengeFooterView(_ challenge: Challenge) {
         let view: FinishedChallengeFooterView = FinishedChallengeFooterView.fromNib()
-        // TODO: remove default text
-        view.commentsLabel.text = challenge.comments ?? "-\n-\n-\n-\n-"
+        view.commentsLabel.text = challenge.comments ?? ""
         showFooterView(view, challenge)
     }
 
