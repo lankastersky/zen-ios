@@ -1,12 +1,15 @@
-"current_challenge_screen_title" = "Текущее задание";
-"current_challenge_screen_type" = "Тип";
-"current_challenge_screen_difficulty" = "Сложность";
+"challenge_screen_title" = "Текущее задание";
+"challenge_screen_type" = "Тип";
+"challenge_screen_difficulty" = "Сложность";
 "challenge_difficulty_low" = "низкая";
 "challenge_difficulty_medium" = "средняя";
 "challenge_difficulty_high" = "высокая";
-"journal_screen_title" = "Журнал";
-"current_challenge_screen_button_accept" = "Начать";
-"current_challenge_screen_button_finish" = "Завершить";
-"current_challenge_screen_button_return_after_6pm" = "Завершите задание после 18:00";
-"current_challenge_screen_button_finished" = "Завершено";
+"challenge_screen_button_accept" = "Начать";
+"challenge_screen_button_accept_before_6pm" = "Взять задание можно до 18:00";
+"challenge_screen_button_finish" = "Завершить";
+"challenge_screen_button_return_after_6pm" = "Завершите задание после 18:00";
+"challenge_screen_button_finished" = "Завершено";
 "challenge_screen_back" = "Назад";
+"challenge_screen_comments_placeholder" = "Оставьте ваши комментарии для журнала";
+
+"journal_screen_title" = "Журнал";
