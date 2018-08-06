@@ -31,6 +31,9 @@ final class ChallengeViewController: UIViewController {
         let tapGesture =
             UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         self.view.addGestureRecognizer(tapGesture)
+
+        // Avoid tap event delay when setting the rating. See https://goo.gl/XWBdyn
+        scrollView.delaysContentTouches = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
