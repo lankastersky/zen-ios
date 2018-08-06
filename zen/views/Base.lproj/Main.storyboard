@@ -134,6 +134,7 @@
                         <outlet property="footerHolderView" destination="nFo-Q6-owV" id="XqF-i0-dQ8"/>
                         <outlet property="levelLabel" destination="1kq-sd-KtI" id="ktV-AE-HER"/>
                         <outlet property="quoteLabel" destination="gYn-d6-Rd7" id="uHK-cf-kok"/>
+                        <outlet property="scrollView" destination="qSe-ow-wWg" id="7GB-Bc-05g"/>
                         <outlet property="typeLabel" destination="Nn5-8O-Oa3" id="Ou3-VL-zIV"/>
                     </connections>
                 </viewController>

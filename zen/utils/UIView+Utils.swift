@@ -7,7 +7,7 @@ extension UIView {
             assertionFailure("Failed to instantiate view")
             return T()
         }
-        guard let view = views[0] as? T else {
+        guard let view = views.first as? T else {
             assertionFailure("Failed to instantiate view")
             return T()
         }

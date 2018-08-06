@@ -5,8 +5,7 @@ final class ChallengeViewController: UIViewController {
 
     static let challengeViewControllerStoryboardId = "ChallengeViewController"
 
-    private var activeFooterView: ChallengeFooterView?
-
+    @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
@@ -15,6 +14,8 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var typeLabel: UILabel!
     @IBOutlet weak private var levelLabel: UILabel!
     @IBOutlet weak private var footerHolderView: UIView!
+
+    private var activeFooterView: ChallengeFooterView?
 
     var challenge: Challenge?
 
@@ -26,16 +27,26 @@ final class ChallengeViewController: UIViewController {
         } else {
             navigationItem.title = "challenge_screen_title".localized
         }
+
+        let tapGesture =
+            UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        self.view.addGestureRecognizer(tapGesture)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        registerKeyboardNotifications()
+
         if let challenge = self.challenge {
-            //challengeButton.isHidden = true
             showChallengeFromJournal(challenge)
         } else {
             loadChallenges()
         }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     private func loadChallenges() {
@@ -61,7 +72,6 @@ final class ChallengeViewController: UIViewController {
             return
         }
         showChallengeHeader(challenge)
-
         switch challenge.status {
         case nil:
             challengesService.markChallengeShown(challenge.challengeId)
@@ -135,6 +145,51 @@ final class ChallengeViewController: UIViewController {
         footerView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
 
         footerView.refreshUI()
+    }
+
+    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               object: nil)
+    }
+
+    // Scroll view when keyboard appears. See https://goo.gl/Eq4Bj9
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        guard let keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+            assertionFailure("Failed to get info from keyboard notification")
+            return
+        }
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
+            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+        let contentInsets =
+            UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height - topBarHeight, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+        var viewRect = view.frame
+        viewRect.size.height -= keyboardSize.height
+
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height
+            + keyboardSize.height
+            - scrollView.bounds.size.height
+            - topBarHeight)
+        scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
     }
 }
 
