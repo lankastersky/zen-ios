@@ -29,8 +29,8 @@ final class ChallengeViewController: UIViewController {
         }
 
         let tapGesture =
-            UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
-        self.view.addGestureRecognizer(tapGesture)
+            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
+        view.addGestureRecognizer(tapGesture)
 
         // Avoid tap event delay when setting the rating. See https://goo.gl/XWBdyn
         scrollView.delaysContentTouches = false
@@ -174,7 +174,7 @@ final class ChallengeViewController: UIViewController {
         }
         let keyboardSize = keyboardInfo.cgRectValue.size
         let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
-            (self.navigationController?.navigationBar.frame.height ?? 0.0)
+            (navigationController?.navigationBar.frame.height ?? 0.0)
         let contentInsets =
             UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height - topBarHeight, right: 0)
         scrollView.contentInset = contentInsets
