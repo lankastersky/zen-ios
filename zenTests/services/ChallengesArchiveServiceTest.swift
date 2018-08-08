@@ -7,12 +7,12 @@ final class ChallengesArchiveServiceTest: XCTestCase {
     private static let userDefaultsName = "challenges_archive_service_test"
 
     private var archiveService: ChallengesArchiveService?
-    private var userDefaults: UserDefaults?
+    private var storageService: StorageService?
 
     override func setUp() {
         super.setUp()
-        userDefaults = UserDefaults(suiteName: ChallengesArchiveServiceTest.userDefaultsName)
-        archiveService = ChallengesArchiveService(userDefaults!)
+        storageService = StorageService(ChallengesArchiveServiceTest.userDefaultsName)
+        archiveService = ChallengesArchiveService(storageService!)
     }
 
     func test_store_restore_CurrentChallengeShownTime() {

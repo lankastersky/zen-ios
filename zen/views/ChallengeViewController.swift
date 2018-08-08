@@ -6,17 +6,20 @@ final class ChallengeViewController: UIViewController {
     static let challengeViewControllerStoryboardId = "ChallengeViewController"
 
     @IBOutlet weak private var scrollView: UIScrollView!
+    @IBOutlet weak private var contentView: UIView!
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
-    // TODO: implement showing urls
-    @IBOutlet weak private var sourceLabel: UILabel!
-    @IBOutlet weak private var urlLabel: UILabel!
+    @IBOutlet weak private var sourceButton: UIButton!
     @IBOutlet weak private var typeLabel: UILabel!
     @IBOutlet weak private var levelLabel: UILabel!
     @IBOutlet weak private var footerHolderView: UIView!
+    // Making contraints strong, otherwise they will be removed after deactivating
+    @IBOutlet private var typeLabelToSourceButtonLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private var typeLabelToQuoteLabelLayoutConstraint: NSLayoutConstraint!
 
     private var activeFooterView: ChallengeFooterView?
+    private var sourceUrl: String?
 
     var challenge: Challenge?
 
@@ -49,10 +52,30 @@ final class ChallengeViewController: UIViewController {
         }
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if !sourceButton.isHidden {
+            typeLabelToSourceButtonLayoutConstraint.isActive = true
+            typeLabelToQuoteLabelLayoutConstraint.isActive = false
+        } else {
+            typeLabelToSourceButtonLayoutConstraint.isActive = false
+            typeLabelToQuoteLabelLayoutConstraint.isActive = true
+        }
+        contentView.layoutIfNeeded()
+    }
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
 
+    @IBAction private func onSourceButton(sender: UIButton!) {
+        guard let urlString = sourceUrl else {
+            assertionFailure("Failed to get challenge url")
+            return
+        }
+        ChallengeViewController.openUrl(urlString)
+    }
     private func loadChallenges() {
         LoadingIndicatorView.show("Loading")
 
@@ -116,6 +139,21 @@ final class ChallengeViewController: UIViewController {
         typeLabel.text = "\("Type".localized): \(challenge.type)"
         levelLabel.text =
         "\("challenge_screen_difficulty".localized): \(challenge.level.description)"
+        if !challenge.source.isEmpty {
+            sourceButton.isHidden = false
+//            typeLabelLayoutConstraintToSource.isActive = true
+//            typeLabelLayoutConstraintToQuote.isActive = false
+//            sourceButtonLayoutConstraintToQuote.isActive = true
+            sourceButton.setTitle(challenge.source, for: .normal)
+            sourceUrl = challenge.url
+        } else {
+            sourceButton.isHidden = true
+            sourceUrl = nil
+//            typeLabelLayoutConstraintToSource.isActive = false
+//            typeLabelLayoutConstraintToQuote.isActive = true
+//            sourceButtonLayoutConstraintToQuote.isActive = false
+        }
+//        contentView.layoutIfNeeded()
     }
 
     private func showShownChallengeFooterView(_ challenge: Challenge) {
@@ -136,7 +174,7 @@ final class ChallengeViewController: UIViewController {
 
     private func showFinishedChallengeFooterView(_ challenge: Challenge) {
         let view: FinishedChallengeFooterView = FinishedChallengeFooterView.fromNib()
-        view.commentsLabel.text = challenge.comments ?? ""
+        view.commentsText = challenge.comments ?? ""
         showFooterView(view, challenge)
     }
 
@@ -203,6 +241,18 @@ final class ChallengeViewController: UIViewController {
     @objc private func keyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = .zero
         scrollView.scrollIndicatorInsets = .zero
+    }
+
+    private static func openUrl(_ urlString: String) {
+        guard let url = URL(string: urlString) else {
+            assertionFailure("Failed to parse challenge url")
+            return
+        }
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
     }
 }
 

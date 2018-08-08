@@ -7,8 +7,12 @@ final class StorageService {
 
     private var userDefaults: UserDefaults
 
-    init() {
-        userDefaults = UserDefaults(suiteName: StorageService.userDefaultsName)!
+    init(_ userDefaultsName: String) {
+        self.userDefaults = UserDefaults(suiteName: userDefaultsName)!
+    }
+
+    convenience init() {
+        self.init(StorageService.userDefaultsName)
     }
 
     func set(_ value: Any?, forKey defaultName: String) {
