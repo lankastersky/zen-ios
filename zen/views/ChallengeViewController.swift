@@ -125,7 +125,7 @@ final class ChallengeViewController: UIViewController {
 
     private func showChallengeStatusFooterView(_ challenge: Challenge, _ message: String) {
         let view: ChallengeStatusFooterView = ChallengeStatusFooterView.fromNib()
-        view.statusLabel.text = message
+        view.statusText = message
         showFooterView(view, challenge)
     }
 
