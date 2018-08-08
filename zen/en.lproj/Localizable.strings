@@ -1,3 +1,7 @@
+"tab_bar_challenge_title" = "Challenge";
+"tab_bar_journal_title" = "Journal";
+"tab_bar_help_title" = "Help";
+
 "current_challenge_screen_title" = "Current Challenge";
 "challenge_screen_title" = "Journal Entry";
 "challenge_screen_type" = "Type";
@@ -14,3 +18,10 @@
 "challenge_screen_comments_placeholder" = "Leave your comments here";
 
 "journal_screen_title" = "Finished Challenges";
+
+"help_screen_title" = "Help";
+"help_screen_send_feedback" = "Send Feedback";
+"help_screen_send_feedback_alert_title" = "Failed to Send Feedback";
+"help_screen_send_feedback_alert_text" = "Please check that you have a configured email app";
+"help_screen_description" = "A new task is available every morning; it can be taken or skipped. To start the task, click \"Accept\" button in the \"Challenge\" screen. The practice continues during the day and finishes at night. You can finish the task after 6pm by clicking on \"Finish\" button. You will be suggested to estimate your level of awareness while doing this task.\n\nThe finished tasks are recorded in the \"Journal\" screen.\n\nEvery task has its own difficulty level. More difficult tasks will be given with time.";
+"help_screen_version" = "Studio \"Hyperborean cyclone\"\nVersion %@";

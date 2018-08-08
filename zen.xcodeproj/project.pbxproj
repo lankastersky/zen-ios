@@ -36,6 +36,14 @@
 		736B83CC20F4400700517246 /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 736B83CB20F4400700517246 /* Config.plist */; };
 		7390E6DB2114E26E002CCB56 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390E6DA2114E26E002CCB56 /* StorageService.swift */; };
 		7390E6DC2114E26E002CCB56 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390E6DA2114E26E002CCB56 /* StorageService.swift */; };
+		7390E6DE2118CFB4002CCB56 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */; };
+		7390E6DF2118CFB4002CCB56 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */; };
+		73C101B22119171800DA272F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B12119171800DA272F /* Utils.swift */; };
+		73C101B32119171800DA272F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B12119171800DA272F /* Utils.swift */; };
+		73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
+		73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
+		73C101B9211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */; };
+		73C101BA211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
 		73CD830020E463EA00FEF64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
@@ -51,10 +59,10 @@
 		73CE6079211375140027E3CC /* FinishedChallengeFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CE6077211375140027E3CC /* FinishedChallengeFooterView.xib */; };
 		73CE607B211376880027E3CC /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CE607A211376880027E3CC /* UIView+Utils.swift */; };
 		73CE607C211376880027E3CC /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CE607A211376880027E3CC /* UIView+Utils.swift */; };
-		73CFDFCA21139C9200D2E426 /* AcceptedChallengeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFC921139C9200D2E426 /* AcceptedChallengeFooterView.swift */; };
-		73CFDFCB21139C9200D2E426 /* AcceptedChallengeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFC921139C9200D2E426 /* AcceptedChallengeFooterView.swift */; };
-		73CFDFCD2113A69D00D2E426 /* AcceptedChallengeFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CFDFCC2113A69D00D2E426 /* AcceptedChallengeFooterView.xib */; };
-		73CFDFCE2113A69D00D2E426 /* AcceptedChallengeFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CFDFCC2113A69D00D2E426 /* AcceptedChallengeFooterView.xib */; };
+		73CFDFCA21139C9200D2E426 /* ChallengeStatusFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFC921139C9200D2E426 /* ChallengeStatusFooterView.swift */; };
+		73CFDFCB21139C9200D2E426 /* ChallengeStatusFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFC921139C9200D2E426 /* ChallengeStatusFooterView.swift */; };
+		73CFDFCD2113A69D00D2E426 /* ChallengeStatusFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CFDFCC2113A69D00D2E426 /* ChallengeStatusFooterView.xib */; };
+		73CFDFCE2113A69D00D2E426 /* ChallengeStatusFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CFDFCC2113A69D00D2E426 /* ChallengeStatusFooterView.xib */; };
 		73CFDFD02113ABF400D2E426 /* ChallengeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFCF2113ABF400D2E426 /* ChallengeFooterView.swift */; };
 		73CFDFD12113ABF400D2E426 /* ChallengeFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CFDFCF2113ABF400D2E426 /* ChallengeFooterView.swift */; };
 		73CFDFD42113B5ED00D2E426 /* ShownChallengeFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73CFDFD32113B5ED00D2E426 /* ShownChallengeFooterView.xib */; };
@@ -106,6 +114,10 @@
 		733C7FA720FAF3F000415A72 /* ChallengeLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeLevel.swift; sourceTree = "<group>"; };
 		736B83CB20F4400700517246 /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 		7390E6DA2114E26E002CCB56 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		73C101B12119171800DA272F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -119,8 +131,8 @@
 		73CE6074211375020027E3CC /* FinishedChallengeFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedChallengeFooterView.swift; sourceTree = "<group>"; };
 		73CE6077211375140027E3CC /* FinishedChallengeFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FinishedChallengeFooterView.xib; sourceTree = "<group>"; };
 		73CE607A211376880027E3CC /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
-		73CFDFC921139C9200D2E426 /* AcceptedChallengeFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedChallengeFooterView.swift; sourceTree = "<group>"; };
-		73CFDFCC2113A69D00D2E426 /* AcceptedChallengeFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AcceptedChallengeFooterView.xib; sourceTree = "<group>"; };
+		73CFDFC921139C9200D2E426 /* ChallengeStatusFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeStatusFooterView.swift; sourceTree = "<group>"; };
+		73CFDFCC2113A69D00D2E426 /* ChallengeStatusFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeStatusFooterView.xib; sourceTree = "<group>"; };
 		73CFDFCF2113ABF400D2E426 /* ChallengeFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeFooterView.swift; sourceTree = "<group>"; };
 		73CFDFD32113B5ED00D2E426 /* ShownChallengeFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShownChallengeFooterView.xib; sourceTree = "<group>"; };
 		73CFDFD62113B61100D2E426 /* ShownChallengeFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShownChallengeFooterView.swift; sourceTree = "<group>"; };
@@ -154,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73C101B7211B5A9F00DA272F /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
 		73CD82EC20E463EA00FEF64D = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +204,7 @@
 				73CD832920E4759800FEF64D /* services */,
 				73E4CEA6210040C80016D41E /* utils */,
 				73CD832820E4752A00FEF64D /* views */,
+				73C101B7211B5A9F00DA272F /* third_party */,
 				73CD82F820E463EA00FEF64D /* AppDelegate.swift */,
 				73CD830120E463ED00FEF64D /* Assets.xcassets */,
 				73CD830620E463EE00FEF64D /* Info.plist */,
@@ -201,6 +222,7 @@
 				73EEFE3020F573EE004D14ED /* JournalViewController.swift */,
 				73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */,
 				73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */,
+				7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -234,8 +256,8 @@
 				73CFDFCF2113ABF400D2E426 /* ChallengeFooterView.swift */,
 				73CFDFD62113B61100D2E426 /* ShownChallengeFooterView.swift */,
 				73CFDFD32113B5ED00D2E426 /* ShownChallengeFooterView.xib */,
-				73CFDFC921139C9200D2E426 /* AcceptedChallengeFooterView.swift */,
-				73CFDFCC2113A69D00D2E426 /* AcceptedChallengeFooterView.xib */,
+				73CFDFC921139C9200D2E426 /* ChallengeStatusFooterView.swift */,
+				73CFDFCC2113A69D00D2E426 /* ChallengeStatusFooterView.xib */,
 				73F6282B211390BC007B5D0B /* FinishingChallengeFooterView.swift */,
 				73F6282E211390C8007B5D0B /* FinishingChallengeFooterView.xib */,
 				73CE6074211375020027E3CC /* FinishedChallengeFooterView.swift */,
@@ -251,6 +273,8 @@
 				731210CB2112718A005B8F51 /* String+Utils.swift */,
 				73CE607A211376880027E3CC /* UIView+Utils.swift */,
 				733C7F9F20F9776600415A72 /* UIViewController+Utils.swift */,
+				73C101B12119171800DA272F /* Utils.swift */,
+				73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -385,7 +409,7 @@
 				7337717921111C7E004A58F8 /* Localizable.strings in Resources */,
 				73CD830020E463EA00FEF64D /* Main.storyboard in Resources */,
 				73EEFE3A20F6D8C0004D14ED /* JournalCollectionViewCell.xib in Resources */,
-				73CFDFCD2113A69D00D2E426 /* AcceptedChallengeFooterView.xib in Resources */,
+				73CFDFCD2113A69D00D2E426 /* ChallengeStatusFooterView.xib in Resources */,
 				73CFDFD42113B5ED00D2E426 /* ShownChallengeFooterView.xib in Resources */,
 				731210CF21127215005B8F51 /* GoogleService-Info.plist in Resources */,
 				73CE6078211375140027E3CC /* FinishedChallengeFooterView.xib in Resources */,
@@ -400,7 +424,7 @@
 				73CFDFD52113B5ED00D2E426 /* ShownChallengeFooterView.xib in Resources */,
 				7337717A21111C7E004A58F8 /* Localizable.strings in Resources */,
 				731210D021127215005B8F51 /* GoogleService-Info.plist in Resources */,
-				73CFDFCE2113A69D00D2E426 /* AcceptedChallengeFooterView.xib in Resources */,
+				73CFDFCE2113A69D00D2E426 /* ChallengeStatusFooterView.xib in Resources */,
 				7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */,
 				7337716721004597004A58F8 /* Main.storyboard in Resources */,
 				73F62830211390C8007B5D0B /* FinishingChallengeFooterView.xib in Resources */,
@@ -493,7 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73CFDFCA21139C9200D2E426 /* AcceptedChallengeFooterView.swift in Sources */,
+				73CFDFCA21139C9200D2E426 /* ChallengeStatusFooterView.swift in Sources */,
 				731210CC2112718A005B8F51 /* String+Utils.swift in Sources */,
 				73CD832B20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
@@ -503,8 +527,10 @@
 				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
 				73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */,
 				7390E6DB2114E26E002CCB56 /* StorageService.swift in Sources */,
+				73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				73CFDFD02113ABF400D2E426 /* ChallengeFooterView.swift in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
+				73C101B9211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */,
 				73CE6075211375020027E3CC /* FinishedChallengeFooterView.swift in Sources */,
 				73CFDFD72113B61100D2E426 /* ShownChallengeFooterView.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
@@ -514,7 +540,9 @@
 				73CD833020E4760A00FEF64D /* Challenge.swift in Sources */,
 				7337716E21111314004A58F8 /* ServiceError.swift in Sources */,
 				73EEFE3220F573EE004D14ED /* JournalViewController.swift in Sources */,
+				7390E6DE2118CFB4002CCB56 /* HelpViewController.swift in Sources */,
 				73F6282C211390BC007B5D0B /* FinishingChallengeFooterView.swift in Sources */,
+				73C101B22119171800DA272F /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,20 +555,24 @@
 				73CFDFD82113B61100D2E426 /* ShownChallengeFooterView.swift in Sources */,
 				7337716F21111314004A58F8 /* ServiceError.swift in Sources */,
 				73CE6076211375020027E3CC /* FinishedChallengeFooterView.swift in Sources */,
+				73C101B32119171800DA272F /* Utils.swift in Sources */,
 				731210CD2112718A005B8F51 /* String+Utils.swift in Sources */,
 				73CD832C20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				7337716221004586004A58F8 /* JournalViewController.swift in Sources */,
 				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,
 				73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */,
+				73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				731210C421112CA4005B8F51 /* ChallengeStatus.swift in Sources */,
 				733771652100458C004A58F8 /* AppDelegate.swift in Sources */,
 				73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */,
-				73CFDFCB21139C9200D2E426 /* AcceptedChallengeFooterView.swift in Sources */,
+				73CFDFCB21139C9200D2E426 /* ChallengeStatusFooterView.swift in Sources */,
 				7337715C21004155004A58F8 /* ChallengesArchiveServiceTest.swift in Sources */,
 				73CFDFD12113ABF400D2E426 /* ChallengeFooterView.swift in Sources */,
 				7337716421004589004A58F8 /* UIViewController+Utils.swift in Sources */,
 				7337715D21004577004A58F8 /* MutableChallengeData.swift in Sources */,
 				7337716121004586004A58F8 /* ChallengeViewController.swift in Sources */,
+				73C101BA211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */,
+				7390E6DF2118CFB4002CCB56 /* HelpViewController.swift in Sources */,
 				7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */,
 				7337715E21004577004A58F8 /* ChallengeLevel.swift in Sources */,
 				73CE607C211376880027E3CC /* UIView+Utils.swift in Sources */,

@@ -9,6 +9,7 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
+    // TODO: implement showing urls
     @IBOutlet weak private var sourceLabel: UILabel!
     @IBOutlet weak private var urlLabel: UILabel!
     @IBOutlet weak private var typeLabel: UILabel!
@@ -53,12 +54,15 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func loadChallenges() {
+        LoadingIndicatorView.show("Loading")
+
         let firebaseService = FirebaseService(storageService, challengesService)
         firebaseService.signIn(callback: { [weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
                 firebaseService.loadChallenges(callback: { error in
+                    LoadingIndicatorView.hide()
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else {
@@ -78,12 +82,18 @@ final class ChallengeViewController: UIViewController {
         switch challenge.status {
         case nil:
             challengesService.markChallengeShown(challenge.challengeId)
-            showShownChallengeFooterView(challenge)
+            if challengesService.isTimeToAcceptChallenge {
+                showShownChallengeFooterView(challenge)
+            } else {
+                showChallengeStatusFooterView(
+                    challenge, "challenge_screen_button_accept_before_6pm".localized)
+            }
         case .shown?:
             showShownChallengeFooterView(challenge)
         case .accepted?:
             if !challengesService.isTimeToFinishChallenge {
-                showAcceptedChallengeFooterView(challenge)
+                showChallengeStatusFooterView(
+                    challenge, "challenge_screen_button_return_after_6pm".localized)
             } else {
                 showFinishingChallengeFooterView(challenge)
             }
@@ -110,12 +120,12 @@ final class ChallengeViewController: UIViewController {
 
     private func showShownChallengeFooterView(_ challenge: Challenge) {
         let view: ShownChallengeFooterView = ShownChallengeFooterView.fromNib()
-        view.challengesService = challengesService
         showFooterView(view, challenge)
     }
 
-    private func showAcceptedChallengeFooterView(_ challenge: Challenge) {
-        let view: AcceptedChallengeFooterView = AcceptedChallengeFooterView.fromNib()
+    private func showChallengeStatusFooterView(_ challenge: Challenge, _ message: String) {
+        let view: ChallengeStatusFooterView = ChallengeStatusFooterView.fromNib()
+        view.statusText = message
         showFooterView(view, challenge)
     }
 
@@ -200,7 +210,8 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
 
     func onChallengeAccepted(_ challenge: Challenge) {
         challengesService.markChallengeAccepted(challenge.challengeId)
-        showAcceptedChallengeFooterView(challenge)
+        showChallengeStatusFooterView(
+            challenge, "challenge_screen_button_return_after_6pm".localized)
     }
 
     func onChallengeFinishing(_ challenge: Challenge) {

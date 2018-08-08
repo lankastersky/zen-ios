@@ -30,4 +30,8 @@ final class StorageService {
     func double(forKey defaultName: String) -> Double {
         return userDefaults.double(forKey: defaultName)
     }
+
+    func string(forKey defaultName: String) -> String? {
+        return userDefaults.string(forKey: defaultName)
+    }
 }
