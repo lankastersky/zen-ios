@@ -6,6 +6,7 @@ final class JournalViewController: UIViewController {
     @IBOutlet weak private var collectionView: UICollectionView!
 
     private var challenges: [Challenge] = []
+    private var selectedItem: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,16 @@ final class JournalViewController: UIViewController {
         super.viewWillAppear(animated)
         challenges = challengesService.finishedChallengesSortedByTimeDesc()
         collectionView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let selectedItem = selectedItem {
+            collectionView.scrollToItem(
+                at: IndexPath(row: selectedItem, section: 0), at: .top, animated: false)
+            self.selectedItem = nil
+        }
     }
 }
 
@@ -49,8 +60,7 @@ extension JournalViewController: UICollectionViewDataSource {
 
         assert(
             indexPath.item < challenges.count,
-            "Bad challenge index when creating collection view"
-        )
+            "Bad challenge index when creating collection view")
 
         let challenge: Challenge = challenges[indexPath.item]
         cell.finishedTimeLabel.text =
@@ -69,9 +79,8 @@ extension JournalViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         assert(
             indexPath.item < challenges.count,
-            "Bad challenge index when creating collection view"
-        )
-
+            "Bad challenge index when creating collection view")
+        selectedItem = indexPath.item
         let challenge: Challenge = challenges[indexPath.item]
         openChallengeView(challenge)
     }

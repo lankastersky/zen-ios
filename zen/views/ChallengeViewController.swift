@@ -55,13 +55,9 @@ final class ChallengeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if !sourceButton.isHidden {
-            typeLabelToSourceButtonLayoutConstraint.isActive = true
-            typeLabelToQuoteLabelLayoutConstraint.isActive = false
-        } else {
-            typeLabelToSourceButtonLayoutConstraint.isActive = false
-            typeLabelToQuoteLabelLayoutConstraint.isActive = true
-        }
+        typeLabelToSourceButtonLayoutConstraint.isActive = !sourceButton.isHidden
+        typeLabelToQuoteLabelLayoutConstraint.isActive = sourceButton.isHidden
+
         contentView.layoutIfNeeded()
     }
 
@@ -141,19 +137,12 @@ final class ChallengeViewController: UIViewController {
         "\("challenge_screen_difficulty".localized): \(challenge.level.description)"
         if !challenge.source.isEmpty {
             sourceButton.isHidden = false
-//            typeLabelLayoutConstraintToSource.isActive = true
-//            typeLabelLayoutConstraintToQuote.isActive = false
-//            sourceButtonLayoutConstraintToQuote.isActive = true
             sourceButton.setTitle(challenge.source, for: .normal)
             sourceUrl = challenge.url
         } else {
             sourceButton.isHidden = true
             sourceUrl = nil
-//            typeLabelLayoutConstraintToSource.isActive = false
-//            typeLabelLayoutConstraintToQuote.isActive = true
-//            sourceButtonLayoutConstraintToQuote.isActive = false
         }
-//        contentView.layoutIfNeeded()
     }
 
     private func showShownChallengeFooterView(_ challenge: Challenge) {
