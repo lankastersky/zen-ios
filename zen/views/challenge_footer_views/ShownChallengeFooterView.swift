@@ -4,8 +4,6 @@ final class ShownChallengeFooterView: ChallengeFooterView {
 
     @IBOutlet private weak var challengeButton: UIButton!
 
-    var challengesService: ChallengesService?
-
     override func refreshUI() {
         super.refreshUI()
         updateChallengeButton()
@@ -20,20 +18,8 @@ final class ShownChallengeFooterView: ChallengeFooterView {
     }
 
     private func updateChallengeButton() {
-        guard let challengesService = challengesService else {
-            assertionFailure("Challenges service is not initialized in footer view")
-            return
-        }
-        if challengesService.isTimeToAcceptChallenge {
-            challengeButton.isEnabled = true
-            challengeButton.setTitle(
-                "challenge_screen_button_accept".localized,
-                for: .normal)
-        } else {
-            challengeButton.isEnabled = false
-            challengeButton.setTitle(
-                "challenge_screen_button_accept_before_6pm".localized,
-                for: .normal)
-        }
+        challengeButton.setTitle(
+            "challenge_screen_button_accept".localized,
+            for: .normal)
     }
 }

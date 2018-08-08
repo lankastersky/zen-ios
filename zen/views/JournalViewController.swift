@@ -93,6 +93,7 @@ extension JournalViewController: UICollectionViewDelegate {
     private func replaceBackButton() {
         let backItem = UIBarButtonItem()
         backItem.title = "challenge_screen_back".localized
+        backItem.tintColor = UIColor.white
         navigationItem.backBarButtonItem = backItem
     }
 }

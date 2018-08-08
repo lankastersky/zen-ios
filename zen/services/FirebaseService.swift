@@ -71,7 +71,7 @@ final class FirebaseService {
         }
         let fileRef = storage.reference().child(zipFileName)
 
-        fileRef.write(toFile: localURL) {url, error in
+        fileRef.write(toFile: localURL) { url, error in
             if let error = error {
                 callback(error)
             } else if let url = url {
