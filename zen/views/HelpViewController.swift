@@ -3,7 +3,7 @@ import UIKit
 
 /// Shows help screen
 final class HelpViewController: UIViewController {
-    
+
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var versionLabel: UILabel!
     @IBOutlet var sendFeedbackButton: UIButton!

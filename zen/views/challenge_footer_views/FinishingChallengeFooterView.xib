@@ -48,8 +48,8 @@
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGd-Sj-FsM" userLabel="Challenge Button">
-                    <rect key="frame" x="10" y="256" width="355" height="33"/>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGd-Sj-FsM" userLabel="Challenge Button">
+                    <rect key="frame" x="10" y="258" width="355" height="33"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <state key="normal" title="Button">
                         <color key="titleColor" red="1" green="0.51277900759999995" blue="0.3684291482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

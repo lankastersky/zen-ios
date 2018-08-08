@@ -8,9 +8,11 @@ typealias FirebaseSignInCallback = (_ user: User?, _ error: Error?) -> Void
 /// Loads challenges from Firebase
 final class FirebaseService {
 
-    private static let challengesFileName = "challenges_en"
+    private static let challengesFileNameEn = "challenges_en"
+    private static let challengesFileNameRu = "challenges"
     private static let loadAfterDays = 7
     private static let lastLoadTimeKey = "last_load_time"
+    private static let challengesLocaleKey = "challenges_locale"
 
     private lazy var storage = Storage.storage()
     private var storageService: StorageService
@@ -62,7 +64,7 @@ final class FirebaseService {
             return
         }
         var challenges: [String: Challenge] = [:]
-        let zipFileName = "\(FirebaseService.challengesFileName).zip"
+        let zipFileName = "\(FirebaseService.challengesFileNameByLocale()).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
         guard let localURL = FirebaseService.zippedChallengesFilePath(zipFileName) else {
@@ -77,7 +79,7 @@ final class FirebaseService {
             } else if let url = url {
                 do {
                     let unzippedData = try FirebaseService
-                        .unzip(url, "\(FirebaseService.challengesFileName).json")
+                        .unzip(url, "\(FirebaseService.challengesFileNameByLocale()).json")
                     challenges = try FirebaseService.parseChallenges(data: unzippedData)
                     self.challengesService.storeChallenges(challenges)
                     self.storeLastLoadTime()
@@ -92,6 +94,11 @@ final class FirebaseService {
     }
 
     private func isTimeToLoad() -> Bool {
+        if isLocaleChanged() {
+            storeLocale()
+            return true
+        }
+
         let lastLoadTime = restoreLastLoadTime()
         if lastLoadTime.timeIntervalSince1970 == 0 {
             return true
@@ -114,6 +121,28 @@ final class FirebaseService {
         return now > nextLoadTime
     }
 
+    private func isLocaleChanged() -> Bool {
+        if let challengesLocale =
+            storageService.string(forKey: FirebaseService.challengesLocaleKey) {
+            guard let preferredLanguage = Locale.preferredLanguages.first else {
+                assertionFailure("Failed to get locale")
+                return true
+            }
+            if challengesLocale == preferredLanguage {
+                return false
+            } else {
+                return true
+            }
+        }
+        return true
+    }
+
+    private func storeLocale() {
+        if let preferredLanguage = Locale.preferredLanguages.first {
+            storageService.set(preferredLanguage, forKey: FirebaseService.challengesLocaleKey)
+        }
+    }
+
     private func storeLastLoadTime() {
         let timeSinceEpoch = Date().timeIntervalSince1970
         storageService.set(timeSinceEpoch, forKey: FirebaseService.lastLoadTimeKey)
@@ -122,6 +151,21 @@ final class FirebaseService {
     private func restoreLastLoadTime() -> Date {
         let lastLoadTimeSinceEpoch = storageService.double(forKey: FirebaseService.lastLoadTimeKey)
         return Date(timeIntervalSince1970: lastLoadTimeSinceEpoch)
+    }
+
+    private static func challengesFileNameByLocale() -> String {
+        guard let preferredLanguage = Locale.preferredLanguages.first else {
+            assertionFailure("Failed to get locale")
+            return FirebaseService.challengesFileNameEn
+        }
+        var challengesFileName: String
+        switch preferredLanguage {
+        case "ru":
+            challengesFileName = FirebaseService.challengesFileNameRu
+        default:
+            challengesFileName = FirebaseService.challengesFileNameEn
+        }
+        return challengesFileName
     }
 }
 
