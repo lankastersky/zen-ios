@@ -4,9 +4,9 @@ import UIKit
 /// Shows help screen
 final class HelpViewController: UIViewController {
 
-    @IBOutlet var descriptionLabel: UILabel!
-    @IBOutlet var versionLabel: UILabel!
-    @IBOutlet var sendFeedbackButton: UIButton!
+    @IBOutlet private var descriptionLabel: UILabel!
+    @IBOutlet private var versionLabel: UILabel!
+    @IBOutlet private var sendFeedbackButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +15,7 @@ final class HelpViewController: UIViewController {
         sendFeedbackButton.setTitle("help_screen_send_feedback".localized, for: .normal)
         descriptionLabel.text = "help_screen_description".localized
         versionLabel.text =
-            String.localizedStringWithFormat("help_screen_version".localized, Utils.versionNumber())
+            String.localizedStringWithFormat("help_screen_version".localized, Utils.versionNumber)
     }
 
     @IBAction private func sendFeedback(sender: UIButton!) {
@@ -24,7 +24,7 @@ final class HelpViewController: UIViewController {
             mail.mailComposeDelegate = self
             mail.setToRecipients(["lankastersky@gmail.com"])
             let subject =
-                "\(Utils.appName()) iOS feedback \(Utils.versionNumber())(\(Utils.buildNumber()))"
+                "\(Utils.appName) iOS feedback \(Utils.versionNumber)(\(Utils.buildNumber))"
             mail.setSubject(subject)
             mail.setMessageBody("", isHTML: true)
 

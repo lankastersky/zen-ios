@@ -40,6 +40,8 @@
 		7390E6DF2118CFB4002CCB56 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */; };
 		73C101B22119171800DA272F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B12119171800DA272F /* Utils.swift */; };
 		73C101B32119171800DA272F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B12119171800DA272F /* Utils.swift */; };
+		73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
+		73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
 		73CD830020E463EA00FEF64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
@@ -112,6 +114,7 @@
 		7390E6DA2114E26E002CCB56 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		73C101B12119171800DA272F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +262,7 @@
 				73CE607A211376880027E3CC /* UIView+Utils.swift */,
 				733C7F9F20F9776600415A72 /* UIViewController+Utils.swift */,
 				73C101B12119171800DA272F /* Utils.swift */,
+				73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -511,6 +515,7 @@
 				733C7FA420FAF12600415A72 /* ChallengesService.swift in Sources */,
 				73E4CEA8210040C90016D41E /* Date+Utils.swift in Sources */,
 				7390E6DB2114E26E002CCB56 /* StorageService.swift in Sources */,
+				73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				73CFDFD02113ABF400D2E426 /* ChallengeFooterView.swift in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
 				73CE6075211375020027E3CC /* FinishedChallengeFooterView.swift in Sources */,
@@ -543,6 +548,7 @@
 				7337716221004586004A58F8 /* JournalViewController.swift in Sources */,
 				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,
 				73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */,
+				73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				731210C421112CA4005B8F51 /* ChallengeStatus.swift in Sources */,
 				733771652100458C004A58F8 /* AppDelegate.swift in Sources */,
 				73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */,

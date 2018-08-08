@@ -8,8 +8,11 @@ typealias FirebaseSignInCallback = (_ user: User?, _ error: Error?) -> Void
 /// Loads challenges from Firebase
 final class FirebaseService {
 
-    private static let challengesFileNameEn = "challenges_en"
-    private static let challengesFileNameRu = "challenges"
+    private enum ChallengesFileName: String {
+        case english = "challenges_en"
+        case russian = "challenges"
+    }
+
     private static let loadAfterDays = 7
     private static let lastLoadTimeKey = "last_load_time"
     private static let challengesLocaleKey = "challenges_locale"
@@ -128,11 +131,7 @@ final class FirebaseService {
                 assertionFailure("Failed to get locale")
                 return true
             }
-            if challengesLocale == preferredLanguage {
-                return false
-            } else {
-                return true
-            }
+            return challengesLocale != preferredLanguage
         }
         return true
     }
@@ -156,16 +155,14 @@ final class FirebaseService {
     private static func challengesFileNameByLocale() -> String {
         guard let preferredLanguage = Locale.preferredLanguages.first else {
             assertionFailure("Failed to get locale")
-            return FirebaseService.challengesFileNameEn
+            return ChallengesFileName.english.rawValue
         }
-        var challengesFileName: String
         switch preferredLanguage {
         case "ru":
-            challengesFileName = FirebaseService.challengesFileNameRu
+            return ChallengesFileName.russian.rawValue
         default:
-            challengesFileName = FirebaseService.challengesFileNameEn
+            return ChallengesFileName.english.rawValue
         }
-        return challengesFileName
     }
 }
 
