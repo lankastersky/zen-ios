@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     lazy var challengesService = ChallengesService()
+    lazy var storageService = StorageService()
 
     func application(
         _ application: UIApplication, didFinishLaunchingWithOptions

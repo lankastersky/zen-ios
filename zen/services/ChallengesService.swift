@@ -51,11 +51,7 @@ final class ChallengesService {
     /// Challenge is ready to be accepted before 6pm
     var isTimeToAcceptChallenge: Bool {
         get {
-            #if !DEBUG
-                return Date.dateBefore6pm(currentChallengeShownTime)
-            #else
-                return true
-            #endif
+            return Date.dateBefore6pm(currentChallengeShownTime)
         }
         set {}
     }
@@ -64,11 +60,7 @@ final class ChallengesService {
     var isTimeToFinishChallenge: Bool {
         get {
             if currentChallenge?.status == .accepted {
-                #if !DEBUG
-                    return !Date.dateBefore6pm(currentChallengeShownTime)
-                #else
-                    return true
-                #endif
+                return !Date.dateBefore6pm(currentChallengeShownTime)
             }
             return true
         }
@@ -78,11 +70,7 @@ final class ChallengesService {
     /// Challenge expires at midnight of the next day.
     private var isChallengeTimeExpired: Bool {
         get {
-            #if !DEBUG
-                return !Date.dateBeforeNextMidnight(currentChallengeShownTime)
-            #else
-                return true
-            #endif
+            return !Date.dateBeforeNextMidnight(currentChallengeShownTime)
         }
         set {}
     }

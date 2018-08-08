@@ -58,7 +58,7 @@ extension JournalViewController: UICollectionViewDataSource {
         cell.contentLabel.text = challenge.content
         cell.detailsLabel.text = challenge.details
         cell.levelLabel.text =
-            "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
+            "\("challenge_screen_difficulty".localized): \(challenge.level.description)"
         cell.cosmosView.rating = challenge.rating ?? 0
         return cell
     }

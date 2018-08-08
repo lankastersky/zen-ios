@@ -5,6 +5,7 @@ final class ChallengeViewController: UIViewController {
 
     static let challengeViewControllerStoryboardId = "ChallengeViewController"
 
+    @IBOutlet weak private var scrollView: UIScrollView!
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
@@ -12,111 +13,202 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var urlLabel: UILabel!
     @IBOutlet weak private var typeLabel: UILabel!
     @IBOutlet weak private var levelLabel: UILabel!
+    @IBOutlet weak private var footerHolderView: UIView!
 
-    @IBOutlet weak private var challengeButton: UIButton!
+    private var activeFooterView: ChallengeFooterView?
 
     var challenge: Challenge?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "current_challenge_screen_title".localized
+        if challenge == nil {
+            navigationItem.title = "current_challenge_screen_title".localized
+        } else {
+            navigationItem.title = "challenge_screen_title".localized
+        }
+
+        let tapGesture =
+            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
+        view.addGestureRecognizer(tapGesture)
+
+        // Avoid tap event delay when setting the rating. See https://goo.gl/XWBdyn
+        scrollView.delaysContentTouches = false
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        registerKeyboardNotifications()
 
         if let challenge = self.challenge {
-            challengeButton.isHidden = true
-            showChallenge(challenge)
+            showChallengeFromJournal(challenge)
         } else {
             loadChallenges()
         }
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
     private func loadChallenges() {
-        let firebaseService = FirebaseService()
+        let firebaseService = FirebaseService(storageService, challengesService)
         firebaseService.signIn(callback: { [weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
-                firebaseService.loadChallenges(callback: { challenges, error in
+                firebaseService.loadChallenges(callback: { error in
                     if let error = error {
                         print("Failed to download challenges:\(error)")
-                    } else if let challenges = challenges {
-                        self?.challengesService.storeChallenges(challenges)
-                        guard let challenge = self?.challengesService.currentChallenge else {
-                            assertionFailure("Failed to get current challenge")
-                            return
-                        }
-                        self?.showChallenge(challenge)
-                        self?.challengesService.markChallengeShown(challenge.challengeId)
-                        self?.updateChallengeButton()
+                    } else {
+                        self?.showCurrentChallenge()
                     }
                 })
             }
         })
     }
 
-    private func showChallenge(_ challenge: Challenge) {
+    private func showCurrentChallenge() {
+        guard let challenge = challengesService.currentChallenge else {
+            assertionFailure("Failed to get current challenge")
+            return
+        }
+        showChallengeHeader(challenge)
+        switch challenge.status {
+        case nil:
+            challengesService.markChallengeShown(challenge.challengeId)
+            showShownChallengeFooterView(challenge)
+        case .shown?:
+            showShownChallengeFooterView(challenge)
+        case .accepted?:
+            if !challengesService.isTimeToFinishChallenge {
+                showAcceptedChallengeFooterView(challenge)
+            } else {
+                showFinishingChallengeFooterView(challenge)
+            }
+        case .finished?:
+            showFinishedChallengeFooterView(challenge)
+        case .declined?:
+            assertionFailure("Bad challenge status while showing current challenge")
+        }
+    }
+
+    private func showChallengeFromJournal(_ challenge: Challenge) {
+        showChallengeHeader(challenge)
+        showFinishedChallengeFooterView(challenge)
+    }
+
+    private func showChallengeHeader(_ challenge: Challenge) {
         contentLabel.text = challenge.content
         detailsLabel.text = challenge.details
         quoteLabel.text = challenge.quote
         typeLabel.text = "\("Type".localized): \(challenge.type)"
         levelLabel.text =
-            "\("current_challenge_screen_difficulty".localized): \(challenge.level.description)"
+        "\("challenge_screen_difficulty".localized): \(challenge.level.description)"
     }
 
-    @IBAction private func onChallengeButton(sender: UIButton!) {
-        guard let challenge = challengesService.currentChallenge else {
-            assertionFailure("Failed to get current challenge")
-            return
-        }
-        switch challenge.status {
-        case .shown?:
-            challengesService.markChallengeAccepted(challenge.challengeId)
-        case .accepted?:
-            challengesService.markChallengeFinished(challenge.challengeId)
-        default:
-            assertionFailure("Bad challenge status when clicking on challenge button")
-        }
-
-        updateChallengeButton()
+    private func showShownChallengeFooterView(_ challenge: Challenge) {
+        let view: ShownChallengeFooterView = ShownChallengeFooterView.fromNib()
+        view.challengesService = challengesService
+        showFooterView(view, challenge)
     }
 
-    private func updateChallengeButton() {
-        guard let challenge = challengesService.currentChallenge else {
-            assertionFailure("Failed to get current challenge")
+    private func showAcceptedChallengeFooterView(_ challenge: Challenge) {
+        let view: AcceptedChallengeFooterView = AcceptedChallengeFooterView.fromNib()
+        showFooterView(view, challenge)
+    }
+
+    private func showFinishingChallengeFooterView(_ challenge: Challenge) {
+        let view: FinishingChallengeFooterView = FinishingChallengeFooterView.fromNib()
+        showFooterView(view, challenge)
+    }
+
+    private func showFinishedChallengeFooterView(_ challenge: Challenge) {
+        let view: FinishedChallengeFooterView = FinishedChallengeFooterView.fromNib()
+        view.commentsLabel.text = challenge.comments ?? ""
+        showFooterView(view, challenge)
+    }
+
+    private func showFooterView(_ footerView: ChallengeFooterView, _ challenge: Challenge) {
+        activeFooterView?.removeFromSuperview()
+        activeFooterView = footerView
+
+        footerHolderView.addSubview(footerView)
+
+        footerView.challenge = challenge
+        footerView.challengeFooterViewDelegate = self
+
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+
+        let margins = footerHolderView.layoutMarginsGuide
+        footerView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        footerView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        footerView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        footerView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+
+        footerView.refreshUI()
+    }
+
+    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
+    private func registerKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               object: nil)
+    }
+
+    // Scroll view when keyboard appears. See https://goo.gl/Eq4Bj9
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        guard let keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+            assertionFailure("Failed to get info from keyboard notification")
             return
         }
-        switch challenge.status {
-        case .shown?:
-            if challengesService.isTimeToAcceptChallenge {
-                challengeButton.isEnabled = true
-                challengeButton.setTitle(
-                    "current_challenge_screen_button_accept".localized,
-                    for: .normal)
-            } else {
-                challengeButton.isEnabled = false
-                challengeButton.setTitle(
-                    "You can accept the task before 6pm".localized,
-                    for: .normal)
-            }
-        case .accepted?:
-            if challengesService.isTimeToAcceptChallenge {
-                challengeButton.isEnabled = true
-                challengeButton.setTitle(
-                    "current_challenge_screen_button_finish".localized,
-                    for: .normal)
-            } else {
-                challengeButton.isEnabled = false
-                challengeButton.setTitle(
-                    "current_challenge_screen_button_return_after_6pm".localized,
-                    for: .normal)
-            }
-        case .finished?, .declined?:
-            challengeButton.setTitle(
-                "current_challenge_screen_button_finished".localized,
-                for: .normal)
-            challengeButton.isEnabled = false
-        default:
-            assertionFailure("Bad challenge status when refreshing challenge button")
-        }
+        let keyboardSize = keyboardInfo.cgRectValue.size
+        let topBarHeight = UIApplication.shared.statusBarFrame.size.height +
+            (navigationController?.navigationBar.frame.height ?? 0.0)
+        let contentInsets =
+            UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height - topBarHeight, right: 0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+        var viewRect = view.frame
+        viewRect.size.height -= keyboardSize.height
+
+        let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height
+            + keyboardSize.height
+            - scrollView.bounds.size.height
+            - topBarHeight)
+        scrollView.setContentOffset(bottomOffset, animated: true)
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+    }
+}
+
+extension ChallengeViewController: ChallengeFooterViewDelegate {
+
+    func onChallengeAccepted(_ challenge: Challenge) {
+        challengesService.markChallengeAccepted(challenge.challengeId)
+        showAcceptedChallengeFooterView(challenge)
+    }
+
+    func onChallengeFinishing(_ challenge: Challenge) {
+        showFinishingChallengeFooterView(challenge)
+    }
+
+    func onChallengeFinished(_ challenge: Challenge) {
+        challengesService.markChallengeFinished(challenge.challengeId)
+        showFinishedChallengeFooterView(challenge)
     }
 }

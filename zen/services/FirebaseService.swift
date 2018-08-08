@@ -2,15 +2,24 @@ import Firebase
 import Foundation
 import Zip
 
-typealias LoadChallengesCallback = (_ challenges: [String: Challenge]?, _ error: Error?) -> Void
+typealias LoadChallengesCallback = (_ error: Error?) -> Void
 typealias FirebaseSignInCallback = (_ user: User?, _ error: Error?) -> Void
 
 /// Loads challenges from Firebase
 final class FirebaseService {
 
     private static let challengesFileName = "challenges_en"
+    private static let loadAfterDays = 7
+    private static let lastLoadTimeKey = "last_load_time"
 
     private lazy var storage = Storage.storage()
+    private var storageService: StorageService
+    private var challengesService: ChallengesService
+
+    init(_ storageService: StorageService, _ challengesService: ChallengesService) {
+        self.storageService = storageService
+        self.challengesService = challengesService
+    }
 
     /// Signs in to Firebase using email and password from the config file.
     ///
@@ -47,32 +56,72 @@ final class FirebaseService {
     ///
     /// - Parameter callback: callback with the list of challenges
     func loadChallenges(callback: @escaping LoadChallengesCallback) {
+        if !isTimeToLoad() {
+            challengesService.restoreChallenges()
+            callback(nil)
+            return
+        }
         var challenges: [String: Challenge] = [:]
         let zipFileName = "\(FirebaseService.challengesFileName).zip"
         // There is no easy way to decompress zip data directly to memory. So storing it as a
         // temporary file, unzip to another file and read to NSData.
         guard let localURL = FirebaseService.zippedChallengesFilePath(zipFileName) else {
-            callback(nil, ServiceError.runtimeError("Failed to unzip challenges"))
+            callback(ServiceError.runtimeError("Failed to unzip challenges"))
             return
         }
         let fileRef = storage.reference().child(zipFileName)
 
-        fileRef.write(toFile: localURL) { url, error in
+        fileRef.write(toFile: localURL) {url, error in
             if let error = error {
-                callback(nil, error)
+                callback(error)
             } else if let url = url {
                 do {
                     let unzippedData = try FirebaseService
                         .unzip(url, "\(FirebaseService.challengesFileName).json")
                     challenges = try FirebaseService.parseChallenges(data: unzippedData)
-                    callback(challenges, nil)
+                    self.challengesService.storeChallenges(challenges)
+                    self.storeLastLoadTime()
+                    callback(nil)
                 } catch {
-                    callback(nil, error)
+                    callback(error)
                 }
             } else {
-                callback(nil, ServiceError.runtimeError("Failed to get URL of zip file"))
+                callback(ServiceError.runtimeError("Failed to get URL of zip file"))
             }
         }
+    }
+
+    private func isTimeToLoad() -> Bool {
+        let lastLoadTime = restoreLastLoadTime()
+        if lastLoadTime.timeIntervalSince1970 == 0 {
+            return true
+        }
+        #if DEBUG_TIME
+        // Several sec after current time to not wait
+        guard let nextLoadTime =
+            Calendar.current.date(byAdding: .second, value: 15, to: lastLoadTime) else {
+                print("Failed to get next load time for Firebase service")
+                return true
+        }
+        #else
+        guard let nextLoadTime = Calendar.current.date(
+            byAdding: .day, value: FirebaseService.loadAfterDays, to: lastLoadTime) else {
+                print("Failed to get next load time for Firebase service")
+                return true
+        }
+        #endif
+        let now = Date()
+        return now > nextLoadTime
+    }
+
+    private func storeLastLoadTime() {
+        let timeSinceEpoch = Date().timeIntervalSince1970
+        storageService.set(timeSinceEpoch, forKey: FirebaseService.lastLoadTimeKey)
+    }
+
+    private func restoreLastLoadTime() -> Date {
+        let lastLoadTimeSinceEpoch = storageService.double(forKey: FirebaseService.lastLoadTimeKey)
+        return Date(timeIntervalSince1970: lastLoadTimeSinceEpoch)
     }
 }
 

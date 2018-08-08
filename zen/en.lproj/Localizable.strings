@@ -1,12 +1,16 @@
 "current_challenge_screen_title" = "Current Challenge";
-"current_challenge_screen_type" = "Type";
-"current_challenge_screen_difficulty" = "Difficulty";
+"challenge_screen_title" = "Journal Entry";
+"challenge_screen_type" = "Type";
+"challenge_screen_difficulty" = "Difficulty";
 "challenge_difficulty_low" = "low";
 "challenge_difficulty_medium" = "medium";
 "challenge_difficulty_high" = "high";
-"journal_screen_title" = "Finished Challenges";
-"current_challenge_screen_button_accept" = "Accept";
-"current_challenge_screen_button_finish" = "Finish";
-"current_challenge_screen_button_return_after_6pm" = "Return after 6pm";
-"current_challenge_screen_button_finished" = "Finished";
+"challenge_screen_button_accept" = "Accept";
+"challenge_screen_button_accept_before_6pm" = "You can accept the task before 6pm";
+"challenge_screen_button_finish" = "Finish";
+"challenge_screen_button_return_after_6pm" = "Return after 6pm";
+"challenge_screen_button_finished" = "Finished";
 "challenge_screen_back" = "Back";
+"challenge_screen_comments_placeholder" = "Leave your comments here";
+
+"journal_screen_title" = "Finished Challenges";
