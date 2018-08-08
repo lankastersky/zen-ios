@@ -9,6 +9,7 @@ final class ChallengeViewController: UIViewController {
     @IBOutlet weak private var contentLabel: UILabel!
     @IBOutlet weak private var detailsLabel: UILabel!
     @IBOutlet weak private var quoteLabel: UILabel!
+    // TODO: implement showing urls
     @IBOutlet weak private var sourceLabel: UILabel!
     @IBOutlet weak private var urlLabel: UILabel!
     @IBOutlet weak private var typeLabel: UILabel!
@@ -53,12 +54,15 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func loadChallenges() {
+        LoadingIndicatorView.show("Loading")
+
         let firebaseService = FirebaseService(storageService, challengesService)
         firebaseService.signIn(callback: { [weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
             } else {
                 firebaseService.loadChallenges(callback: { error in
+                    LoadingIndicatorView.hide()
                     if let error = error {
                         print("Failed to download challenges:\(error)")
                     } else {

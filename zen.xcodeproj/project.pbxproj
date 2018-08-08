@@ -42,6 +42,8 @@
 		73C101B32119171800DA272F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B12119171800DA272F /* Utils.swift */; };
 		73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
 		73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */; };
+		73C101B9211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */; };
+		73C101BA211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */; };
 		73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
 		73CD830020E463EA00FEF64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
@@ -115,6 +117,7 @@
 		7390E6DD2118CFB4002CCB56 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		73C101B12119171800DA272F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +166,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73C101B7211B5A9F00DA272F /* third_party */ = {
+			isa = PBXGroup;
+			children = (
+				73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */,
+			);
+			path = third_party;
+			sourceTree = "<group>";
+		};
 		73CD82EC20E463EA00FEF64D = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +204,7 @@
 				73CD832920E4759800FEF64D /* services */,
 				73E4CEA6210040C80016D41E /* utils */,
 				73CD832820E4752A00FEF64D /* views */,
+				73C101B7211B5A9F00DA272F /* third_party */,
 				73CD82F820E463EA00FEF64D /* AppDelegate.swift */,
 				73CD830120E463ED00FEF64D /* Assets.xcassets */,
 				73CD830620E463EE00FEF64D /* Info.plist */,
@@ -518,6 +530,7 @@
 				73C101B5211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				73CFDFD02113ABF400D2E426 /* ChallengeFooterView.swift in Sources */,
 				733C7FA820FAF3F000415A72 /* ChallengeLevel.swift in Sources */,
+				73C101B9211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */,
 				73CE6075211375020027E3CC /* FinishedChallengeFooterView.swift in Sources */,
 				73CFDFD72113B61100D2E426 /* ShownChallengeFooterView.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
@@ -558,6 +571,7 @@
 				7337716421004589004A58F8 /* UIViewController+Utils.swift in Sources */,
 				7337715D21004577004A58F8 /* MutableChallengeData.swift in Sources */,
 				7337716121004586004A58F8 /* ChallengeViewController.swift in Sources */,
+				73C101BA211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */,
 				7390E6DF2118CFB4002CCB56 /* HelpViewController.swift in Sources */,
 				7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */,
 				7337715E21004577004A58F8 /* ChallengeLevel.swift in Sources */,
