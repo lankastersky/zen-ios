@@ -18,6 +18,7 @@
 "challenge_screen_comments_placeholder" = "Leave your comments here";
 
 "journal_screen_title" = "Finished Challenges";
+"journal_screen_no_challenges" = "No finished challenges yet";
 
 "help_screen_title" = "Help";
 "help_screen_send_feedback" = "Send Feedback";

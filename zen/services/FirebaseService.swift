@@ -161,7 +161,9 @@ final class FirebaseService {
         case "ru":
             return ChallengesFileName.russian.rawValue
         default:
-            return ChallengesFileName.english.rawValue
+            // TODO: enable support of other languages on backend.
+            //return ChallengesFileName.english.rawValue
+            return ChallengesFileName.russian.rawValue
         }
     }
 }
