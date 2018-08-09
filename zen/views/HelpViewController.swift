@@ -13,9 +13,11 @@ final class HelpViewController: UIViewController {
 
         navigationItem.title = "help_screen_title".localized
         sendFeedbackButton.setTitle("help_screen_send_feedback".localized, for: .normal)
+        sendFeedbackButton.setTitleColor(UIColor.darkSkinColor, for: .normal)
         descriptionLabel.text = "help_screen_description".localized
         versionLabel.text =
             String.localizedStringWithFormat("help_screen_version".localized, Utils.versionNumber)
+        versionLabel.textColor = UIColor.disabledSkinColor
     }
 
     @IBAction private func sendFeedback(sender: UIButton!) {

@@ -21,5 +21,7 @@ final class JournalCollectionViewCell: UICollectionViewCell {
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let screenWidth = UIScreen.main.bounds.size.width
         widthConstraint.constant = screenWidth
+
+        cosmosView.settings.filledColor = UIColor.skinColor
     }
 }

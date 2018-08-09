@@ -48,7 +48,7 @@ final class JournalViewController: UIViewController {
     private func showNoChallengesMessage(_ message: String) {
         let messageLabel = UILabel(frame: collectionView.bounds)
         messageLabel.text = message
-        messageLabel.textColor = UIColor.disabledTextColor
+        messageLabel.textColor = UIColor.disabledSkinColor
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
         messageLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)

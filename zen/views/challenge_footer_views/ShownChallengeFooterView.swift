@@ -21,5 +21,6 @@ final class ShownChallengeFooterView: ChallengeFooterView {
         challengeButton.setTitle(
             "challenge_screen_button_accept".localized,
             for: .normal)
+        challengeButton.setTitleColor(UIColor.darkSkinColor, for: .normal)
     }
 }

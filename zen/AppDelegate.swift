@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func configureAppearance() {
         UITabBar.appearance().barTintColor = UIColor.skinColor
+        UINavigationBar.appearance().barTintColor = UIColor.skinColor
         UINavigationBar.appearance().barStyle = .black
     }
 

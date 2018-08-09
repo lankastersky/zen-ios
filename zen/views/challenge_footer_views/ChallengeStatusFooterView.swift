@@ -8,4 +8,9 @@ final class ChallengeStatusFooterView: ChallengeFooterView {
         get { return statusLabel.text }
         set { statusLabel.text = newValue }
     }
+
+    override func refreshUI() {
+        super.refreshUI()
+        statusLabel.textColor = UIColor.disabledSkinColor
+    }
 }

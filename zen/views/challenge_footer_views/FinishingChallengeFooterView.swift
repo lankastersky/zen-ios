@@ -23,10 +23,10 @@ final class FinishingChallengeFooterView: ChallengeFooterView {
     }
 
     private func updateChallengeButton() {
-        challengeButton.isEnabled = true
         challengeButton.setTitle(
             "challenge_screen_button_finish".localized,
             for: .normal)
+        challengeButton.setTitleColor(UIColor.darkSkinColor, for: .normal)
     }
 
     private func updateChallengeComments() {
@@ -37,6 +37,7 @@ final class FinishingChallengeFooterView: ChallengeFooterView {
 
     private func updateRatingView() {
         ratingView.didFinishTouchingCosmos = { rating in self.challenge?.rating = rating }
+        ratingView.settings.filledColor = UIColor.accentSkinColor
     }
 }
 

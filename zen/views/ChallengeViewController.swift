@@ -134,8 +134,10 @@ final class ChallengeViewController: UIViewController {
         detailsLabel.text = challenge.details
         quoteLabel.text = challenge.quote
         typeLabel.text = "\("Type".localized): \(challenge.type)"
+        typeLabel.textColor = UIColor.darkSkinColor
         levelLabel.text =
         "\("challenge_screen_difficulty".localized): \(challenge.level.description)"
+        levelLabel.textColor = UIColor.darkSkinColor
         if !challenge.source.isEmpty {
             sourceButton.isHidden = false
             sourceButton.setTitle(challenge.source, for: .normal)
