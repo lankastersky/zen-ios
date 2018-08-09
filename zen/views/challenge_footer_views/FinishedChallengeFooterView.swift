@@ -6,7 +6,7 @@ final class FinishedChallengeFooterView: ChallengeFooterView {
     @IBOutlet private weak var ratingView: CosmosView!
     @IBOutlet private weak var commentsLabel: UILabel!
 
-    internal var commentsText: String? {
+    var commentsText: String? {
         get { return commentsLabel.text }
         set { commentsLabel.text = newValue }
     }

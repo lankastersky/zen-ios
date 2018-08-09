@@ -72,6 +72,7 @@ final class ChallengeViewController: UIViewController {
         }
         ChallengeViewController.openUrl(urlString)
     }
+    
     private func loadChallenges() {
         LoadingIndicatorView.show("Loading")
 

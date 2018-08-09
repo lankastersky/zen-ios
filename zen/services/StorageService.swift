@@ -8,7 +8,12 @@ final class StorageService {
     private var userDefaults: UserDefaults
 
     init(_ userDefaultsName: String) {
-        self.userDefaults = UserDefaults(suiteName: userDefaultsName)!
+        guard let userDefaults = UserDefaults(suiteName: userDefaultsName) else {
+            assertionFailure("Failed to create user defaults")
+            self.userDefaults = UserDefaults()
+            return
+        }
+        self.userDefaults = userDefaults
     }
 
     convenience init() {

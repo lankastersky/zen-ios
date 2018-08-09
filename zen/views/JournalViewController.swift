@@ -38,11 +38,9 @@ final class JournalViewController: UIViewController {
         super.viewDidLayoutSubviews()
 
         if let selectedItem = selectedItem {
-            collectionView.scrollToItem(
-                at: IndexPath(row: selectedItem, section: 0),
-                at: .top,
-                animated: false
-            )
+            collectionView.scrollToItem(at: IndexPath(row: selectedItem, section: 0),
+                                        at: .top,
+                                        animated: false)
             self.selectedItem = nil
         }
     }
@@ -66,18 +64,15 @@ final class JournalViewController: UIViewController {
 
 extension JournalViewController: UICollectionViewDataSource {
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
 
         return challenges.count
     }
 
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-
             withReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier,
             for: indexPath
         ) as? JournalCollectionViewCell else {
@@ -85,9 +80,8 @@ extension JournalViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        assert(
-            indexPath.item < challenges.count,
-            "Bad challenge index when creating collection view")
+        assert(indexPath.item < challenges.count,
+               "Bad challenge index when creating collection view")
 
         let challenge: Challenge = challenges[indexPath.item]
         cell.finishedTimeLabel.text =
@@ -102,11 +96,10 @@ extension JournalViewController: UICollectionViewDataSource {
 }
 
 extension JournalViewController: UICollectionViewDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        assert(
-            indexPath.item < challenges.count,
-            "Bad challenge index when creating collection view")
+        assert(indexPath.item < challenges.count,
+               "Bad challenge index when creating collection view")
         selectedItem = indexPath.item
         let challenge: Challenge = challenges[indexPath.item]
         openChallengeView(challenge)

@@ -42,21 +42,21 @@ final class FinishingChallengeFooterView: ChallengeFooterView {
 
 extension FinishingChallengeFooterView: UITextViewDelegate {
 
-    internal func textViewDidBeginEditing(_ textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
         }
     }
 
-    internal func textViewDidEndEditing(_ textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             commentsTextView.text = "challenge_screen_comments_placeholder".localized
             textView.textColor = UIColor.lightGray
         }
     }
 
-    internal func textViewDidChange(_ textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         challenge?.comments = textView.text
     }
 }
