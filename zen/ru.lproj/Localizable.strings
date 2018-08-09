@@ -18,6 +18,8 @@
 "challenge_screen_comments_placeholder" = "Оставьте ваши комментарии для журнала";
 
 "journal_screen_title" = "Журнал";
+"journal_screen_no_challenges" = "У вас нет выполненных заданий";
+
 
 "help_screen_title" = "Помощь";
 "help_screen_send_feedback" = "Связаться с автором";

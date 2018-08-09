@@ -2,8 +2,7 @@ import UIKit
 
 /// Shows the Journal of finished challenges
 final class JournalViewController: UIViewController {
-
-    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet private var collectionView: UICollectionView!
 
     private var challenges: [Challenge] = []
     private var selectedItem: Int?
@@ -13,8 +12,10 @@ final class JournalViewController: UIViewController {
 
         navigationItem.title = "journal_screen_title".localized
 
-        collectionView?.register(UINib(nibName: "JournalCollectionViewCell", bundle: nil),
-            forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier)
+        collectionView?.register(
+            UINib(nibName: "JournalCollectionViewCell", bundle: nil),
+            forCellWithReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier
+        )
         // See https://goo.gl/yAUR1R
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.estimatedItemSize = CGSize(width: 1, height: 1)
@@ -23,8 +24,14 @@ final class JournalViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         challenges = challengesService.finishedChallengesSortedByTimeDesc()
-        collectionView.reloadData()
+        if !challenges.isEmpty {
+            hideNoChallengesMessage()
+            collectionView.reloadData()
+        } else {
+            showNoChallengesMessage("journal_screen_no_challenges".localized)
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -32,9 +39,28 @@ final class JournalViewController: UIViewController {
 
         if let selectedItem = selectedItem {
             collectionView.scrollToItem(
-                at: IndexPath(row: selectedItem, section: 0), at: .top, animated: false)
+                at: IndexPath(row: selectedItem, section: 0),
+                at: .top,
+                animated: false
+            )
             self.selectedItem = nil
         }
+    }
+
+    private func showNoChallengesMessage(_ message: String) {
+        let messageLabel = UILabel(frame: collectionView.bounds)
+        messageLabel.text = message
+        messageLabel.textColor = UIColor.disabledTextColor
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        messageLabel.sizeToFit()
+
+        collectionView.backgroundView = messageLabel
+    }
+
+    private func hideNoChallengesMessage() {
+        collectionView.backgroundView = nil
     }
 }
 
@@ -50,12 +76,13 @@ extension JournalViewController: UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         guard let cell = collectionView.dequeueReusableCell(
+
             withReuseIdentifier: JournalCollectionViewCell.journalViewCellReuseIdentifier,
-            for: indexPath) as? JournalCollectionViewCell else {
-                print("Failed to instantiate journal cell")
-                return UICollectionViewCell()
+            for: indexPath
+        ) as? JournalCollectionViewCell else {
+            print("Failed to instantiate journal cell")
+            return UICollectionViewCell()
         }
 
         assert(
@@ -75,7 +102,7 @@ extension JournalViewController: UICollectionViewDataSource {
 }
 
 extension JournalViewController: UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         assert(
             indexPath.item < challenges.count,

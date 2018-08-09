@@ -22,7 +22,6 @@
 		7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */; };
 		7337716421004589004A58F8 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7F9F20F9776600415A72 /* UIViewController+Utils.swift */; };
 		733771652100458C004A58F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82F820E463EA00FEF64D /* AppDelegate.swift */; };
-		7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
 		7337716721004597004A58F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
 		733771682100459C004A58F8 /* JournalCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73EEFE3920F6D8C0004D14ED /* JournalCollectionViewCell.xib */; };
 		7337716E21111314004A58F8 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337716D21111314004A58F8 /* ServiceError.swift */; };
@@ -48,7 +47,6 @@
 		73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */; };
 		73CD830020E463EA00FEF64D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD82FE20E463EA00FEF64D /* Main.storyboard */; };
 		73CD830220E463ED00FEF64D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830120E463ED00FEF64D /* Assets.xcassets */; };
-		73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */; };
 		73CD832B20E475E100FEF64D /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* FirebaseService.swift */; };
 		73CD832C20E475E100FEF64D /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832A20E475E100FEF64D /* FirebaseService.swift */; };
 		73CD833020E4760A00FEF64D /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73CD832F20E4760A00FEF64D /* Challenge.swift */; };
@@ -123,7 +121,6 @@
 		73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		73CD82FF20E463EA00FEF64D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		73CD830120E463ED00FEF64D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		73CD830420E463ED00FEF64D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		73CD830620E463EE00FEF64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		73CD830B20E463EE00FEF64D /* zenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = zenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD832A20E475E100FEF64D /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -216,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				73CFDFD22113B4E100D2E426 /* challenge_footer_views */,
-				73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */,
 				73CD82FE20E463EA00FEF64D /* Main.storyboard */,
 				73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */,
 				73EEFE3020F573EE004D14ED /* JournalViewController.swift */,
@@ -403,7 +399,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				736B83CC20F4400700517246 /* Config.plist in Resources */,
-				73CD830520E463ED00FEF64D /* LaunchScreen.storyboard in Resources */,
 				73F6282F211390C8007B5D0B /* FinishingChallengeFooterView.xib in Resources */,
 				73CD830220E463ED00FEF64D /* Assets.xcassets in Resources */,
 				7337717921111C7E004A58F8 /* Localizable.strings in Resources */,
@@ -425,7 +420,6 @@
 				7337717A21111C7E004A58F8 /* Localizable.strings in Resources */,
 				731210D021127215005B8F51 /* GoogleService-Info.plist in Resources */,
 				73CFDFCE2113A69D00D2E426 /* ChallengeStatusFooterView.xib in Resources */,
-				7337716621004593004A58F8 /* LaunchScreen.storyboard in Resources */,
 				7337716721004597004A58F8 /* Main.storyboard in Resources */,
 				73F62830211390C8007B5D0B /* FinishingChallengeFooterView.xib in Resources */,
 				73CE6079211375140027E3CC /* FinishedChallengeFooterView.xib in Resources */,
@@ -606,14 +600,6 @@
 				73CD82FF20E463EA00FEF64D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		73CD830320E463ED00FEF64D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				73CD830420E463ED00FEF64D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
