@@ -26,7 +26,7 @@ final class HelpViewController: UIViewController {
             mail.mailComposeDelegate = self
             mail.setToRecipients(["lankastersky@gmail.com"])
             let subject =
-                "\(Utils.appName) iOS feedback \(Utils.versionNumber)(\(Utils.buildNumber))"
+                "\(Utils.appName) iOS feedback \(Utils.versionNumber) (\(Utils.buildNumber))"
             mail.setSubject(subject)
             mail.setMessageBody("", isHTML: true)
 

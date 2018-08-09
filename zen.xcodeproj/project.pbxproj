@@ -116,7 +116,7 @@
 		73C101B12119171800DA272F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		73C101B4211B4ECA00DA272F /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		73C101B8211B5ABE00DA272F /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
-		73CD82F520E463EA00FEF64D /* zen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = zen.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		73CD82F520E463EA00FEF64D /* Magic Path.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Path.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73CD82F820E463EA00FEF64D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		73CD82FA20E463EA00FEF64D /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		73CD82FF20E463EA00FEF64D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -185,7 +185,7 @@
 		73CD82F620E463EA00FEF64D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				73CD82F520E463EA00FEF64D /* zen.app */,
+				73CD82F520E463EA00FEF64D /* Magic Path.app */,
 				73CD830B20E463EE00FEF64D /* zenTests.xctest */,
 			);
 			name = Products;
@@ -332,7 +332,7 @@
 			);
 			name = zen;
 			productName = zen;
-			productReference = 73CD82F520E463EA00FEF64D /* zen.app */;
+			productReference = 73CD82F520E463EA00FEF64D /* Magic Path.app */;
 			productType = "com.apple.product-type.application";
 		};
 		73CD830A20E463EE00FEF64D /* zenTests */ = {
@@ -729,14 +729,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6ALYPJWH2;
 				INFOPLIST_FILE = zen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"DEBUG_TIME\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hcyclone.zen;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Magic Path";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -750,13 +750,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6ALYPJWH2;
 				INFOPLIST_FILE = zen/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.hcyclone.zen;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Magic Path";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
