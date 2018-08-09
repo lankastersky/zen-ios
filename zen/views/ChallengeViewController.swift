@@ -167,6 +167,7 @@ final class ChallengeViewController: UIViewController {
     private func showFinishedChallengeFooterView(_ challenge: Challenge) {
         let view: FinishedChallengeFooterView = FinishedChallengeFooterView.fromNib()
         view.commentsText = challenge.comments ?? ""
+        view.rating = challenge.rating ?? 0
         showFooterView(view, challenge)
     }
 

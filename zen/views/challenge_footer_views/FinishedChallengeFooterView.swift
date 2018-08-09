@@ -11,6 +11,10 @@ final class FinishedChallengeFooterView: ChallengeFooterView {
         set { commentsLabel.text = newValue }
     }
 
+    var rating: Double {
+        get { return ratingView.rating }
+        set { ratingView.rating = newValue }
+    }
     override func refreshUI() {
         super.refreshUI()
         ratingView.settings.updateOnTouch = false
