@@ -6,6 +6,8 @@ target 'zen' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Fabric', '~> 1.7.9'
+  pod 'Crashlytics', '~> 3.10.5'
   pod 'Zip', '~> 1.1'
   pod 'Cosmos', '~> 16.0'
 

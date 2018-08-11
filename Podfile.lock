@@ -1,5 +1,8 @@
 PODS:
   - Cosmos (16.0.0)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
+  - Fabric (1.7.9)
   - Firebase/Auth (5.3.0):
     - Firebase/CoreOnly
     - FirebaseAuth (= 5.0.1)
@@ -39,6 +42,8 @@ PODS:
 
 DEPENDENCIES:
   - Cosmos (~> 16.0)
+  - Crashlytics (~> 3.10.5)
+  - Fabric (~> 1.7.9)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Storage
@@ -47,6 +52,8 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Cosmos
+    - Crashlytics
+    - Fabric
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -60,6 +67,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   Firebase: 68afeeb05461db02d7c9e3215cda28068670f4aa
   FirebaseAnalytics: b3628aea54c50464c32c393fb2ea032566e7ecc2
   FirebaseAuth: 463b8ce33bd5d05f706dcd4615499e3212b4132b
@@ -71,6 +80,6 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Zip: 8877eede3dda76bcac281225c20e71c25270774c
 
-PODFILE CHECKSUM: f86930f8749988b2bd3567965de8f731f8f733fd
+PODFILE CHECKSUM: 70e746a18f4b1f20a762717cafc47f504d054ee7
 
 COCOAPODS: 1.5.3
