@@ -12,21 +12,20 @@ extension Date {
             print("Failed to get date of 6pm")
             return true
         }
-        let now = Date()
-        return now < date6pm
         #else
         guard let date6pm = Calendar.current.date(
             bySettingHour: 18,
             minute: 0,
             second: 0,
-            of: Date()
+            of: dateSinceEpoch
         )
         else {
             print("Failed to get date of 6pm")
             return true
         }
-        return dateSinceEpoch < date6pm
         #endif
+        let now = Date()
+        return now < date6pm
     }
 
     static func dateBeforeNextMidnight(_ timeSinceEpoch: TimeInterval) -> Bool {
@@ -38,17 +37,16 @@ extension Date {
             print("Failed to get date of 6pm")
             return true
         }
-        let now = Date()
-        return now < nextMidnight
         #else
-        let midnight = Calendar.current.startOfDay(for: Date())
+        let midnight = Calendar.current.startOfDay(for: dateSinceEpoch)
         guard let nextMidnight =
             Calendar.current.date(byAdding: .day, value: 1, to: midnight) else {
             print("Failed to get next midnight")
             return false
         }
-        return dateSinceEpoch < nextMidnight
         #endif
+        let now = Date()
+        return now < nextMidnight
     }
 
     func toStringWithMediumFormat() -> String {
