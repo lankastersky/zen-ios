@@ -32,8 +32,12 @@ final class ChallengeViewController: UIViewController {
             navigationItem.title = "challenge_screen_title".localized
         }
 
-        let tapGesture =
-            UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard (_:)))
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground),
+                                               name: .UIApplicationWillEnterForeground, object: nil)
+
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(dismissKeyboard (_:)))
         view.addGestureRecognizer(tapGesture)
 
         // Avoid tap event delay when setting the rating. See https://goo.gl/XWBdyn
@@ -61,8 +65,10 @@ final class ChallengeViewController: UIViewController {
         contentView.layoutIfNeeded()
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+    @objc private func willEnterForeground() {
+        if self.challenge == nil {
+            loadChallenges()
+        }
     }
 
     @IBAction private func onSourceButton(sender: UIButton!) {
@@ -72,7 +78,7 @@ final class ChallengeViewController: UIViewController {
         }
         ChallengeViewController.openUrl(urlString)
     }
-    
+
     private func loadChallenges() {
         LoadingIndicatorView.show("Loading")
 
@@ -191,7 +197,7 @@ final class ChallengeViewController: UIViewController {
         footerView.refreshUI()
     }
 
-    @objc private func dismissKeyboard (_ sender: UITapGestureRecognizer) {
+    @objc private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
 
