@@ -33,10 +33,8 @@ final class HelpViewController: UIViewController {
             present(mail, animated: true)
         } else {
             print("Failed to send email")
-            let alert = UIAlertController(title: "help_screen_send_feedback_alert_title".localized,
-                                          message: "help_screen_send_feedback_alert_text".localized,
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            let alert = Utils.buildAlert("help_screen_send_feedback_alert_title".localized,
+                             "help_screen_send_feedback_alert_text".localized)
             present(alert, animated: true, completion: nil)
         }
     }

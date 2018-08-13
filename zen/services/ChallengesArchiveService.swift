@@ -122,6 +122,7 @@ final class ChallengesArchiveService {
 
         challengeDataArray.forEach({challengeData in
             guard let challenge = challengesDictionary[challengeData.challengeId] else {
+                challengesDictionary.forEach( { print("\($0): \($1)")})
                 assertionFailure("Failed to restore challenge data")
                 return
             }

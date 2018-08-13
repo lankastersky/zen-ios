@@ -23,5 +23,6 @@ final class JournalCollectionViewCell: UICollectionViewCell {
         widthConstraint.constant = screenWidth
 
         cosmosView.settings.filledColor = UIColor.skinColor
+        levelLabel.textColor = UIColor.darkSkinColor
     }
 }

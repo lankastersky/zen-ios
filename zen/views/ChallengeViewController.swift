@@ -91,6 +91,11 @@ final class ChallengeViewController: UIViewController {
                     LoadingIndicatorView.hide()
                     if let error = error {
                         print("Failed to download challenges:\(error)")
+                        let alert = Utils.buildAlert(
+                            "challenge_screen_error_downloading_challenges_title".localized,
+                            "challenge_screen_error_downloading_challenges_message".localized)
+                        self?.present(alert, animated: true, completion: nil)
+
                     } else {
                         self?.showCurrentChallenge()
                     }

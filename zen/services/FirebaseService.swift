@@ -157,13 +157,10 @@ final class FirebaseService {
             assertionFailure("Failed to get locale")
             return ChallengesFileName.english.rawValue
         }
-        switch preferredLanguage {
-        case "ru":
+        if preferredLanguage.starts(with: "ru-") {
             return ChallengesFileName.russian.rawValue
-        default:
-            // TODO: enable support of other languages on backend.
-            //return ChallengesFileName.english.rawValue
-            return ChallengesFileName.russian.rawValue
+        } else {
+            return ChallengesFileName.english.rawValue
         }
     }
 }
