@@ -16,6 +16,8 @@
 "challenge_screen_button_finished" = "Finished";
 "challenge_screen_back" = "Back";
 "challenge_screen_comments_placeholder" = "Leave your comments here";
+"challenge_screen_error_downloading_challenges_title" = "Failed to download challenges";
+"challenge_screen_error_downloading_challenges_message" = "Check your internet connection and try again";
 
 "journal_screen_title" = "Finished Challenges";
 "journal_screen_no_challenges" = "No finished challenges yet";

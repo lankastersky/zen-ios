@@ -16,6 +16,8 @@
 "challenge_screen_button_finished" = "Завершено";
 "challenge_screen_back" = "Назад";
 "challenge_screen_comments_placeholder" = "Оставьте ваши комментарии для журнала";
+"challenge_screen_error_downloading_challenges_title" = "Не удалось загрузить задания";
+"challenge_screen_error_downloading_challenges_message" = "Провертье подключение к интернету и попробуйте еще раз";
 
 "journal_screen_title" = "Журнал";
 "journal_screen_no_challenges" = "У вас нет выполненных заданий";
