@@ -44,6 +44,10 @@
 "settings_screen_time_every_3h" = "Every 3h";
 "settings_screen_time_every_4h" = "Every 4h";
 
+"notification_new_challenge" = "New challenge available";
+"notification_do_challenge" = "Don't forget about your challenge";
+"notification_finish_challenge" = "Finish your challenge";
+
 "help_screen_title" = "Help";
 "help_screen_send_feedback" = "Send Feedback";
 "help_screen_send_feedback_alert_title" = "Failed to Send Feedback";

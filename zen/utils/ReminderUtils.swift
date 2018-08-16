@@ -21,22 +21,29 @@ final class ReminderUtils {
         "settings_screen_time_never".localized,
         "settings_screen_time_6pm".localized,
         "settings_screen_time_8pm".localized,
-        "settings_screen_time_12am".localized,
         "settings_screen_time_10pm".localized,
+        "settings_screen_time_12am".localized,
         "settings_screen_time_random_evening".localized]
 
-    static func reminderTime(_ stringValue: String) -> Date {
+    static func reminderTime(_ reminderType: ReminderType, _ stringValue: String) -> Date {
         let now = Date()
         let midnight = Calendar.current.startOfDay(for: now)
         let hours = reminderHours(stringValue)
-        guard let date = Calendar.current.date(byAdding: .hour, value: hours, to: midnight) else {
-            assertionFailure("Failed to get date for reminder")
-            return now
+        switch reminderType {
+        case .initial, .final:
+            guard let date = Calendar.current.date(byAdding: .hour,
+                                                   value: hours,
+                                                   to: midnight) else {
+                assertionFailure("Failed to get date for reminder")
+                return now
+            }
+            return date
+        case .constant:
+            return midnight
         }
-        return date
     }
 
-    private static func reminderHours(_ stringValue: String) -> Int {
+    static func reminderHours(_ stringValue: String) -> Int {
         var hours = 0
         switch stringValue {
         case "settings_screen_time_6am".localized:

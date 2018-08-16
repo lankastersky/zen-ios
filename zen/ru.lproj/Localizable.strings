@@ -44,6 +44,10 @@
 "settings_screen_time_every_3h" = "Каждые 3 часа";
 "settings_screen_time_every_4h" = "Каждые 4 часа";
 
+"notification_new_challenge" = "Доступно новое задание";
+"notification_do_challenge" = "Не забудьте о вашем задании";
+"notification_finish_challenge" = "Завершите ваше задание";
+
 "help_screen_title" = "Помощь";
 "help_screen_send_feedback" = "Связаться с автором";
 "help_screen_send_feedback_alert_title" = "Не удалось связаться с автором";

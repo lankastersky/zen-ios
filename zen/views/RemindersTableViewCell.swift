@@ -85,14 +85,13 @@ extension RemindersTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
             return
         }
         // Update notification
-        if selectedPickerRow == 0 {
-            notificationService?.cancelReminder(reminderType)
-        } else {
+        notificationService?.cancelReminder(reminderType)
+        if selectedPickerRow != 0 {
             guard let pickerValue = pickerValues?[selectedPickerRow] else {
                 assertionFailure("Failed to get picker value")
                 return
             }
-            let reminderTime = ReminderUtils.reminderTime(pickerValue)
+            let reminderTime = ReminderUtils.reminderTime(reminderType, pickerValue)
             notificationService?.setupReminder(reminderType, reminderTime)
         }
         // Store updated value persistently
