@@ -1,5 +1,6 @@
 "tab_bar_challenge_title" = "Задание";
 "tab_bar_journal_title" = "Журнал";
+"tab_bar_settings_title" = "Настройки";
 "tab_bar_help_title" = "Помощь";
 
 "current_challenge_screen_title" = "Текущее задание";
@@ -22,10 +23,30 @@
 "journal_screen_title" = "Журнал";
 "journal_screen_no_challenges" = "У вас нет выполненных заданий";
 
+"settings_screen_title" = "Настройки";
+"settings_screen_reminders_title" = "Напоминания";
+"settings_screen_initial_reminder" = "Hачало задания";
+"settings_screen_constant_reminder" = "Выполнение задания";
+"settings_screen_final_reminder" = "Окончание задания";
+"settings_screen_time_never" = "Никогда";
+"settings_screen_time_6am" = "6:00";
+"settings_screen_time_8am" = "8:00";
+"settings_screen_time_10am" = "10:00";
+"settings_screen_time_12pm" = "12:00";
+"settings_screen_time_6pm" = "18:00";
+"settings_screen_time_8pm" = "20:00";
+"settings_screen_time_10pm" = "22:00";
+"settings_screen_time_12am" = "00:00";
+"settings_screen_time_random_morning" = "Случайно 6:00-12:00";
+"settings_screen_time_random_evening" = "Случайно 18:00-00:00";
+"settings_screen_time_every_1h" = "Каждый час";
+"settings_screen_time_every_2h" = "Каждые 2 часа";
+"settings_screen_time_every_3h" = "Каждые 3 часа";
+"settings_screen_time_every_4h" = "Каждые 4 часа";
 
 "help_screen_title" = "Помощь";
 "help_screen_send_feedback" = "Связаться с автором";
 "help_screen_send_feedback_alert_title" = "Не удалось связаться с автором";
 "help_screen_send_feedback_alert_text" = "Пожалуйста убедитесь, что у вас настроено приложение для отправки почты";
 "help_screen_description" = "Каждое утро вам доступно новое задание в разделе \"Задание\". Вы можете начать его выполнять, нажав на кнопку \"Принять\". Задание выполняется в течение дня. После шести вечера, если вы готовы завершить задание, нажмите на кнопку \"Завершить\". При этом предлагается оценить текущий уровень осознанности: минимальный - \"на автопилоте\", максимальный - полностью осознанно.\n\nЗавершенные задания доступны в разделе \"Журнал\". Если задание не выполнено, к концу дня оно будет считаться пропущенным и не появится в журнале. Через некоторе время пропущенные задания будут снова предложены на выполнение.\n\nКаждое задание имеет свой уровень сложности. Постепенно будут даваться все более сложные задания.";
-"help_screen_version" = "Студия \"Гиперборейский циклон\"\nВерсия %@";
+"help_screen_version" = "Lankastersky Studio\nВерсия %@";

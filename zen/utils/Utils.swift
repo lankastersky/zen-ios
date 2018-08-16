@@ -3,6 +3,8 @@ import UIKit
 
 final class Utils {
 
+    private init() {}
+
     static let appName =
         Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as? String ?? ""
 

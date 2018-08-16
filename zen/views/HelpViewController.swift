@@ -4,9 +4,9 @@ import UIKit
 /// Shows help screen
 final class HelpViewController: UIViewController {
 
-    @IBOutlet private var descriptionLabel: UILabel!
-    @IBOutlet private var versionLabel: UILabel!
-    @IBOutlet private var sendFeedbackButton: UIButton!
+    @IBOutlet weak private var descriptionLabel: UILabel!
+    @IBOutlet weak private var versionLabel: UILabel!
+    @IBOutlet weak private var sendFeedbackButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
