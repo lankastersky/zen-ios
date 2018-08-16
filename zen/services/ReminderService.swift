@@ -8,6 +8,8 @@ final class ReminderService {
     private static let constantReminderPickerRowKey = "constant_reminder_time"
     private static let finalReminderPickerRowKey = "finalc_reminder_time"
 
+    private static let reminderTimeIndexNever = 0
+
     private static let initialReminderId = "initialReminderId"
     private static let constantReminderId = "constantReminderId"
     private static let finalReminderId = "finalReminderId"
@@ -17,7 +19,8 @@ final class ReminderService {
     private var initialReminderTimeIndex: Int {
         get {
             return storageService.object(forKey: ReminderService.initialReminderPickerRowKey)
-                as? Int ?? ReminderUtils.initialReminderPickerValues.count - 1
+                as? Int
+                ?? ReminderUtils.initialReminderPickerValues.count - 1 // random time index
         }
         set {
             storageService.set(newValue, forKey: ReminderService.initialReminderPickerRowKey)
@@ -37,7 +40,8 @@ final class ReminderService {
     private var finalReminderTimeIndex: Int {
         get {
             return storageService.object(forKey: ReminderService.finalReminderPickerRowKey)
-                as? Int ?? ReminderUtils.finalReminderPickerValues.count - 1
+                as? Int
+                ?? ReminderUtils.finalReminderPickerValues.count - 1 // random time index
         }
         set {
             storageService.set(newValue, forKey: ReminderService.finalReminderPickerRowKey)
@@ -73,13 +77,13 @@ final class ReminderService {
     }
 
     func setupRemindersForFinishedChallenge() {
-        cancelReminderNotification(.constant)
-        cancelReminderNotification(.final)
+        ReminderService.cancelReminderNotification(.constant)
+        ReminderService.cancelReminderNotification(.final)
     }
 
     /// Stores new time persistently and schedules the notification if needed.
     func setReminderTime(_ reminderType: ReminderType, _ reminderTimeIndex: Int) {
-        var pickerValue: String?;
+        var pickerValue: String?
         switch reminderType {
         case .initial:
             initialReminderTimeIndex = reminderTimeIndex
@@ -92,20 +96,20 @@ final class ReminderService {
             pickerValue = ReminderUtils.finalReminderPickerValues[reminderTimeIndex]
         }
 
-        cancelReminderNotification(reminderType)
+        ReminderService.cancelReminderNotification(reminderType)
 
-        if reminderTimeIndex != 0 {
+        if reminderTimeIndex != ReminderService.reminderTimeIndexNever {
             guard let pickerValue = pickerValue else {
                 assertionFailure("Failed to get picker value")
                 return
             }
-            let reminderTime = ReminderUtils.reminderTime(reminderType, pickerValue)
-            setReminderNotification(reminderType, reminderTime)
+            let reminderTime = ReminderUtils.reminderTime(pickerValue)
+            ReminderService.setReminderNotification(reminderType, reminderTime)
         }
     }
 
-    private func setReminderNotification(_ reminderType: ReminderType, _ date: Date) {
-        let reminderId = ReminderService.reminderId(reminderType)
+    private static func setReminderNotification(_ reminderType: ReminderType, _ date: Date) {
+        let reminderId = self.reminderId(reminderType)
         switch reminderType {
         case .initial:
             NotificationUtils.setNotification(
@@ -119,8 +123,8 @@ final class ReminderService {
         }
     }
 
-    private func cancelReminderNotification(_ reminderType: ReminderType) {
-        NotificationUtils.cancelNotification(ReminderService.reminderId(reminderType))
+    private static func cancelReminderNotification(_ reminderType: ReminderType) {
+        NotificationUtils.cancelNotification(reminderId(reminderType))
     }
 
     private static func reminderId(_ reminderType: ReminderType) -> String {

@@ -38,11 +38,9 @@
 "settings_screen_time_10pm" = "10pm";
 "settings_screen_time_12am" = "12am";
 "settings_screen_time_random_morning" = "Random 6am-12pm";
+"settings_screen_time_random_day" = "Random 12pm-6pm";
 "settings_screen_time_random_evening" = "Random 6pm-12am";
 "settings_screen_time_every_1h" = "Every 1h";
-"settings_screen_time_every_2h" = "Every 2h";
-"settings_screen_time_every_3h" = "Every 3h";
-"settings_screen_time_every_4h" = "Every 4h";
 
 "notification_new_challenge" = "New challenge available";
 "notification_do_challenge" = "Don't forget about your challenge";

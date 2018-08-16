@@ -24,7 +24,6 @@ final class NotificationUtils {
         setNotification(notification)
     }
 
-
     static func cancelNotification(_ notificationId: String) {
         while let notification = NotificationUtils.findNotification(notificationId) {
             UIApplication.shared.cancelLocalNotification(notification)

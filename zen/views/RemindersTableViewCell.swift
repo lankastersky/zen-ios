@@ -9,22 +9,22 @@ final class RemindersTableViewCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailsTextField: UITextField!
 
-    private var pickerView: UIPickerView?
+    private var pickerView = UIPickerView()
     private var pickerValues: [String]?
+    private var reminderType: ReminderType?
 
-    var reminderType: ReminderType?
     var reminderService: ReminderService?
-
-    var title: String? {
-        get { return titleLabel.text }
-        set { titleLabel.text = newValue }
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         titleLabel.textColor = UIColor.darkSkinColor
         detailsTextField.textColor = UIColor.darkSkinColor
-        pickerView = UIPickerView()
+
+        pickerView.frame = CGRect(x: 0, y: 0, width: 0, height: RemindersTableViewCell.pickerHeight)
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        pickerView.backgroundColor = UIColor.white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,6 +36,35 @@ final class RemindersTableViewCell: UITableViewCell {
 
     @IBAction func onTextEditingDidBegin(_ sender: UITextField) {
         sender.inputView = pickerView
+    }
+
+    func setReminderType(_ reminderType: ReminderType) {
+        self.reminderType = reminderType
+        switch reminderType {
+        case .initial:
+            titleLabel.text = "settings_screen_initial_reminder".localized
+            pickerValues = ReminderUtils.initialReminderPickerValues
+        case .constant:
+            titleLabel.text = "settings_screen_constant_reminder".localized
+            pickerValues = ReminderUtils.constantReminderPickerValues
+        case .final:
+            titleLabel.text = "settings_screen_final_reminder".localized
+            pickerValues = ReminderUtils.finalReminderPickerValues
+        }
+        guard let pickerSelectedRow = reminderService?.reminderTimeIndex(reminderType) else {
+            assertionFailure("Failed to get picker selected row")
+            return
+        }
+        detailsTextField.text = pickerValues?[pickerSelectedRow]
+        pickerView.selectRow(pickerSelectedRow, inComponent: 0, animated:false)
+    }
+
+    private func updateReminder(_ selectedPickerRow: Int) {
+        guard let reminderType = reminderType else {
+            assertionFailure("Failed to get reminder type")
+            return
+        }
+        reminderService?.setReminderTime(reminderType, selectedPickerRow)
     }
 }
 
@@ -63,25 +92,5 @@ extension RemindersTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         detailsTextField.text = pickerValues?[row]
         updateReminder(row)
         contentView.endEditing(true)
-    }
-
-    func initPicker(_ pickerValues: [String]?, _ selectedRow: Int) {
-        self.pickerValues = pickerValues
-        detailsTextField.text = pickerValues?[selectedRow]
-
-        pickerView?.frame =
-            CGRect(x: 0, y: 0, width: 0, height: RemindersTableViewCell.pickerHeight)
-        pickerView?.delegate = self
-        pickerView?.dataSource = self
-        pickerView?.backgroundColor = UIColor.white
-        pickerView?.selectRow(selectedRow, inComponent: 0, animated:false)
-    }
-
-    private func updateReminder(_ selectedPickerRow: Int) {
-        guard let reminderType = reminderType else {
-            assertionFailure("Failed to get reminder type")
-            return
-        }
-        reminderService?.setReminderTime(reminderType, selectedPickerRow)
     }
 }

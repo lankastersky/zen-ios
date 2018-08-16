@@ -38,6 +38,7 @@
 "settings_screen_time_10pm" = "22:00";
 "settings_screen_time_12am" = "00:00";
 "settings_screen_time_random_morning" = "Случайно 6:00-12:00";
+"settings_screen_time_random_day" = "Случайно 12:00-18:00";
 "settings_screen_time_random_evening" = "Случайно 18:00-00:00";
 "settings_screen_time_every_1h" = "Каждый час";
 "settings_screen_time_every_2h" = "Каждые 2 часа";

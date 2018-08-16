@@ -35,6 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didReceive note: UILocalNotification) {
+        print("Notification fired with user info \(String(describing: note.userInfo))")
+        if application.applicationState == .active {
+            // Don't show challenge view controller when app is active
+            return
+        }
         guard let tabBarController = window?.rootViewController as? UITabBarController else {
             assertionFailure("Failed to get tab bar controller")
             return
@@ -72,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         challengeTabBarItem?.selectedImage = UIImage(named: "ic_menu_challenge")
 
         // Some icons downloaded from https://material.io/tools/icons/?icon=settings&style=baseline
-        
+
         let journalTabBarItem = tabBarController.tabBar.items?[NavigationTab.journal.rawValue]
         journalTabBarItem?.title = "tab_bar_journal_title".localized
         journalTabBarItem?.image = UIImage(named: "baseline_star_black_24pt")

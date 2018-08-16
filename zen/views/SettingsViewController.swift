@@ -54,20 +54,7 @@ extension SettingsViewController: UITableViewDataSource {
             assertionFailure("Failed to get reminder type for cell")
             return cell
         }
-        let pickerSelectedRow = reminderService.reminderTimeIndex(reminderType)
-        cell.reminderType = reminderType
-
-        switch reminderType {
-        case .initial:
-            cell.title = "settings_screen_initial_reminder".localized
-            cell.initPicker(ReminderUtils.initialReminderPickerValues, pickerSelectedRow)
-        case .constant:
-            cell.title = "settings_screen_constant_reminder".localized
-            cell.initPicker(ReminderUtils.constantReminderPickerValues, pickerSelectedRow)
-        case .final:
-            cell.title = "settings_screen_final_reminder".localized
-            cell.initPicker(ReminderUtils.finalReminderPickerValues, pickerSelectedRow)
-        }
+        cell.setReminderType(reminderType)
         return cell
     }
 }
