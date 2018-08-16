@@ -2,10 +2,6 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
 
-    private static let initialReminderPickerRowKey = "initial_reminder_time"
-    private static let constantReminderPickerRowKey = "constant_reminder_time"
-    private static let finalReminderPickerRowKey = "finalc_reminder_time"
-
     @IBOutlet weak var remindersTableView: UITableView!
     @IBOutlet var remindersTableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak private var remindersLabel: UILabel!
@@ -52,35 +48,25 @@ extension SettingsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.notificationService = notificationService
-        cell.storageService = storageService
+        cell.reminderService = reminderService
 
-        switch indexPath.row {
-        case ReminderType.initial.rawValue:
-            let pickerSelectedRow =
-                storageService.object(forKey: SettingsViewController.initialReminderPickerRowKey)
-                    as? Int ?? ReminderUtils.initialReminderPickerValues.count - 1
+        guard let reminderType = ReminderType(rawValue: indexPath.row) else {
+            assertionFailure("Failed to get reminder type for cell")
+            return cell
+        }
+        let pickerSelectedRow = reminderService.reminderTimeIndex(reminderType)
+        cell.reminderType = reminderType
+
+        switch reminderType {
+        case .initial:
             cell.title = "settings_screen_initial_reminder".localized
             cell.initPicker(ReminderUtils.initialReminderPickerValues, pickerSelectedRow)
-            cell.reminderType = .initial
-            cell.selectedPickerRowKey = SettingsViewController.initialReminderPickerRowKey
-        case ReminderType.constant.rawValue:
-            let pickerSelectedRow = storageService.object(
-                forKey: SettingsViewController.constantReminderPickerRowKey) as? Int ?? 1
+        case .constant:
             cell.title = "settings_screen_constant_reminder".localized
             cell.initPicker(ReminderUtils.constantReminderPickerValues, pickerSelectedRow)
-            cell.reminderType = .constant
-            cell.selectedPickerRowKey = SettingsViewController.constantReminderPickerRowKey
-        case ReminderType.final.rawValue:
-            let pickerSelectedRow =
-                storageService.object(forKey: SettingsViewController.finalReminderPickerRowKey)
-                    as? Int ?? ReminderUtils.finalReminderPickerValues.count - 1
+        case .final:
             cell.title = "settings_screen_final_reminder".localized
             cell.initPicker(ReminderUtils.finalReminderPickerValues, pickerSelectedRow)
-            cell.reminderType = .final
-            cell.selectedPickerRowKey = SettingsViewController.finalReminderPickerRowKey
-        default:
-            assertionFailure("No reminders cell for this row")
         }
         return cell
     }

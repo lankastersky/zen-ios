@@ -24,13 +24,13 @@ extension UIViewController {
         set {}
     }
 
-    var notificationService: NotificationService {
+    var reminderService: ReminderService {
         get {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 assertionFailure("Failed to get app delegate")
-                return NotificationService()
+                return ReminderService()
             }
-            return appDelegate.notificationService
+            return appDelegate.reminderService
         }
         set {}
     }

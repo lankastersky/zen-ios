@@ -270,7 +270,7 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
         challengesService.markChallengeAccepted(challenge.challengeId)
         showChallengeStatusFooterView(
             challenge, "challenge_screen_button_return_after_6pm".localized)
-        notificationService.rescheduleReminder(.initial)
+        reminderService.setupRemindersForAcceptedChallenge()
     }
 
     func onChallengeFinishing(_ challenge: Challenge) {
@@ -280,6 +280,6 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
     func onChallengeFinished(_ challenge: Challenge) {
         challengesService.markChallengeFinished(challenge.challengeId)
         showFinishedChallengeFooterView(challenge)
-        notificationService.rescheduleReminder(.final)
+        reminderService.setupRemindersForFinishedChallenge()
     }
 }

@@ -13,9 +13,7 @@ final class RemindersTableViewCell: UITableViewCell {
     private var pickerValues: [String]?
 
     var reminderType: ReminderType?
-    var notificationService: NotificationService?
-    var storageService: StorageService?
-    var selectedPickerRowKey: String?
+    var reminderService: ReminderService?
 
     var title: String? {
         get { return titleLabel.text }
@@ -84,21 +82,6 @@ extension RemindersTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
             assertionFailure("Failed to get reminder type")
             return
         }
-        // Update notification
-        notificationService?.cancelReminder(reminderType)
-        if selectedPickerRow != 0 {
-            guard let pickerValue = pickerValues?[selectedPickerRow] else {
-                assertionFailure("Failed to get picker value")
-                return
-            }
-            let reminderTime = ReminderUtils.reminderTime(reminderType, pickerValue)
-            notificationService?.setupReminder(reminderType, reminderTime)
-        }
-        // Store updated value persistently
-        guard let selectedPickerRowKey = selectedPickerRowKey else {
-            assertionFailure("Failed to get selected picker row key")
-            return
-        }
-        storageService?.set(selectedPickerRow, forKey: selectedPickerRowKey)
+        reminderService?.setReminderTime(reminderType, selectedPickerRow)
     }
 }
