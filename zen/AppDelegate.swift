@@ -71,6 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         challengeTabBarItem?.image = UIImage(named: "ic_menu_challenge")
         challengeTabBarItem?.selectedImage = UIImage(named: "ic_menu_challenge")
 
+        // Some icons downloaded from https://material.io/tools/icons/?icon=settings&style=baseline
+        
         let journalTabBarItem = tabBarController.tabBar.items?[NavigationTab.journal.rawValue]
         journalTabBarItem?.title = "tab_bar_journal_title".localized
         journalTabBarItem?.image = UIImage(named: "baseline_star_black_24pt")
@@ -78,9 +80,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let settingsTabBarItem = tabBarController.tabBar.items?[NavigationTab.settings.rawValue]
         settingsTabBarItem?.title = "tab_bar_settings_title".localized
-        // TODO: fix icons.
-        settingsTabBarItem?.image = UIImage(named: "baseline_help_black_24pt")
-        settingsTabBarItem?.selectedImage = UIImage(named: "baseline_help_black_24pt")
+        settingsTabBarItem?.image = UIImage(named: "baseline_settings_black_24pt")
+        settingsTabBarItem?.selectedImage = UIImage(named: "baseline_settings_black_24pt")
 
         let helpTabBarItem = tabBarController.tabBar.items?[NavigationTab.help.rawValue]
         helpTabBarItem?.title = "tab_bar_help_title".localized
