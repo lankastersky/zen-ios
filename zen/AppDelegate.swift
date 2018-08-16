@@ -16,10 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var storageService = StorageService()
     lazy var reminderService = ReminderService()
 
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?)
-        -> Bool {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions:
+        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
         configureAppearance()

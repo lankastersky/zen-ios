@@ -127,7 +127,6 @@ final class ChallengesService {
 
     /// Sets challenge status as 'shown' if current status is 'unknown'
     func markChallengeShown(_ challengeId: String) {
-        // TODO: remove asserts after testing
         assert(currentChallengeId == challengeId,
             "Can't mark current challenge as shown. ChallengeId is not current challenge:"
                 + " \(challengeId)"
