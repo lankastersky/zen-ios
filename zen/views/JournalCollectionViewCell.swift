@@ -17,7 +17,7 @@ final class JournalCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         // Used to make cells resizable by height. See https://goo.gl/yAUR1R
-        // TODO: consider using table cells instead.
+        // Consider using table cells instead.
         contentView.translatesAutoresizingMaskIntoConstraints = false
         let screenWidth = UIScreen.main.bounds.size.width
         widthConstraint.constant = screenWidth

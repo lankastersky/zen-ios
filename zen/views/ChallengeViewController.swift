@@ -20,6 +20,7 @@ final class ChallengeViewController: UIViewController {
 
     private var activeFooterView: ChallengeFooterView?
     private var sourceUrl: String?
+    private lazy var reminderService = ReminderService()
 
     var challenge: Challenge?
 
@@ -65,6 +66,10 @@ final class ChallengeViewController: UIViewController {
         contentView.layoutIfNeeded()
     }
 
+    func scrollToTop() {
+        scrollView.setContentOffset(CGPoint(x: 0, y:0), animated: false)
+    }
+
     @objc private func willEnterForeground() {
         if self.challenge == nil {
             loadChallenges()
@@ -82,7 +87,7 @@ final class ChallengeViewController: UIViewController {
     private func loadChallenges() {
         LoadingIndicatorView.show("Loading")
 
-        let firebaseService = FirebaseService(storageService, challengesService)
+        let firebaseService = FirebaseService(challengesService)
         firebaseService.signIn(callback: { [weak self] _, error in
             if let error = error {
                 print("Failed to authenticate in Firebase: \(error)")
@@ -266,6 +271,7 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
         challengesService.markChallengeAccepted(challenge.challengeId)
         showChallengeStatusFooterView(
             challenge, "challenge_screen_button_return_after_6pm".localized)
+        reminderService.setRemindersForAcceptedChallenge(challenge)
     }
 
     func onChallengeFinishing(_ challenge: Challenge) {
@@ -275,5 +281,6 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
     func onChallengeFinished(_ challenge: Challenge) {
         challengesService.markChallengeFinished(challenge.challengeId)
         showFinishedChallengeFooterView(challenge)
+        reminderService.cancelRemindersForFinishedChallenge()
     }
 }

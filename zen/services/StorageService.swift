@@ -20,6 +20,10 @@ final class StorageService {
         self.init(StorageService.userDefaultsName)
     }
 
+    func object(forKey defaultName: String) -> Any? {
+        return userDefaults.object(forKey: defaultName)
+    }
+
     func set(_ value: Any?, forKey defaultName: String) {
         userDefaults.set(value, forKey: defaultName)
     }
