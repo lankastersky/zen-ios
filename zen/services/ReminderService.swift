@@ -67,60 +67,68 @@ final class ReminderService {
         }
     }
 
-    func setupReminders() {
-        setReminderTime(.initial, initialReminderTimeIndex)
+    func seRemindersForNewChallenge(_ challenge: Challenge) {
+        setReminderNotification(.initial, challenge)
     }
 
-    func setupRemindersForAcceptedChallenge() {
-        setReminderTime(.constant, constantReminderTimeIndex)
-        setReminderTime(.final, finalReminderTimeIndex)
+    func setRemindersForAcceptedChallenge(_ challenge: Challenge) {
+        ReminderService.cancelReminderNotification(.initial)
+        setReminderNotification(.constant, challenge)
+        setReminderNotification(.final, challenge)
     }
 
-    func setupRemindersForFinishedChallenge() {
+    func cancelRemindersForFinishedChallenge() {
         ReminderService.cancelReminderNotification(.constant)
         ReminderService.cancelReminderNotification(.final)
     }
 
     /// Stores new time persistently and schedules the notification if needed.
     func setReminderTime(_ reminderType: ReminderType, _ reminderTimeIndex: Int) {
-        var pickerValue: String?
         switch reminderType {
         case .initial:
             initialReminderTimeIndex = reminderTimeIndex
-            pickerValue = ReminderUtils.initialReminderPickerValues[reminderTimeIndex]
         case .constant:
             constantReminderTimeIndex = reminderTimeIndex
-            pickerValue = ReminderUtils.constantReminderPickerValues[reminderTimeIndex]
         case .final:
             finalReminderTimeIndex = reminderTimeIndex
-            pickerValue = ReminderUtils.finalReminderPickerValues[reminderTimeIndex]
-        }
-
-        ReminderService.cancelReminderNotification(reminderType)
-
-        if reminderTimeIndex != ReminderService.reminderTimeIndexNever {
-            guard let pickerValue = pickerValue else {
-                assertionFailure("Failed to get picker value")
-                return
-            }
-            let reminderTime = ReminderUtils.reminderTime(pickerValue)
-            ReminderService.setReminderNotification(reminderType, reminderTime)
         }
     }
 
-    private static func setReminderNotification(_ reminderType: ReminderType, _ date: Date) {
-        let reminderId = self.reminderId(reminderType)
+    private func setReminderNotification(_ reminderType: ReminderType, _ challenge: Challenge) {
+        ReminderService.cancelReminderNotification(reminderType)
+
+        var pickerValue: String
         switch reminderType {
         case .initial:
-            NotificationUtils.setNotification(
-                reminderId, date, .day, "notification_new_challenge".localized)
-        case .final:
-            NotificationUtils.setNotification(
-                reminderId, date, .day, "notification_finish_challenge".localized)
+            pickerValue = ReminderUtils.initialReminderPickerValues[initialReminderTimeIndex]
         case .constant:
-            NotificationUtils.setNotification(
-                reminderId, date, .hour, "notification_do_challenge".localized)
+            pickerValue = ReminderUtils.constantReminderPickerValues[constantReminderTimeIndex]
+        case .final:
+            pickerValue = ReminderUtils.finalReminderPickerValues[finalReminderTimeIndex]
         }
+
+        if pickerValue == "settings_screen_time_never".localized {
+            // Don't set notification
+            return
+        }
+
+        let reminderTime = ReminderUtils.reminderTime(pickerValue)
+        let reminderId = ReminderService.reminderId(reminderType)
+        var repeatInterval: NSCalendar.Unit
+        let title: String
+        switch reminderType {
+        case .initial:
+            repeatInterval = .day
+            title = "notification_new_challenge".localized
+        case .constant:
+            repeatInterval = .hour
+            title = "notification_do_challenge".localized
+        case .final:
+            repeatInterval = .day
+            title = "notification_finish_challenge".localized
+        }
+        NotificationUtils.setNotification(
+            reminderId, reminderTime, repeatInterval, title, challenge.content)
     }
 
     private static func cancelReminderNotification(_ reminderType: ReminderType) {

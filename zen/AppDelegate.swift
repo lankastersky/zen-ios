@@ -13,8 +13,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     lazy var challengesService = ChallengesService()
-    lazy var storageService = StorageService()
-    lazy var reminderService = ReminderService()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions:
@@ -27,8 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings =
             UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
-
-        reminderService.setupReminders()
             
         return true
     }

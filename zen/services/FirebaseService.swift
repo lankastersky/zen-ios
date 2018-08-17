@@ -17,13 +17,21 @@ final class FirebaseService {
     private static let lastLoadTimeKey = "last_load_time"
     private static let challengesLocaleKey = "challenges_locale"
 
-    private lazy var storage = Storage.storage()
+    private var storage: Storage
     private var storageService: StorageService
     private var challengesService: ChallengesService
 
-    init(_ storageService: StorageService, _ challengesService: ChallengesService) {
+    init(_ storageService: StorageService,
+         _ challengesService: ChallengesService,
+         _ storage: Storage) {
+
         self.storageService = storageService
         self.challengesService = challengesService
+        self.storage = storage
+    }
+
+    convenience init(_ challengesService: ChallengesService) {
+        self.init(StorageService(), challengesService, Storage.storage())
     }
 
     /// Signs in to Firebase using email and password from the config file.

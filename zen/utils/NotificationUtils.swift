@@ -9,6 +9,7 @@ final class NotificationUtils {
     static func setNotification(_ notificationId: String,
                                 _ date: Date,
                                 _ repeatInterval: NSCalendar.Unit,
+                                _ title: String?,
                                 _ message: String?) {
         
         let notification = UILocalNotification()
@@ -18,6 +19,7 @@ final class NotificationUtils {
         #else
         notification.repeatInterval = repeatInterval
         #endif
+        notification.alertTitle = title
         notification.alertBody = message
         notification.userInfo = [NotificationUtils.notificationIdKey: notificationId]
 

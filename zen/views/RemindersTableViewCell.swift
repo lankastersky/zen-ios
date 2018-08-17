@@ -12,8 +12,7 @@ final class RemindersTableViewCell: UITableViewCell {
     private var pickerView = UIPickerView()
     private var pickerValues: [String]?
     private var reminderType: ReminderType?
-
-    var reminderService: ReminderService?
+    private lazy var reminderService = ReminderService()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -51,10 +50,7 @@ final class RemindersTableViewCell: UITableViewCell {
             titleLabel.text = "settings_screen_final_reminder".localized
             pickerValues = ReminderUtils.finalReminderPickerValues
         }
-        guard let pickerSelectedRow = reminderService?.reminderTimeIndex(reminderType) else {
-            assertionFailure("Failed to get picker selected row")
-            return
-        }
+        let pickerSelectedRow = reminderService.reminderTimeIndex(reminderType)
         detailsTextField.text = pickerValues?[pickerSelectedRow]
         pickerView.selectRow(pickerSelectedRow, inComponent: 0, animated:false)
     }
@@ -64,7 +60,7 @@ final class RemindersTableViewCell: UITableViewCell {
             assertionFailure("Failed to get reminder type")
             return
         }
-        reminderService?.setReminderTime(reminderType, selectedPickerRow)
+        reminderService.setReminderTime(reminderType, selectedPickerRow)
     }
 }
 

@@ -48,8 +48,6 @@ extension SettingsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.reminderService = reminderService
-
         guard let reminderType = ReminderType(rawValue: indexPath.row) else {
             assertionFailure("Failed to get reminder type for cell")
             return cell
