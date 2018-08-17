@@ -25,6 +25,7 @@ final class SettingsViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        remindersTableView.reloadData()
         view.layoutIfNeeded()
         remindersTableViewHeightConstraint.constant = remindersTableView.contentSize.height
     }
