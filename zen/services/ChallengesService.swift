@@ -27,12 +27,17 @@ final class ChallengesService {
         self.init(ChallengesArchiveService(), ReminderService())
     }
 
-    var currentChallenge: Challenge? {
+    var currentChallenge: Challenge {
         get {
-            if let currentChallengeId = currentChallengeId {
-                return challengesDictionary[currentChallengeId]
+            guard let currentChallengeId = currentChallengeId else {
+                assertionFailure("Failed to get current challenge")
+                return Challenge("", "", "", "", "", "", "", .low)
             }
-            return nil
+            guard let challenge = challengesDictionary[currentChallengeId] else {
+                assertionFailure("Failed to get current challenge")
+                return Challenge("", "", "", "", "", "", "", .low)
+            }
+            return challenge
         }
         set {}
     }
@@ -72,7 +77,7 @@ final class ChallengesService {
     /// Challenge is ready to be finished today after 6pm
     var isTimeToFinishChallenge: Bool {
         get {
-            if currentChallenge?.status == .accepted {
+            if currentChallenge.status == .accepted {
                 return !Date.dateBefore6pm(currentChallengeShownTime)
             }
             return true
@@ -143,9 +148,9 @@ final class ChallengesService {
         assert(currentChallengeId == challengeId,
             "Can't mark current challenge as shown. ChallengeId is not current challenge:"
                 + " \(challengeId)")
-        if currentChallenge?.status != nil {
+        if currentChallenge.status != nil {
             print("Can't mark current challenge as shown. Challenge status:"
-                + " \(String(describing: currentChallenge?.status))")
+                + " \(String(describing: currentChallenge.status))")
             return
         }
         currentChallengeShownTime = NSDate().timeIntervalSince1970
@@ -157,9 +162,9 @@ final class ChallengesService {
         assert(currentChallengeId == challengeId,
             "Can't mark current challenge as accepted. ChallengeId is not current challenge:"
                 + " \(challengeId)")
-        assert(currentChallenge?.status == .shown,
+        assert(currentChallenge.status == .shown,
             "Can't mark current challenge as shown. Challenge status is not shown:"
-                + " \(String(describing: currentChallenge?.status))")
+                + " \(String(describing: currentChallenge.status))")
         updateCurrentChallenge()
         storeState()
     }
@@ -168,9 +173,9 @@ final class ChallengesService {
         assert(currentChallengeId == challengeId,
             "Can't mark current challenge as finished. ChallengeId is not current challenge:"
                 + " \(challengeId)")
-        assert(currentChallenge?.status == .accepted,
+        assert(currentChallenge.status == .accepted,
             "Can't mark current challenge as finished. Challenge status is not accepted:"
-                + " \(String(describing: currentChallenge?.status))")
+                + " \(String(describing: currentChallenge.status))")
         updateCurrentChallenge()
         storeState()
     }
@@ -184,25 +189,21 @@ final class ChallengesService {
         assert(currentChallengeId == challengeId,
             "Can't mark current challenge as finished. ChallengeId is not current challenge:"
                 + " \(challengeId)")
-
-        guard let currentChallengeLevel = currentChallenge?.level else {
-            assertionFailure("Failed to check level-up. Current challenge level is null.")
-            return false
-        }
-        assert(currentChallengeLevel.rawValue >= ChallengeLevel.low.rawValue,
+        assert(currentChallenge.level.rawValue >= ChallengeLevel.low.rawValue,
             "The level of the current level is undefined")
 
-        if currentChallengeLevel.rawValue > currentLevel.rawValue {
-            currentLevel = currentChallengeLevel
+        if currentChallenge.level.rawValue > currentLevel.rawValue {
+            currentLevel = currentChallenge.level
             challengesArchiveService.storeLevel(currentLevel)
+            AnalyticsService.logLevelUp(currentLevel)
             return true
         }
         return false
     }
 
     private func updateCurrentChallenge() {
-        currentChallenge?.updateStatus()
-        // TODO: send analytics
+        currentChallenge.updateStatus()
+        AnalyticsService.logChallengeStatus(currentChallenge)
     }
 
     /// Updates the status of current challenge and selects new one if needed
@@ -214,20 +215,19 @@ final class ChallengesService {
         if currentChallengeId == nil {
             newChallengeRequired = true
         } else {
-            assert(currentChallenge != nil,
-                "Failed to select current challenge \(String(describing: currentChallengeId))")
-            switch currentChallenge?.status {
+            switch currentChallenge.status {
             case nil:
                 break
             case .shown?:
                 if isChallengeTimeExpired {
-                    currentChallenge?.decline()
+                    currentChallenge.decline()
                     newChallengeRequired = true
                     reminderService.cancelRemindersForFinishedChallenge()
+                    AnalyticsService.logChallengeStatus(currentChallenge)
                 }
             case .accepted?:
                 if isChallengeTimeExpired {
-                    currentChallenge?.reset()
+                    currentChallenge.reset()
                     newChallengeRequired = true
                     reminderService.cancelRemindersForFinishedChallenge()
                 }
@@ -239,14 +239,10 @@ final class ChallengesService {
         }
         if newChallengeRequired {
             currentChallengeId = newChallengeId
-            guard let currentChallenge = self.currentChallenge else {
-                assertionFailure("Failed to select current challenge")
-                return
-            }
             reminderService.seRemindersForNewChallenge(currentChallenge)
         }
-        print("New challenge id: \(String(describing: currentChallengeId));"
-                + " content: \(String(describing: currentChallenge?.content))")
+        print("New challenge id: \(currentChallenge.challengeId);"
+                + " content: \(currentChallenge.content)")
         storeState()
     }
 
@@ -280,7 +276,7 @@ final class ChallengesService {
             let challengesArray = Array(challengesDictionary.values)
 
             challenge = ChallengesService.randomChallenge(challengesArray)
-            while challenge.challengeId == currentChallenge?.challengeId {
+            while challenge.challengeId == currentChallenge.challengeId {
                 challenge = ChallengesService.randomChallenge(challengesArray)
             }
             return challenge.challengeId

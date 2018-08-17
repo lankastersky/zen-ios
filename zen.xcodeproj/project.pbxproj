@@ -83,6 +83,10 @@
 		73D9FD4B2125F7760041E18F /* ReminderUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD492125F7760041E18F /* ReminderUtils.swift */; };
 		73D9FD4D2126199A0041E18F /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD4C2126199A0041E18F /* ReminderService.swift */; };
 		73D9FD4E2126199A0041E18F /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD4C2126199A0041E18F /* ReminderService.swift */; };
+		73D9FD50212736ED0041E18F /* FeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD4F212736ED0041E18F /* FeaturesService.swift */; };
+		73D9FD51212736ED0041E18F /* FeaturesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD4F212736ED0041E18F /* FeaturesService.swift */; };
+		73D9FD5321273C6C0041E18F /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD5221273C6C0041E18F /* AnalyticsService.swift */; };
+		73D9FD5421273C6C0041E18F /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D9FD5221273C6C0041E18F /* AnalyticsService.swift */; };
 		73E4CE8E20FFD2610016D41E /* ChallengesArchiveService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */; };
 		73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA120FAEF3400415A72 /* MutableChallengeData.swift */; };
 		73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 733C7FA320FAF12600415A72 /* ChallengesService.swift */; };
@@ -157,6 +161,8 @@
 		73D9FD462125F4600041E18F /* ReminderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderType.swift; sourceTree = "<group>"; };
 		73D9FD492125F7760041E18F /* ReminderUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderUtils.swift; sourceTree = "<group>"; };
 		73D9FD4C2126199A0041E18F /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderService.swift; sourceTree = "<group>"; };
+		73D9FD4F212736ED0041E18F /* FeaturesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesService.swift; sourceTree = "<group>"; };
+		73D9FD5221273C6C0041E18F /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		73E4CEA7210040C80016D41E /* Date+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		73EEFE3020F573EE004D14ED /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		73EEFE3420F5772E004D14ED /* JournalCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -254,12 +260,14 @@
 		73CD832920E4759800FEF64D /* services */ = {
 			isa = PBXGroup;
 			children = (
+				73D9FD5221273C6C0041E18F /* AnalyticsService.swift */,
 				733C7FA520FAF2A100415A72 /* ChallengesArchiveService.swift */,
 				733C7FA320FAF12600415A72 /* ChallengesService.swift */,
+				73D9FD4F212736ED0041E18F /* FeaturesService.swift */,
 				73CD832A20E475E100FEF64D /* FirebaseService.swift */,
+				73D9FD4C2126199A0041E18F /* ReminderService.swift */,
 				7337716D21111314004A58F8 /* ServiceError.swift */,
 				7390E6DA2114E26E002CCB56 /* StorageService.swift */,
-				73D9FD4C2126199A0041E18F /* ReminderService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -563,6 +571,7 @@
 			files = (
 				73CFDFCA21139C9200D2E426 /* ChallengeStatusFooterView.swift in Sources */,
 				731210CC2112718A005B8F51 /* String+Utils.swift in Sources */,
+				73D9FD50212736ED0041E18F /* FeaturesService.swift in Sources */,
 				73CD832B20E475E100FEF64D /* FirebaseService.swift in Sources */,
 				73CD82F920E463EA00FEF64D /* AppDelegate.swift in Sources */,
 				73E4CE9320FFD8C90016D41E /* MutableChallengeData.swift in Sources */,
@@ -582,6 +591,7 @@
 				73CFDFD72113B61100D2E426 /* ShownChallengeFooterView.swift in Sources */,
 				73D9FD3E2124C8C20041E18F /* NotificationUtils.swift in Sources */,
 				73CD82FB20E463EA00FEF64D /* ChallengeViewController.swift in Sources */,
+				73D9FD5321273C6C0041E18F /* AnalyticsService.swift in Sources */,
 				733C7FA620FAF2A100415A72 /* ChallengesArchiveService.swift in Sources */,
 				733C7FA020F9776600415A72 /* UIViewController+Utils.swift in Sources */,
 				73D9FD4D2126199A0041E18F /* ReminderService.swift in Sources */,
@@ -612,6 +622,7 @@
 				73D9FD432125DA370041E18F /* RemindersTableViewCell.swift in Sources */,
 				733771602100457D004A58F8 /* Date+Utils.swift in Sources */,
 				73E4CE982100400A0016D41E /* ChallengesService.swift in Sources */,
+				73D9FD51212736ED0041E18F /* FeaturesService.swift in Sources */,
 				73C101B6211B4ECA00DA272F /* UIColor+Utils.swift in Sources */,
 				731210C421112CA4005B8F51 /* ChallengeStatus.swift in Sources */,
 				733771652100458C004A58F8 /* AppDelegate.swift in Sources */,
@@ -625,6 +636,7 @@
 				7337716121004586004A58F8 /* ChallengeViewController.swift in Sources */,
 				73D9FD4E2126199A0041E18F /* ReminderService.swift in Sources */,
 				73C101BA211B5ABE00DA272F /* LoadingIndicatorView.swift in Sources */,
+				73D9FD5421273C6C0041E18F /* AnalyticsService.swift in Sources */,
 				7390E6DF2118CFB4002CCB56 /* HelpViewController.swift in Sources */,
 				73872A80212498CC001545B3 /* SettingsViewController.swift in Sources */,
 				7337716321004586004A58F8 /* JournalCollectionViewCell.swift in Sources */,

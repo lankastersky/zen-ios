@@ -110,10 +110,7 @@ final class ChallengeViewController: UIViewController {
     }
 
     private func showCurrentChallenge() {
-        guard let challenge = challengesService.currentChallenge else {
-            assertionFailure("Failed to get current challenge")
-            return
-        }
+        let challenge = challengesService.currentChallenge
         showChallengeHeader(challenge)
         switch challenge.status {
         case nil:
@@ -282,5 +279,7 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
         challengesService.markChallengeFinished(challenge.challengeId)
         showFinishedChallengeFooterView(challenge)
         reminderService.cancelRemindersForFinishedChallenge()
+        AnalyticsService.logChallengeRating(challenge)
+        AnalyticsService.logChallengeComments(challenge)
     }
 }
