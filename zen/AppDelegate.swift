@@ -25,7 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notificationSettings =
             UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(notificationSettings)
-            
+
+        FeaturesService().storeAppVersion()
+        
         return true
     }
 

@@ -51,7 +51,7 @@ final class RemindersTableViewCell: UITableViewCell {
             pickerValues = ReminderUtils.finalReminderPickerValues
         }
         let pickerSelectedRow = reminderService.reminderTimeIndex(reminderType)
-        detailsTextField.text = pickerValues?[pickerSelectedRow]
+        detailsTextField.text = pickerValues?[pickerSelectedRow].localized
         pickerView.selectRow(pickerSelectedRow, inComponent: 0, animated:false)
     }
 
@@ -78,14 +78,14 @@ extension RemindersTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
 
-        return pickerValues?[row]
+        return pickerValues?[row].localized
     }
 
     func pickerView(_ pickerView: UIPickerView,
                     didSelectRow row: Int,
                     inComponent component: Int) {
 
-        detailsTextField.text = pickerValues?[row]
+        detailsTextField.text = pickerValues?[row].localized
         updateReminder(row)
         contentView.endEditing(true)
     }

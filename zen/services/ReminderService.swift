@@ -87,10 +87,19 @@ final class ReminderService {
         switch reminderType {
         case .initial:
             initialReminderTimeIndex = reminderTimeIndex
+            AnalyticsService.logReminder(
+                reminderType.name,
+                ReminderUtils.initialReminderPickerValues[reminderTimeIndex])
         case .constant:
             constantReminderTimeIndex = reminderTimeIndex
+            AnalyticsService.logReminder(
+                reminderType.name,
+                ReminderUtils.constantReminderPickerValues[reminderTimeIndex])
         case .final:
             finalReminderTimeIndex = reminderTimeIndex
+            AnalyticsService.logReminder(
+                reminderType.name,
+                ReminderUtils.finalReminderPickerValues[reminderTimeIndex])
         }
     }
 
@@ -107,7 +116,7 @@ final class ReminderService {
             pickerValue = ReminderUtils.finalReminderPickerValues[finalReminderTimeIndex]
         }
 
-        if pickerValue == "settings_screen_time_never".localized {
+        if pickerValue == "reminder_time_never" {
             // Don't set notification
             return
         }

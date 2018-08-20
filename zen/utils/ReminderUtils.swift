@@ -5,23 +5,23 @@ final class ReminderUtils {
     private init() {}
 
     static let initialReminderPickerValues = [
-        "settings_screen_time_never".localized,
-        "settings_screen_time_6am".localized,
-        "settings_screen_time_8am".localized,
-        "settings_screen_time_10am".localized,
-        "settings_screen_time_12pm".localized,
-        "settings_screen_time_random_morning".localized]
+        "reminder_time_never",
+        "reminder_time_6am",
+        "reminder_time_8am",
+        "reminder_time_10am",
+        "reminder_time_12pm",
+        "reminder_time_random_morning"]
     static let constantReminderPickerValues = [
-        "settings_screen_time_never".localized,
-        "settings_screen_time_every_1h".localized,
-        "settings_screen_time_random_day".localized]
+        "reminder_time_never",
+        "reminder_time_every_1h",
+        "reminder_time_random_day"]
     static let finalReminderPickerValues = [
-        "settings_screen_time_never".localized,
-        "settings_screen_time_6pm".localized,
-        "settings_screen_time_8pm".localized,
-        "settings_screen_time_10pm".localized,
-        "settings_screen_time_12am".localized,
-        "settings_screen_time_random_evening".localized]
+        "reminder_time_never",
+        "reminder_time_6pm",
+        "reminder_time_8pm",
+        "reminder_time_10pm",
+        "reminder_time_12am",
+        "reminder_time_random_evening"]
 
     /// Returns closest reminder date-time by the string value from resources
     static func reminderTime(_ stringValue: String) -> Date {
@@ -40,29 +40,29 @@ final class ReminderUtils {
     static func reminderHours(_ stringValue: String) -> Int {
         var hours = 0
         switch stringValue {
-        case "settings_screen_time_6am".localized:
+        case "reminder_time_6am":
             hours = 6
-        case "settings_screen_time_8am".localized:
+        case "reminder_time_8am":
             hours = 8
-        case "settings_screen_time_10am".localized:
+        case "reminder_time_10am":
             hours = 10
-        case "settings_screen_time_12pm".localized:
+        case "reminder_time_12pm":
             hours = 12
-        case "settings_screen_time_6pm".localized:
+        case "reminder_time_6pm":
             hours = 18
-        case "settings_screen_time_8pm".localized:
+        case "reminder_time_8pm":
             hours = 20
-        case "settings_screen_time_10pm".localized:
+        case "reminder_time_10pm":
             hours = 22
-        case "settings_screen_time_12am".localized:
+        case "reminder_time_12am":
             hours = 0
-        case "settings_screen_time_every_1h".localized:
+        case "reminder_time_every_1h":
             hours = 1
-        case "settings_screen_time_random_morning".localized:
+        case "reminder_time_random_morning":
             hours = Int(arc4random_uniform(6) + 6)
-        case "settings_screen_time_random_day".localized:
+        case "reminder_time_random_day":
             hours = Int(arc4random_uniform(12) + 6)
-        case "settings_screen_time_random_evening".localized:
+        case "reminder_time_random_evening":
             hours = Int(arc4random_uniform(18) + 6)
         default:
             assertionFailure("Failed to get reminder hours")
