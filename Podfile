@@ -10,6 +10,7 @@ target 'zen' do
   pod 'Crashlytics', '~> 3.10.5'
   pod 'Zip', '~> 1.1'
   pod 'Cosmos', '~> 16.0'
+  pod 'SwiftLint', '~> 0.27'
 
 target 'zenTests' do
     inherit! :search_paths
