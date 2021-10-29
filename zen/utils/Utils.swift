@@ -17,7 +17,7 @@ final class Utils {
     static func buildAlert(_ title: String, _ message: String) -> UIAlertController {
         let alert = UIAlertController(title: title,
                                       message: message,
-                                      preferredStyle: UIAlertControllerStyle.alert)
+                                      preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         return alert
     }

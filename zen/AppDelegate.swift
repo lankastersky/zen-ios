@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions:
-        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
         configureAppearance()
@@ -56,8 +56,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func configureAppearance() {
+        // White non-transucent navigatio bar, supports dark appearance
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+
+            appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            appearance.backgroundColor = UIColor.skinColor
+
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            
+            
+            guard let tabBarController = window?.rootViewController as? UITabBarController else {
+                assertionFailure("Failed to get tab bar controller")
+                return
+            }
+            
+            let tabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.configureWithOpaqueBackground()
+            tabBarAppearance.backgroundColor = UIColor.skinColor
+            
+            tabBarController.tabBar.standardAppearance = tabBarAppearance
+            tabBarController.tabBar.scrollEdgeAppearance = tabBarController.tabBar.standardAppearance
+        }
+
         UITabBar.appearance().barTintColor = UIColor.skinColor
         UITabBar.appearance().tintColor = UIColor.white
+        
         UINavigationBar.appearance().barTintColor = UIColor.skinColor
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barStyle = .black

@@ -20,10 +20,11 @@ final class RemindersTableViewCell: UITableViewCell {
         titleLabel.textColor = UIColor.darkSkinColor
         detailsTextField.textColor = UIColor.darkSkinColor
 
+        //pickerView = UIPickerView()
         pickerView.frame = CGRect(x: 0, y: 0, width: 0, height: RemindersTableViewCell.pickerHeight)
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.backgroundColor = UIColor.white
+        //pickerView.backgroundColor = UIColor.white
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -78,7 +79,7 @@ extension RemindersTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
                     titleForRow row: Int,
                     forComponent component: Int) -> String? {
 
-        return pickerValues?[row].localized
+	        return pickerValues?[row].localized
     }
 
     func pickerView(_ pickerView: UIPickerView,

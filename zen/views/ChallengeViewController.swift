@@ -35,7 +35,7 @@ final class ChallengeViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(willEnterForeground),
-                                               name: .UIApplicationWillEnterForeground, object: nil)
+                                               name: UIApplication.willEnterForegroundNotification, object: nil)
 
         let tapGesture = UITapGestureRecognizer(target: self,
                                                 action: #selector(dismissKeyboard (_:)))
@@ -211,18 +211,18 @@ final class ChallengeViewController: UIViewController {
     private func registerKeyboardNotifications() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow,
+                                               name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillHide(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillHide,
+                                               name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
 
     // Scroll view when keyboard appears. See https://goo.gl/Eq4Bj9
     @objc private func keyboardWillShow(notification: NSNotification) {
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
-        guard let keyboardInfo = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+        guard let keyboardInfo = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             assertionFailure("Failed to get info from keyboard notification")
             return
         }
@@ -255,7 +255,7 @@ final class ChallengeViewController: UIViewController {
             return
         }
         if #available(iOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         } else {
             UIApplication.shared.openURL(url)
         }
@@ -282,4 +282,9 @@ extension ChallengeViewController: ChallengeFooterViewDelegate {
         AnalyticsService.logChallengeRating(challenge)
         AnalyticsService.logChallengeComments(challenge)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

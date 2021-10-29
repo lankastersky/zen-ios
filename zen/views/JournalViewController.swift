@@ -51,7 +51,7 @@ final class JournalViewController: UIViewController {
         messageLabel.textColor = UIColor.disabledSkinColor
         messageLabel.numberOfLines = 0
         messageLabel.textAlignment = .center
-        messageLabel.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        messageLabel.font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
         messageLabel.sizeToFit()
 
         collectionView.backgroundView = messageLabel

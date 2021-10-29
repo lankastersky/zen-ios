@@ -40,7 +40,7 @@ class LoadingIndicatorView {
         NotificationCenter.default.addObserver(
             self, selector:
             #selector(LoadingIndicatorView.rotated),
-            name: NSNotification.Name.UIDeviceOrientationDidChange,
+            name: UIDevice.orientationDidChangeNotification,
             object: nil)
 
         // Create the overlay
@@ -50,7 +50,7 @@ class LoadingIndicatorView {
         overlay.backgroundColor = UIColor.black
         overlay.translatesAutoresizingMaskIntoConstraints = false
         overlayTarget.addSubview(overlay)
-        overlayTarget.bringSubview(toFront: overlay)
+        overlayTarget.bringSubviewToFront(overlay)
 
         let horConstraint = NSLayoutConstraint(item: overlay, attribute: .centerX, relatedBy: .equal,
                                                toItem: overlayTarget, attribute: .centerX,
@@ -68,7 +68,7 @@ class LoadingIndicatorView {
         overlayTarget.addConstraints([horConstraint, verConstraint, widConstraint, heiConstraint])
 
         // Create and animate the activity indicator
-        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.white)
+        let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.white)
         indicator.center = overlay.center
         indicator.startAnimating()
         overlay.addSubview(indicator)
@@ -99,7 +99,7 @@ class LoadingIndicatorView {
             // unregister device orientation notification
             NotificationCenter.default.removeObserver(
                 self,
-                name: NSNotification.Name.UIDeviceOrientationDidChange,
+                name: UIDevice.orientationDidChangeNotification,
                 object: nil)
 
             currentOverlay?.removeFromSuperview()

@@ -44,9 +44,9 @@ final class FinishingChallengeFooterView: ChallengeFooterView {
 extension FinishingChallengeFooterView: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if commentsTextView.text == "challenge_screen_comments_placeholder".localized {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.label
         }
     }
 

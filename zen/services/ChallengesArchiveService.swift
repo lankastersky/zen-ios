@@ -38,7 +38,7 @@ final class ChallengesArchiveService {
                 return nil
         }
         guard let challenge =
-            try? jsonDecoder.decode(Challenge?.self, from: challengeData) else {
+            ((try? jsonDecoder.decode(Challenge?.self, from: challengeData)) as Challenge??) else {
                 assertionFailure("Failed to restore challenge data")
                 return nil
         }
