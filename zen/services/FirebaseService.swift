@@ -165,7 +165,7 @@ final class FirebaseService {
             assertionFailure("Failed to get locale")
             return ChallengesFileName.english.rawValue
         }
-        if preferredLanguage.starts(with: "ru-") {
+        if preferredLanguage.starts(with: "ru") {
             return ChallengesFileName.russian.rawValue
         } else {
             return ChallengesFileName.english.rawValue
